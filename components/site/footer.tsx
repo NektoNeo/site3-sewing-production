@@ -36,49 +36,42 @@ export function Footer() {
   ]
 
   return (
-    <footer className="relative bg-black pt-20 pb-12">
+    <footer className="relative bg-[#0F1012] pt-24 pb-8 border-t border-white/10">
       <div className="container-default">
-        {/* CTA Section */}
-        <motion.div
-          className="text-center mb-16"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeRise}
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Готовы начать?
-          </h2>
-          <p className="text-zinc-400 text-lg mb-8 max-w-2xl mx-auto">
-            Свяжитесь с нами для обсуждения вашего проекта
-          </p>
-          <Button
-            asChild
-            className="rounded-full bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:from-orange-600 hover:to-orange-700 hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-200 px-8 py-6 text-lg font-medium"
-          >
-            <Link href="#contacts">
-              Связаться с нами
-            </Link>
-          </Button>
-        </motion.div>
 
         {/* Navigation Groups */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 pt-12 border-t border-zinc-800">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-16">
+          {/* Company Info */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0 }}
+            className="md:col-span-1"
+          >
+            <h3 className="text-white font-bold text-2xl mb-4">LOGO</h3>
+            <p className="text-mist-300 mb-4">
+              Профессиональное швейное производство полного цикла.
+              От идеи до готового изделия.
+            </p>
+          </motion.div>
+
+          {/* Navigation Links */}
           {navigationGroups.map((group, index) => (
             <motion.div
               key={group.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: (index + 1) * 0.1 }}
             >
               <h3 className="text-white font-semibold mb-4">{group.title}</h3>
-              <ul className="space-y-2">
+              <ul className="space-y-3">
                 {group.links.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-zinc-400 hover:text-white transition-colors duration-200"
+                      className="text-mist-300 hover:text-white transition-colors duration-200"
                     >
                       {link.label}
                     </Link>
@@ -90,9 +83,9 @@ export function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="text-center pt-8 hairline-top">
-          <p className="text-zinc-500 text-sm">
-            © {new Date().getFullYear()} Все права защищены
+        <div className="text-center pt-8 border-t border-white/10">
+          <p className="text-mist-400 text-sm">
+            © {new Date().getFullYear()} LOGO. Все права защищены
           </p>
         </div>
       </div>

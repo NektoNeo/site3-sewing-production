@@ -48,15 +48,8 @@ export function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full glass">
-      <div
-        className={cn(
-          "backdrop-blur-xl backdrop-saturate-150",
-          "bg-[color:var(--header-bg)]",
-          "border-b border-[color:var(--header-border)]",
-          "transition-colors duration-300"
-        )}
-      >
+    <header className="sticky top-0 z-50 w-full">
+      <div className="hdr transition-colors duration-300">
         <div className="container flex h-16 items-center justify-between">
           {/* Logo */}
           <Link
@@ -78,10 +71,9 @@ export function Header() {
                     <Link
                       href={item.href as any}
                       className={cn(
-                        "px-3 py-1.5 text-sm font-medium transition-all duration-200 rounded-full",
+                        "navlink text-sm font-medium transition-all duration-200",
                         "text-[color:var(--header-fg)]",
-                        "hover:text-brand link-underline",
-                        isActive && "bg-[color:rgba(214,66,24,.15)] text-brand"
+                        isActive && "nav-active"
                       )}
                     >
                       {item.name}
@@ -98,15 +90,12 @@ export function Header() {
             className="rounded-full bg-brand hover:bg-brand-700 text-white"
             size="sm"
           >
-            <Link href="#contacts">Заказать</Link>
+            <Link href="#cta-quick">Заказать</Link>
           </Button>
         </div>
 
         {/* Progress line */}
-        <div
-          className="absolute left-0 bottom-0 h-[2px] bg-brand transition-all duration-100"
-          style={{ width: 'var(--scroll-progress)' }}
-        />
+        <div className='hdr-progress' />
       </div>
     </header>
   );

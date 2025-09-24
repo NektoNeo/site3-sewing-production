@@ -4,6 +4,8 @@ import { COMPANY_COPY } from '@/lib/data/copy';
 import { CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { fadeRise, stagger } from '@/lib/animations';
+import { StitchLine } from '@/components/decor/Stitch';
+import Steps from '@/components/site/steps';
 
 export function MerchSection() {
   // Разбиваем текст на части для структурированного отображения
@@ -54,18 +56,27 @@ export function MerchSection() {
     { label: 'Сублимация', desc: 'бесшовные полноцветные изображения' }
   ];
 
-  const steps = [
-    { title: 'Анализ', desc: 'изучаем ваш бренд, ЦА и задачи.' },
-    { title: 'Концепция', desc: 'предлагаем дизайн и варианты изделий.' },
-    { title: 'Производство', desc: 'шьем и наносим фирменную символику.' },
-    { title: 'Продвижение', desc: 'помогаем интегрировать мерч в маркетинговую стратегию.' }
-  ];
 
   return (
-    <section id="merch" className="py-20 px-4 md:scroll-mt-24">
+    <section id="merch" className="relative section px-4 md:scroll-mt-24">
       <div className="container mx-auto">
+        {/* Decorative stitch line */}
+        <StitchLine
+          className="absolute left-10 top-32 -rotate-12 z-0"
+          width={200}
+          opacity={0.2}
+        />
+        <motion.span
+          className="tag"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeRise}
+        >
+          Мерч
+        </motion.span>
         <motion.h2
-          className="heading mb-8"
+          className="h2 mt-4"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -73,6 +84,7 @@ export function MerchSection() {
         >
           {COMPANY_COPY.servicesDetails.merch.title}
         </motion.h2>
+        <div className="h2line mb-8" />
 
         {/* Два вступительных абзаца */}
         <motion.div
@@ -90,9 +102,9 @@ export function MerchSection() {
           </p>
         </motion.div>
 
-        {/* Почему стоит доверить - два столбца с чек-иконами */}
+        {/* Почему стоит доверить - панель с двумя столбцами и чек-иконами */}
         <motion.div
-          className="mb-12"
+          className="panel bg-[color:var(--bg-elev-1)] rounded-2xl p-8 shadow-elev mb-12"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -111,7 +123,7 @@ export function MerchSection() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <CheckCircle2 className="w-5 h-5 text-brand shrink-0 mt-1" />
+                <CheckCircle2 className="w-5 h-5 text-[#D64218] shrink-0 mt-1" />
                 <div>
                   <span className="font-medium text-fg">{item.title}</span>
                   <span className="text-fg-muted"> {item.text}</span>
@@ -121,7 +133,7 @@ export function MerchSection() {
           </div>
         </motion.div>
 
-        {/* Наши решения - плитки .panel */}
+        {/* Наши решения - 4 плитки .panel с крупным h4 */}
         <motion.div
           className="mb-12"
           initial="hidden"
@@ -137,16 +149,16 @@ export function MerchSection() {
               <motion.div
                 key={index}
                 variants={fadeRise}
-                className="panel bg-[color:var(--bg-elev-1)] rounded-2xl p-6 shadow-elev hover:shadow-lg transition-shadow duration-300"
+                className="panel bg-[color:var(--bg-elev-1)] rounded-2xl p-8 shadow-elev hover:shadow-lg transition-shadow duration-300"
               >
-                <h4 className="font-semibold mb-2 text-fg">{solution.title}</h4>
-                <p className="text-fg-muted">{solution.desc}</p>
+                <h4 className="text-xl font-semibold mb-3 text-fg">{solution.title}</h4>
+                <p className="text-fg-muted leading-relaxed">{solution.desc}</p>
               </motion.div>
             ))}
           </div>
         </motion.div>
 
-        {/* Технологии нанесения - chip-badge на стеклянной полосе */}
+        {/* Технологии нанесения - строчка chips */}
         <motion.div
           className="mb-12"
           initial="hidden"
@@ -157,54 +169,25 @@ export function MerchSection() {
           <h3 className="text-2xl font-semibold mb-6 text-fg">
             Технологии нанесения:
           </h3>
-          <div className="glass-soft p-6 rounded-2xl backdrop-blur-md bg-white/5 border border-white/10">
-            <div className="flex flex-wrap gap-3">
-              {technologies.map((tech, index) => (
-                <motion.span
-                  key={index}
-                  className="chip-badge inline-flex items-center px-4 py-2 rounded-full bg-brand/10 text-brand border border-brand/20"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <span className="font-medium">{tech.label}</span>
-                  <span className="ml-1 opacity-80">– {tech.desc}</span>
-                </motion.span>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Как мы работаем - горизонтальные Steps */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeRise}
-        >
-          <h3 className="text-2xl font-semibold mb-8 text-fg">
-            Как мы работаем?
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {steps.map((step, index) => (
-              <motion.div
+          <div className="flex flex-wrap gap-3">
+            {technologies.map((tech, index) => (
+              <motion.span
                 key={index}
-                className="flex flex-col items-center text-center"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                className="chip inline-flex items-center px-4 py-2 rounded-full bg-transparent text-[#D64218] border border-[#D64218] font-medium"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.15 }}
+                transition={{ delay: index * 0.1 }}
               >
-                <div className="w-12 h-12 rounded-full bg-brand/10 border-2 border-brand/30 flex items-center justify-center mb-3">
-                  <span className="font-bold text-brand">{index + 1}</span>
-                </div>
-                <h4 className="font-medium mb-1 text-fg">{step.title}</h4>
-                <p className="text-sm text-fg-muted">{step.desc}</p>
-              </motion.div>
+                <span>{tech.label}</span>
+                <span className="ml-1 opacity-80">– {tech.desc}</span>
+              </motion.span>
             ))}
           </div>
         </motion.div>
+
+        {/* Как мы работаем */}
+        <Steps />
       </div>
     </section>
   );

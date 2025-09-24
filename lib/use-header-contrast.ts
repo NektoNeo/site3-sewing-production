@@ -14,7 +14,7 @@ export function useHeaderContrast() {
       },
       {
         rootMargin: '-50px 0px 0px 0px',
-        threshold: 0.1
+        threshold: 0.2
       }
     );
 

@@ -71,22 +71,25 @@ export default function Contacts() {
   const agreementValue = watch("agreement")
 
   return (
-    <section id="contacts" className="section-spacing scroll-mt-16 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-900 to-zinc-900" />
+    <section id="contacts" className="section scroll-mt-16 relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#202528] to-[#1A1C1E]" />
       <div className="container-default max-w-2xl relative">
-        <motion.h2
-          className="text-3xl md:text-4xl font-bold mb-12 text-center text-white"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeRise}
-        >
-          Свяжитесь с нами
-        </motion.h2>
+        <div className="text-center">
+          <motion.span
+            className="tag"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeRise}
+          >
+            Контакты
+          </motion.span>
+          <div className="mb-12" />
+        </div>
 
         <motion.form
           onSubmit={handleSubmit(onSubmit)}
-          className="glass p-8 rounded-2xl border border-white/10 backdrop-blur-md space-y-6"
+          className="glass rounded-2xl p-8 md:p-10 border border-[rgba(165,171,175,.22)] shadow-[0_10px_40px_rgba(0,0,0,.35)] max-w-3xl mx-auto space-y-6"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -96,7 +99,7 @@ export default function Contacts() {
             <Input
               id="name"
               placeholder="Ваше имя"
-              className="bg-zinc-900/60 border-zinc-700 text-white placeholder:text-zinc-500 focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+              className="bg-black/40 border-[rgba(165,171,175,.24)] text-white placeholder:text-mist-400 focus:ring-2 focus:ring-[#D64218] focus:border-[#D64218] backdrop-blur-sm"
               {...register("name")}
             />
             {errors.name && (
@@ -109,7 +112,7 @@ export default function Contacts() {
             <Input
               id="phone"
               placeholder="+7 (999) 123-45-67"
-              className="bg-zinc-900/60 border-zinc-700 text-white placeholder:text-zinc-500 focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+              className="bg-black/40 border-[rgba(165,171,175,.24)] text-white placeholder:text-mist-400 focus:ring-2 focus:ring-[#D64218] focus:border-[#D64218] backdrop-blur-sm"
               {...register("phone")}
             />
             {errors.phone && (
@@ -123,7 +126,7 @@ export default function Contacts() {
               id="email"
               type="email"
               placeholder="your@email.com"
-              className="bg-zinc-900/60 border-zinc-700 text-white placeholder:text-zinc-500 focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+              className="bg-black/40 border-[rgba(165,171,175,.24)] text-white placeholder:text-mist-400 focus:ring-2 focus:ring-[#D64218] focus:border-[#D64218] backdrop-blur-sm"
               {...register("email")}
             />
             {errors.email && (
@@ -136,7 +139,7 @@ export default function Contacts() {
             <Textarea
               id="message"
               placeholder="Опишите вашу задачу..."
-              className="bg-zinc-900/60 border-zinc-700 text-white placeholder:text-zinc-500 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 min-h-[120px]"
+              className="bg-black/40 border-[rgba(165,171,175,.24)] text-white placeholder:text-mist-400 focus:ring-2 focus:ring-[#D64218] focus:border-[#D64218] backdrop-blur-sm min-h-[120px]"
               {...register("message")}
             />
             {errors.message && (
@@ -168,7 +171,7 @@ export default function Contacts() {
           <motion.div variants={fadeRise}>
             <Button
               type="submit"
-              className="w-full rounded-full bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:from-orange-600 hover:to-orange-700 hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-200 py-6 text-lg font-medium"
+              className="w-full rounded-full bg-gradient-to-r from-[#D64218] to-[#FF6B47] text-white hover:from-[#FF6B47] hover:to-[#D64218] hover:shadow-lg hover:shadow-[#D64218]/30 transition-all duration-300 py-6 text-lg font-medium"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Отправка..." : "Отправить заявку"}

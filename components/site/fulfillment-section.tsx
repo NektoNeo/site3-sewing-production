@@ -4,6 +4,7 @@ import { COMPANY_COPY } from '@/lib/data/copy';
 import { CheckCircle2, Package } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { fadeRise } from '@/lib/animations';
+import { StitchCircle, StitchLine } from '@/components/decor/Stitch';
 
 export function FulfillmentSection() {
   // Получаем полный текст
@@ -35,10 +36,30 @@ export function FulfillmentSection() {
   ];
 
   return (
-    <section id="fulfillment" className="py-20 px-4 md:scroll-mt-24">
+    <section id="fulfillment" className="relative section px-4 md:scroll-mt-24">
       <div className="container mx-auto">
+        {/* Decorative stitch elements */}
+        <StitchCircle
+          className="absolute left-1/2 top-10 -translate-x-1/2 z-0"
+          size={220}
+          opacity={0.15}
+        />
+        <StitchLine
+          className="absolute right-20 bottom-40 rotate-45 z-0"
+          width={180}
+          opacity={0.2}
+        />
+        <motion.span
+          className="tag"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeRise}
+        >
+          Фулфилмент
+        </motion.span>
         <motion.h2
-          className="heading mb-8"
+          className="h2 mt-4"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -46,6 +67,7 @@ export function FulfillmentSection() {
         >
           {COMPANY_COPY.servicesDetails.fulfillment.title}
         </motion.h2>
+        <div className="h2line mb-8" />
 
         {/* Вступление */}
         <motion.div
@@ -63,11 +85,11 @@ export function FulfillmentSection() {
           </p>
         </motion.div>
 
-        {/* Две панели в две колонки */}
-        <div className="grid lg:grid-cols-2 gap-6 mb-12">
+        {/* Две .panel по 50% ширины (на md+), одинаковой высоты */}
+        <div className="grid md:grid-cols-2 gap-6 mb-12">
           {/* Что входит в фулфилмент */}
           <motion.div
-            className="panel bg-[color:var(--bg-elev-1)] rounded-2xl p-6 shadow-elev"
+            className="panel bg-[color:var(--bg-elev-1)] rounded-2xl p-8 shadow-elev h-full"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -84,8 +106,8 @@ export function FulfillmentSection() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
                 >
-                  <CheckCircle2 className="w-5 h-5 text-brand shrink-0 mt-0.5" />
-                  <span className="text-sm text-fg-muted">{item}</span>
+                  <Package className="w-5 h-5 text-[#D64218] shrink-0 mt-0.5" />
+                  <span className="text-sm text-fg-muted leading-relaxed">{item}</span>
                 </motion.li>
               ))}
             </ul>
@@ -93,7 +115,7 @@ export function FulfillmentSection() {
 
           {/* Маркировка товаров */}
           <motion.div
-            className="panel bg-[color:var(--bg-elev-1)] rounded-2xl p-6 shadow-elev"
+            className="panel bg-[color:var(--bg-elev-1)] rounded-2xl p-8 shadow-elev h-full"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -112,8 +134,8 @@ export function FulfillmentSection() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.15 + index * 0.05 }}
                 >
-                  <Package className="w-5 h-5 text-brand shrink-0 mt-0.5" />
-                  <span className="text-sm text-fg-muted">{item}</span>
+                  <CheckCircle2 className="w-5 h-5 text-[#D64218] shrink-0 mt-0.5" />
+                  <span className="text-sm text-fg-muted leading-relaxed">{item}</span>
                 </motion.li>
               ))}
             </ul>

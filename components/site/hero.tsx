@@ -2,8 +2,10 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
+import { StitchCircle, StitchLine } from '@/components/decor/Stitch'
 
 export default function Hero() {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
@@ -12,6 +14,7 @@ export default function Hero() {
   // Parallax transforms (disabled if prefers-reduced-motion)
   const circleY = useTransform(scrollY, [0, 500], [0, prefersReducedMotion ? 0 : -6])
   const giantTypeY = useTransform(scrollY, [0, 500], [0, prefersReducedMotion ? 0 : 6])
+  const mascotY = useTransform(scrollY, [0, 300], [0, prefersReducedMotion ? 0 : -40])
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -27,18 +30,18 @@ export default function Hero() {
       {/* Sentinel for header contrast */}
       <div className="contrast-dark absolute inset-0 -z-10" aria-hidden="true" />
 
-      {/* Layer 1: Deep dark gradient background */}
+      {/* Layer 1: Smoother gradient background */}
       <div
         className="absolute inset-0 z-[1]"
         style={{
-          background: 'linear-gradient(120deg, #121416 0%, #1C2228 60%, #22262B 100%)'
+          background: 'linear-gradient(120deg, #121416 0%, #1B1F23 55%, #202528 100%)'
         }}
         aria-hidden="true"
       />
 
-      {/* Layer 2: Orange bokeh disk */}
+      {/* Layer 2: Softer orange glow disk */}
       <motion.div
-        className="absolute right-[8%] top-[18%] z-[2] rounded-full bg-[#FF6B35] opacity-30 blur-[120px]"
+        className="absolute left-[35%] top-[22%] z-[2] rounded-full bg-[#FF6B35] opacity-[0.19] blur-[110px]"
         style={{
           width: 'clamp(520px, 42vw, 820px)',
           height: 'clamp(520px, 42vw, 820px)',
@@ -47,34 +50,65 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      {/* Layer 3: Giant background typography */}
+      {/* Layer 3: More subtle giant background typography */}
       <motion.div
         className="absolute inset-0 z-[3] flex items-center justify-center overflow-hidden"
         style={{ y: giantTypeY }}
         aria-hidden="true"
       >
         <span
-          className="pointer-events-none select-none font-black text-white/5"
+          className="pointer-events-none select-none font-black text-white/[0.045]"
           style={{
             fontFamily: 'var(--font-space, var(--font-display))',
             fontSize: '28vw',
-            letterSpacing: '-0.04em'
+            letterSpacing: '-0.04em',
+            transform: 'translateX(-5%)'
           }}
         >
           ATELIER
         </span>
       </motion.div>
 
-      {/* Layer 4: Main Content */}
+      {/* Layer 4: Mascot decorative element with smoke effect */}
+      <div className="pointer-events-none absolute bottom-0 right-[7vw] z-[5]" aria-hidden="true">
+        {/* Smoke/mist effect behind mascot */}
+        <div
+          className="absolute inset-0 -translate-x-1/4 scale-150"
+          style={{
+            background: 'radial-gradient(circle at center, rgba(255, 107, 53, 0.08) 0%, transparent 70%)',
+            filter: 'blur(60px)',
+          }}
+        />
+
+        {/* Mascot with parallax */}
+        <motion.div
+          style={{ y: mascotY }}
+          className="relative"
+        >
+          <Image
+            src="/brand/mascot.png"
+            alt=""
+            width={1100}
+            height={1100}
+            priority
+            className="img-mask-soft drop-shadow-[0_20px_80px_rgba(0,0,0,.45)]
+                       max-h-[95vh] w-auto
+                       md:scale-100 md:translate-y-6
+                       lg:scale-105 lg:translate-y-0"
+          />
+        </motion.div>
+      </div>
+
+      {/* Layer 5: Main Content */}
       <div className="relative z-[10] flex min-h-screen items-center">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="max-w-3xl">
-            {/* Headline with updated sizing */}
+            {/* Headline with tighter typography */}
             <motion.h1
-              className="font-display leading-[0.9] text-white mb-8"
+              className="font-display leading-[0.85] text-white mb-8"
               style={{
                 fontSize: 'clamp(44px, 8vw, 92px)',
-                letterSpacing: '-0.03em'
+                letterSpacing: '-0.035em'
               }}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -95,18 +129,25 @@ export default function Hero() {
               От разработки лекал до готового изделия. 10 000+ изделий в месяц для брендов и частных заказов
             </motion.p>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons with consistent spacing */}
             <motion.div
-              className="flex flex-wrap gap-4"
+              className="relative flex flex-wrap gap-5"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
+              {/* Decorative stitch circle behind CTA */}
+              <StitchCircle
+                className="absolute -left-16 -top-10 z-0"
+                size={140}
+                opacity={0.25}
+              />
+
               <Button
                 asChild
                 variant="primary"
                 size="lg"
-                className="px-10 py-4 text-base font-medium shadow-lg shadow-[#FF6B35]/20"
+                className="relative z-10 h-[52px] px-10 text-base font-medium"
               >
                 <Link href="#contacts">
                   Рассчитать заказ
@@ -117,7 +158,7 @@ export default function Hero() {
                 asChild
                 variant="secondary"
                 size="lg"
-                className="px-10 py-4 text-base font-medium text-white/90 border border-white/10 backdrop-blur-sm bg-white/5 hover:bg-white/10 hover:border-white/20 hover:text-white"
+                className="relative z-10 h-[52px] px-10 text-base font-medium"
               >
                 <Link href="#services">
                   Наши услуги

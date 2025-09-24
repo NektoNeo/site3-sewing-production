@@ -4,6 +4,7 @@ import { COMPANY_COPY } from '@/lib/data/copy';
 import { CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { fadeRise } from '@/lib/animations';
+import { StitchCircle } from '@/components/decor/Stitch';
 
 export function PatternsSection() {
   // Разбиваем текст на части для структурированного отображения
@@ -22,10 +23,25 @@ export function PatternsSection() {
   ];
 
   return (
-    <section id="patterns" className="py-20 px-4 md:scroll-mt-24">
+    <section id="patterns" className="relative section px-4 md:scroll-mt-24">
       <div className="container mx-auto">
+        {/* Decorative stitch circle */}
+        <StitchCircle
+          className="absolute right-8 top-20 z-0"
+          size={160}
+          opacity={0.2}
+        />
+        <motion.span
+          className="tag"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeRise}
+        >
+          Лекала
+        </motion.span>
         <motion.h2
-          className="heading mb-8"
+          className="h2 mt-4"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -33,6 +49,7 @@ export function PatternsSection() {
         >
           {COMPANY_COPY.servicesDetails.patterns.title}
         </motion.h2>
+        <div className="h2line-outline-wavy mb-8" />
 
         {/* Вступительный текст */}
         <motion.div

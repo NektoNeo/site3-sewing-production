@@ -8,11 +8,20 @@ export default function About() {
   const aboutText = COMPANY_COPY.about
 
   return (
-    <section id="about" className="py-20 px-4 scroll-mt-16">
+    <section id="about" className="section px-4 scroll-mt-16 pt-6">
       <div className="container mx-auto">
         <div className="max-w-[70ch] mx-auto">
+          <motion.span
+            className="tag"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeRise}
+          >
+            О компании
+          </motion.span>
           <motion.h2
-            className="heading mb-6 pb-6 border-b border-line"
+            className="h2 mt-4"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
@@ -20,6 +29,7 @@ export default function About() {
           >
             О нас
           </motion.h2>
+          <div className="h2line" />
           <motion.div
             initial="hidden"
             whileInView="visible"

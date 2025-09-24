@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { fadeRise, stagger } from "@/lib/animations"
+import { StitchLine, StitchCircle } from '@/components/decor/Stitch'
 
 export default function Portfolio() {
   // Placeholder portfolio items
@@ -11,20 +12,42 @@ export default function Portfolio() {
   }))
 
   return (
-    <section id="portfolio" className="section-spacing scroll-mt-16 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 to-black" />
+    <section id="portfolio" className="relative section scroll-mt-16 bg-gradient-to-b from-[#1A1C1E] to-[#202528]">
       <div className="container-default relative">
-        <motion.h2
-          className="text-3xl md:text-4xl font-bold mb-12 text-center text-white"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeRise}
-        >
-          Портфолио
-        </motion.h2>
+        {/* Decorative stitches for portfolio */}
+        <StitchCircle
+          className="absolute -top-8 right-1/4 z-0"
+          size={200}
+          opacity={0.15}
+        />
+        <StitchLine
+          className="absolute left-12 bottom-1/4 -rotate-12 z-0"
+          width={160}
+          opacity={0.2}
+        />
+        <div className="relative text-center">
+          <motion.span
+            className="tag"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeRise}
+          >
+            Работы
+          </motion.span>
+          <motion.h2
+            className="h2 text-3xl md:text-4xl text-white mt-4"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeRise}
+          >
+            Портфолио
+          </motion.h2>
+          <div className="h2line max-w-md mx-auto mb-12" />
+        </div>
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -35,11 +58,11 @@ export default function Portfolio() {
               key={item.id}
               variants={fadeRise}
               whileHover={{
-                y: -4,
-                scale: 1.02,
-                transition: { duration: 0.2, ease: "easeOut" }
+                y: -6,
+                scale: 1.03,
+                transition: { duration: 0.3, ease: "easeOut" }
               }}
-              className="glass-soft rounded-2xl p-8 border border-white/10 backdrop-blur-md relative aspect-[4/3] overflow-hidden group transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/10"
+              className="glass-soft rounded-2xl p-10 border border-[rgba(165,171,175,.22)] shadow-[0_10px_40px_rgba(0,0,0,.35)] relative aspect-[4/3] overflow-hidden group transition-all duration-300 hover:shadow-2xl hover:shadow-[#D64218]/20 hover:border-[#D64218]/30"
             >
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
                 <div className="text-zinc-400 mb-4">
