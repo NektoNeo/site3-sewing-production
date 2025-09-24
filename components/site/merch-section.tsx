@@ -52,13 +52,13 @@ export function MerchSection() {
 
   const technologies = [
     { label: 'Вышивка', desc: 'для элитной и долговечной отделки' },
-    { label: 'Шелкография и DTF-печать', desc: 'яркие и стойкие принты' },
+    { label: 'DTF печать', desc: 'яркие и стойкие принты' },
     { label: 'Сублимация', desc: 'бесшовные полноцветные изображения' }
   ];
 
 
   return (
-    <section id="merch" className="relative section px-4 md:scroll-mt-24">
+    <section data-surface="dark" id="merch" className="relative section px-[var(--space-md)] md:scroll-mt-24">
       <div className="container mx-auto">
         {/* Decorative stitch line */}
         <StitchLine
@@ -66,45 +66,37 @@ export function MerchSection() {
           width={200}
           opacity={0.2}
         />
-        <motion.span
-          className="tag"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeRise}
-        >
-          Мерч
-        </motion.span>
-        <motion.h2
-          className="h2 mt-4"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeRise}
-        >
-          {COMPANY_COPY.servicesDetails.merch.title}
-        </motion.h2>
-        <div className="h2line mb-8" />
 
-        {/* Два вступительных абзаца */}
+        {/* Header with surface-dark background */}
         <motion.div
-          className="mb-12"
+          className="surface-dark rounded-2xl p-[var(--space-xl)] mb-[var(--space-2xl)] relative overflow-hidden"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeRise}
         >
-          <p className="text-[18px] leading-8 mb-4 max-w-[70ch] text-fg/90">
-            {intro1}
-          </p>
-          <p className="text-base leading-7 max-w-[70ch] text-fg-muted">
-            {intro2}
-          </p>
+          <span className="tag text-fg-muted mb-2 inline-block">
+            Мерч
+          </span>
+          <h2 className="h2 text-fg mt-2">
+            {COMPANY_COPY.servicesDetails.merch.title}
+          </h2>
+          <div className="h-px bg-[color:var(--color-accent)] w-32 mt-4" />
+
+          {/* Intro text right in the header panel */}
+          <div className="mt-[var(--space-xl)]">
+            <p className="text-[18px] leading-8 mb-4 max-w-[70ch] text-fg/90">
+              {intro1}
+            </p>
+            <p className="text-base leading-7 max-w-[70ch] text-fg-muted">
+              {intro2}
+            </p>
+          </div>
         </motion.div>
 
         {/* Почему стоит доверить - панель с двумя столбцами и чек-иконами */}
         <motion.div
-          className="panel bg-[color:var(--bg-elev-1)] rounded-2xl p-8 shadow-elev mb-12"
+          className="panel bg-[color:var(--bg-elev-1)] rounded-2xl p-[var(--space-xl)] shadow-elev mb-[var(--space-2xl)]"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -113,7 +105,7 @@ export function MerchSection() {
           <h3 className="text-2xl font-semibold mb-6 text-fg">
             Почему стоит доверить разработку мерча нам?
           </h3>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-[var(--space-lg)]">
             {whyUsItems.map((item, index) => (
               <motion.div
                 key={index}
@@ -135,7 +127,7 @@ export function MerchSection() {
 
         {/* Наши решения - 4 плитки .panel с крупным h4 */}
         <motion.div
-          className="mb-12"
+          className="mb-[var(--space-2xl)]"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -144,12 +136,12 @@ export function MerchSection() {
           <h3 className="text-2xl font-semibold mb-6 text-fg">
             Наши решения для бизнеса:
           </h3>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-[var(--space-lg)]">
             {solutions.map((solution, index) => (
               <motion.div
                 key={index}
                 variants={fadeRise}
-                className="panel bg-[color:var(--bg-elev-1)] rounded-2xl p-8 shadow-elev hover:shadow-lg transition-shadow duration-300"
+                className="panel bg-[color:var(--bg-elev-1)] rounded-2xl p-[var(--space-xl)] shadow-elev hover:shadow-lg transition-shadow duration-300"
               >
                 <h4 className="text-xl font-semibold mb-3 text-fg">{solution.title}</h4>
                 <p className="text-fg-muted leading-relaxed">{solution.desc}</p>
@@ -158,9 +150,9 @@ export function MerchSection() {
           </div>
         </motion.div>
 
-        {/* Технологии нанесения - строчка chips */}
+        {/* Технологии нанесения - строчка chips с эффектом строчки */}
         <motion.div
-          className="mb-12"
+          className="mb-[var(--space-2xl)]"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -169,19 +161,37 @@ export function MerchSection() {
           <h3 className="text-2xl font-semibold mb-6 text-fg">
             Технологии нанесения:
           </h3>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-[var(--space-lg)]">
             {technologies.map((tech, index) => (
-              <motion.span
+              <motion.div
                 key={index}
-                className="chip inline-flex items-center px-4 py-2 rounded-full bg-transparent text-[#D64218] border border-[#D64218] font-medium"
+                className="relative inline-flex items-center px-5 py-[var(--space-xs)].5 rounded-full bg-[color:var(--bg-elev-1)] border border-[#D64218]/20 group hover:border-[#D64218]/40 transition-all duration-300"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <span>{tech.label}</span>
-                <span className="ml-1 opacity-80">– {tech.desc}</span>
-              </motion.span>
+                {/* Stitching effect on top */}
+                <svg
+                  className="absolute top-0 left-4 right-4 h-px opacity-30"
+                  style={{ width: 'calc(100% - 2rem)' }}
+                  preserveAspectRatio="none"
+                >
+                  <line
+                    x1="0"
+                    y1="0"
+                    x2="100%"
+                    y2="0"
+                    stroke="#D64218"
+                    strokeWidth="1"
+                    strokeDasharray="3 2"
+                  />
+                </svg>
+                <span className="text-[16px] font-medium text-[#D64218] group-hover:text-[#D64218]/90 transition-colors">
+                  {tech.label}
+                </span>
+                <span className="ml-2 text-[15px] text-fg-muted">– {tech.desc}</span>
+              </motion.div>
             ))}
           </div>
         </motion.div>

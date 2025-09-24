@@ -3,25 +3,28 @@
 import { COMPANY_COPY } from '@/lib/data/copy'
 import { motion } from "framer-motion"
 import { fadeRise, stagger } from "@/lib/animations"
-import { Package, Scissors, Factory, Zap, Users, TrendingUp } from 'lucide-react'
+import { serviceCardHover, iconBounce } from "@/lib/micro-motion"
+import { Package, Scissors, Ruler, Palette, Image, PenTool, Printer, Sparkles } from 'lucide-react'
 import { StitchLine } from '@/components/decor/Stitch'
 
 export default function Services() {
   const services = COMPANY_COPY.servicesList
 
-  // Icon mapping for services
+  // Icon mapping for services - mono style
   const serviceIcons = [
-    <Package className="w-5 h-5" aria-hidden="true" />,
-    <Scissors className="w-5 h-5" aria-hidden="true" />,
-    <Factory className="w-5 h-5" aria-hidden="true" />,
-    <Zap className="w-5 h-5" aria-hidden="true" />,
-    <Users className="w-5 h-5" aria-hidden="true" />,
-    <TrendingUp className="w-5 h-5" aria-hidden="true" />
+    Package,     // Пошив изделий под ключ
+    Scissors,    // Пошив на давальческой основе
+    Ruler,       // Разработка лекал
+    Palette,     // Дизайн-проекты мерча
+    Image,       // DTF печать
+    PenTool,     // Вышивка
+    Printer,     // Шелкография
+    Sparkles     // Сублимация
   ]
 
   return (
-    <section id="services" className="relative section px-4 scroll-mt-16">
-      <div className="container mx-auto">
+    <section id="services" data-surface="light" className="relative section surface-light px-[var(--space-md)] scroll-mt-16 pt-[var(--space-3xl)] pb-[var(--space-3xl)]">
+      <div className="container mx-auto max-w-7xl">
         <div className="relative text-center">
           {/* Decorative stitch line behind heading */}
           <StitchLine
@@ -47,32 +50,66 @@ export default function Services() {
           >
             Наши услуги
           </motion.h2>
-          <div className="h2line-outline-straight max-w-md mx-auto mb-12" />
+          <div className="h2line-outline-straight max-w-md mx-auto mb-[var(--space-2xl)]" />
         </div>
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-[var(--space-lg)]"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={stagger}
         >
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              variants={fadeRise}
-              className="group relative"
-            >
-              <div className="relative rounded-2xl bg-[#222425] border border-[rgba(165,171,175,0.18)] shadow-[0_6px_24px_rgba(0,0,0,0.25)] p-6 hover:-translate-y-1 hover:shadow-lg transition-all will-change-transform h-full overflow-hidden before:absolute before:inset-x-0 before:top-0 before:h-[3px] before:bg-[#D64218]/80 before:rounded-t-2xl before:content-['']">
-                <h3 className="text-lg font-semibold mb-3 text-fg flex items-center gap-2">
-                  {serviceIcons[index % serviceIcons.length]}
-                  {service.title}
-                </h3>
-                <p className="text-sm text-[color:var(--fg-muted)] whitespace-pre-line">
-                  {service.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+          {services.map((service, index) => {
+            const Icon = serviceIcons[index]
+            return (
+              <motion.div
+                key={index}
+                variants={fadeRise}
+                className="group relative"
+              >
+                <motion.div
+                  className="relative bg-white border border-black/6 rounded-lg h-full overflow-hidden focus-within:ring-2 focus-within:ring-[#D64218]/30 focus-within:ring-offset-2"
+                  initial="initial"
+                  whileHover="hover"
+                  variants={serviceCardHover}>
+                  {/* Stitching detail at top */}
+                  <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#D64218]/20 to-transparent" />
+                  <div
+                    className="absolute inset-x-0 top-0 h-[3px] opacity-60"
+                    style={{
+                      backgroundImage: `repeating-linear-gradient(
+                        90deg,
+                        transparent,
+                        transparent 3px,
+                        rgba(214, 66, 24, 0.4) 3px,
+                        rgba(214, 66, 24, 0.4) 4px,
+                        transparent 4px,
+                        transparent 8px
+                      )`
+                    }}
+                  />
+
+                  <div className="p-[var(--space-lg)]">
+                    {/* Icon in circle */}
+                    <motion.div
+                      className="w-9 h-9 rounded-full border border-[#D64218]/30 bg-[#D64218]/5 flex items-center justify-center mb-4 group-hover:bg-[#D64218]/10 transition-colors"
+                      variants={iconBounce}
+                    >
+                      <Icon className="w-5 h-5 stroke-[#D64218]" strokeWidth={1.5} aria-hidden="true" />
+                    </motion.div>
+
+                    {/* Title and description */}
+                    <h3 className="text-base font-semibold mb-2 text-gray-900">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
+                      {service.description}
+                    </p>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )
+          })}
         </motion.div>
       </div>
     </section>

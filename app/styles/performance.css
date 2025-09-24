@@ -1,0 +1,120 @@
+/* Performance optimizations for blur and GPU-intensive effects */
+
+:root {
+  /* Reduced blur values for better performance */
+  --glass-blur: 8px; /* Reduced from 16px */
+  --glass-blur-heavy: 12px; /* Reduced from 24px */
+  --glass-blur-light: 4px; /* Reduced from 8px */
+
+  /* Performance-optimized glass backgrounds */
+  --glass-dark-perf: rgba(0, 0, 0, 0.6);
+  --glass-light-perf: rgba(255, 255, 255, 0.08);
+
+  /* Disable blur on low-end devices */
+  @media (max-width: 768px) {
+    --glass-blur: 4px;
+    --glass-blur-heavy: 6px;
+    --glass-blur-light: 2px;
+  }
+}
+
+/* Use will-change sparingly for elements that will animate */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Remove will-change after animation */
+.animation-done {
+  will-change: auto;
+}
+
+/* Optimize backdrop-filter performance */
+.backdrop-blur-sm {
+  backdrop-filter: blur(var(--glass-blur-light));
+  -webkit-backdrop-filter: blur(var(--glass-blur-light));
+}
+
+.backdrop-blur-md {
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+}
+
+.backdrop-blur-lg {
+  backdrop-filter: blur(var(--glass-blur-heavy));
+  -webkit-backdrop-filter: blur(var(--glass-blur-heavy));
+}
+
+/* Performance mode: disable blur entirely */
+@media (prefers-reduced-motion: reduce) {
+  .backdrop-blur-sm,
+  .backdrop-blur-md,
+  .backdrop-blur-lg {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: var(--glass-dark-perf) !important;
+  }
+}
+
+/* Use transform instead of top/left for positioning */
+.use-transform {
+  transform: translateZ(0); /* Enable GPU acceleration */
+  backface-visibility: hidden; /* Prevent flickering */
+}
+
+/* Optimize box-shadow rendering */
+.shadow-perf-sm {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-perf-md {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-perf-lg {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Replace complex shadows with pseudo-elements */
+.shadow-perf-complex {
+  position: relative;
+}
+
+.shadow-perf-complex::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Content visibility optimization for off-screen sections */
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px; /* Estimated height */
+}
+
+/* Optimize paint performance */
+.contain-paint {
+  contain: paint;
+}
+
+.contain-layout {
+  contain: layout;
+}
+
+.contain-strict {
+  contain: strict;
+}
+
+/* GPU-optimized transforms */
+@supports (transform: translateZ(0)) {
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+}

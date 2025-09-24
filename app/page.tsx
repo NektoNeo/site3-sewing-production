@@ -5,12 +5,15 @@ const Hero = dynamic(() => import('@/components/site/hero'), {
   ssr: false
 })
 
-const ZipperDivider = dynamic(() => import('@/components/decor/ZipperDivider'), {
-  loading: () => <div className="h-20 bg-red-500 opacity-50 w-full">Loading Zipper...</div>
+const ZipperCanvas = dynamic(() => import('@/components/decor/ZipperCanvas'), {
+  loading: () => <div className="h-20 bg-zinc-900/20 w-full" />,
+  ssr: false
 })
 const About = dynamic(() => import('@/components/site/about'))
+const AdvantagesCards = dynamic(() => import('@/components/site/advantages-cards'))
 const CtaInline = dynamic(() => import('@/components/site/cta-inline').then(mod => ({ default: mod.CtaInline })))
 const Services = dynamic(() => import('@/components/site/services'))
+const TechMediaCards = dynamic(() => import('@/components/site/tech-media-cards').then(mod => ({ default: mod.TechMediaCards })))
 const PatternsSection = dynamic(() => import('@/components/site/patterns-section').then(mod => ({ default: mod.PatternsSection })))
 const MerchSection = dynamic(() => import('@/components/site/merch-section').then(mod => ({ default: mod.MerchSection })))
 const FulfillmentSection = dynamic(() => import('@/components/site/fulfillment-section').then(mod => ({ default: mod.FulfillmentSection })))
@@ -26,17 +29,19 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <ZipperDivider initialOpen={0.22} />
+      <ZipperCanvas initialOpen={0.15} />
       <About />
+      <AdvantagesCards />
       <CtaInline />
       <Services />
+      <TechMediaCards />
       <PatternsSection />
       <MerchSection />
       <FulfillmentSection />
       <PricingSection />
       <CatalogSection />
-      <CtaMain />
       <Portfolio />
+      <CtaMain />
       <FAQ />
       <Contacts />
     </main>

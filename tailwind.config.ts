@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
+import { tailwindTokens } from "./lib/design-tokens";
 
 const config: Config = {
   darkMode: ["class"],
@@ -18,6 +19,7 @@ const config: Config = {
       },
     },
     extend: {
+      ...tailwindTokens.extend,
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
         display: ["var(--font-space)", "system-ui", "sans-serif"],

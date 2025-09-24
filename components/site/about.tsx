@@ -8,7 +8,7 @@ export default function About() {
   const aboutText = COMPANY_COPY.about
 
   return (
-    <section id="about" className="section px-4 scroll-mt-16 pt-6">
+    <section data-surface="dark" id="about" className="section px-[var(--space-md)] scroll-mt-16 pt-6">
       <div className="container mx-auto">
         <div className="max-w-[70ch] mx-auto">
           <motion.span

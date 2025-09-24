@@ -1,74 +1,218 @@
 'use client'
 
-import React, {useRef} from 'react'
-import {motion, useScroll, useSpring, useTransform, useInView} from 'framer-motion'
+import React, {useRef, useEffect, useState} from 'react'
+import {motion, useScroll, useSpring, useTransform, useInView, useMotionValue} from 'framer-motion'
+import {useMediaQuery} from '@/lib/use-media-query'
 import ZipperDefs from './ZipperDefs'
 
 /**
- * ZipperDivider — лёгкий SVG‑divider между секциями.
- * - progress = 0: слегка расстёгнута (левый участок без зубцов)
- * - progress -> 1: бегунок идёт вправо, зубцы «соединяют» разделы
- * Prefers-reduced-motion: прогресс зафиксирован = 1 (полностью застёгнута)
+ * ZipperDivider — анимированная молния-переход между секциями.
+ * - Начальное состояние: слегка расстёгнута (10-15%)
+ * - При скролле: бегунок движется вправо, зубья замыкаются
+ * - Оптимизирована для 60fps с will-change и GPU-слоями
+ * - Graceful fallback для prefers-reduced-motion
  */
-export default function ZipperDivider({initialOpen=0.25, height=120, accent='var(--zip-head)', showStitches=true}:{initialOpen?:number;height?:number;accent?:string;showStitches?:boolean}){
-  const ref = useRef<HTMLDivElement|null>(null)
-  const inView = useInView(ref, {amount:0.2, margin:'-15% 0px -15% 0px'})
-  const {scrollYProgress} = useScroll({target: ref, offset: ['start end','end start']})
-  const eased = useSpring(scrollYProgress, {stiffness: 120, damping: 20, mass: .2})
+export default function ZipperDivider({
+  initialOpen = 0.15,
+  height = 64,
+  accent = 'var(--zip-head)',
+  showStitches = true
+}: {
+  initialOpen?: number;
+  height?: number;
+  accent?: string;
+  showStitches?: boolean;
+}) {
+  const ref = useRef<HTMLDivElement | null>(null)
+  const [isIOSafari, setIsIOSafari] = useState(false)
 
-  const prefersReduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  // Детекция iOS Safari < 16 для отключения анимаций
+  useEffect(() => {
+    const ua = navigator.userAgent
+    const isIOS = /iPad|iPhone|iPod/.test(ua)
+    const isSafari = /Safari/.test(ua) && !/Chrome/.test(ua)
+    const version = ua.match(/Version\/(\d+)/)?.[1]
+    setIsIOSafari(isIOS && isSafari && (!version || parseInt(version) < 16))
+  }, [])
 
-  // от slightly open (initialOpen) до полностью закрыто
-  const zip = useTransform(eased, [0,1], [initialOpen, 1])
-  const finalZip = prefersReduced ? 1 : zip
-  const headX = useTransform(finalZip, v => v*1000) // в системе координат viewBox
-  const maskW = headX
+  // IntersectionObserver для активации анимации в viewport
+  const inView = useInView(ref, {
+    amount: 0.3,
+    margin: '-10% 0px -10% 0px',
+    once: false
+  })
+
+  // Scroll-based animation
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start 90%', 'center 10%']
+  })
+
+  // Spring physics для плавности
+  const eased = useSpring(scrollYProgress, {
+    stiffness: 150,
+    damping: 25,
+    mass: 0.3
+  })
+
+  // Проверка условий для анимации
+  const prefersReduced = useMediaQuery('(prefers-reduced-motion: reduce)')
+  const shouldAnimate = !prefersReduced && !isIOSafari && inView
+
+  // Создаем motion values для позиций
+  const animatedZip = useTransform(eased, [0, 1], [initialOpen, 1])
+  const animatedSliderX = useTransform(animatedZip, v => v * 1000)
+
+  // Статичные значения для fallback
+  const staticSliderX = useMotionValue(1000)
+  const staticMaskWidth = useMotionValue(1000)
+
+  // Выбираем значения в зависимости от условий
+  const sliderX = shouldAnimate ? animatedSliderX : staticSliderX
+  const maskWidth = shouldAnimate ? animatedSliderX : staticMaskWidth
 
   return (
-    <div ref={ref} className='zipper-wrap zipper-sticky' style={{height}}>
-      <ZipperDefs/>
-      <div className='relative'>
-        <div aria-hidden className='absolute inset-0 -z-10 pointer-events-none bg-[radial-gradient(120%_120%_at_50%_50%,rgba(0,0,0,.38),rgba(0,0,0,0)_70%)]'/>
-        <motion.svg className='w-full h-full zipper-shadow' viewBox={`0 0 1000 ${height}`} preserveAspectRatio='none' role='presentation' focusable='false' aria-hidden>
-        {/* Ткани (верх/низ) — тонкая имитация кантов */}
-        <path d='M0,70 C200,58 800,58 1000,70 L1000,0 L0,0 Z' fill='var(--zip-tape)' opacity='.95'/>
-        <path d='M0,70 C200,82 800,82 1000,70 L1000,140 L0,140 Z' fill='var(--zip-tape)' opacity='.95'/>
+    <div
+      ref={ref}
+      className='zipper-wrap relative'
+      style={{
+        height,
+        willChange: shouldAnimate ? 'transform' : 'auto',
+        isolation: 'isolate'
+      }}
+    >
+      <ZipperDefs />
 
-        {/* Строчки по краям ленты */}
-        {showStitches && (
-          <>
-            <path d='M0,58 L1000,58' stroke='var(--mist-300)' strokeOpacity='.25' strokeWidth='2' strokeDasharray='3 6'/>
-            <path d='M0,82 L1000,82' stroke='var(--mist-300)' strokeOpacity='.22' strokeWidth='2' strokeDasharray='3 6'/>
-          </>
-        )}
-
-        {/* Зубцы — показываем только «застёгнутую» часть через маску */}
-        <defs>
-          <motion.mask id='zip-mask'>
-            <motion.rect x='0' y='60' height='20' style={{width: prefersReduced?1000:(inView?maskW:1000)}} fill='#fff' />
-          </motion.mask>
-        </defs>
-        <rect x='0' y='60' width='1000' height='20' fill='url(#zip-teeth)' mask='url(#zip-mask)'/>
-
-        {/* Бегунок молнии */}
-        <motion.g
-          style={{x: prefersReduced?1000:(inView?headX:1000)}}
-          filter='url(#zip-drop)'
-          {...(!prefersReduced && {
-            role: 'button',
-            tabIndex: 0,
-            className: 'cursor-pointer focus:outline-none focus:ring-2 focus:ring-[var(--zip-head)]/60 rounded-md p-1',
-            'aria-label': 'Перейти к разделу О нас',
-            onClick: ()=>document.querySelector('#about')?.scrollIntoView({behavior:'smooth'}),
-            onKeyDown: (e:any)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();document.querySelector('#about')?.scrollIntoView({behavior:'smooth'})}}
-          })}
+      <div className='relative w-full h-full'>
+        <motion.svg
+          className='w-full h-full zipper-shadow'
+          viewBox='0 0 1000 80'
+          preserveAspectRatio='none'
+          role='presentation'
+          focusable='false'
+          aria-hidden
+          style={{ shapeRendering: 'geometricPrecision' }}
         >
-          <path d='M-12,40 h24 a8,8 0 0 1 8,8 v44 a8,8 0 0 1 -8,8 h-24 a8,8 0 0 1 -8,-8 v-44 a8,8 0 0 1 8,-8 z' fill='var(--zip-metal)'/>
-          <path d='M-10,44 h20 a6,6 0 0 1 6,6 v36 a6,6 0 0 1 -6,6 h-20 a6,6 0 0 1 -6,-6 v-36 a6,6 0 0 1 6,-6 z' fill={accent}/>
-          <circle cx='0' cy='106' r='6' fill='var(--zip-metal)'/>
-        </motion.g>
-      </motion.svg>
-      {prefersReduced && <a href='#about' className='sr-only'>К разделу О нас</a>}
+          {/* Лента молнии (верхняя и нижняя полосы) */}
+          <path
+            d='M0,30 L1000,30 L1000,0 L0,0 Z'
+            fill='var(--zip-tape)'
+            opacity='0.9'
+          />
+          <path
+            d='M0,50 L1000,50 L1000,80 L0,80 Z'
+            fill='var(--zip-tape)'
+            opacity='0.9'
+          />
+
+          {/* Декоративные строчки */}
+          {showStitches && (
+            <>
+              <path
+                d='M0,28 L1000,28'
+                stroke='var(--mist-300)'
+                strokeOpacity='0.2'
+                strokeWidth='1'
+                strokeDasharray='4 8'
+              />
+              <path
+                d='M0,52 L1000,52'
+                stroke='var(--mist-300)'
+                strokeOpacity='0.2'
+                strokeWidth='1'
+                strokeDasharray='4 8'
+              />
+            </>
+          )}
+
+          {/* Маска для зубцов молнии */}
+          <defs>
+            <mask id='zipper-teeth-mask'>
+              <motion.rect
+                x='0'
+                y='30'
+                height='20'
+                fill='white'
+                style={{
+                  width: maskWidth
+                }}
+              />
+            </mask>
+          </defs>
+
+          {/* Зубцы молнии - показываем только застёгнутую часть */}
+          <g mask='url(#zipper-teeth-mask)'>
+            <rect
+              x='0'
+              y='30'
+              width='1000'
+              height='20'
+              fill='url(#zip-teeth-pattern)'
+            />
+          </g>
+
+          {/* Бегунок молнии с интерактивностью */}
+          <motion.g
+            style={{
+              x: sliderX,
+              willChange: shouldAnimate ? 'transform' : 'auto'
+            }}
+            filter='url(#zip-slider-shadow)'
+            {...(!prefersReduced && {
+              role: 'button',
+              tabIndex: 0,
+              className: 'cursor-pointer focus:outline-none',
+              'aria-label': 'Перейти к разделу "О нас"',
+              onClick: () => {
+                document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' })
+              },
+              onKeyDown: (e: React.KeyboardEvent) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' })
+                }
+              }
+            })}
+          >
+            {/* Основа бегунка */}
+            <rect
+              x='-15'
+              y='20'
+              width='30'
+              height='40'
+              rx='6'
+              fill='url(#zip-slider-gradient)'
+            />
+            {/* Центральная часть бегунка */}
+            <rect
+              x='-12'
+              y='24'
+              width='24'
+              height='32'
+              rx='4'
+              fill={accent}
+            />
+            {/* Декоративный элемент */}
+            <rect
+              x='-2'
+              y='32'
+              width='4'
+              height='16'
+              rx='2'
+              fill='var(--zip-metal)'
+              opacity='0.7'
+            />
+            {/* Язычок бегунка */}
+            <circle cx='0' cy='64' r='4' fill='var(--zip-metal)' />
+          </motion.g>
+        </motion.svg>
+
+        {/* Скрытая ссылка для скринридеров */}
+        {prefersReduced && (
+          <a href='#about' className='sr-only'>
+            Перейти к разделу "О нас"
+          </a>
+        )}
       </div>
     </div>
   )

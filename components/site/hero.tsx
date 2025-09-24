@@ -4,17 +4,18 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import { Button } from '@/components/ui/button'
+import { RippleButton } from '@/components/ui/ripple-button'
 import { StitchCircle, StitchLine } from '@/components/decor/Stitch'
+import { OptimizedHeroImage } from '@/components/optimized/optimized-hero-image'
 
 export default function Hero() {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(true)
   const { scrollY } = useScroll()
 
   // Parallax transforms (disabled if prefers-reduced-motion)
-  const circleY = useTransform(scrollY, [0, 500], [0, prefersReducedMotion ? 0 : -6])
-  const giantTypeY = useTransform(scrollY, [0, 500], [0, prefersReducedMotion ? 0 : 6])
-  const mascotY = useTransform(scrollY, [0, 300], [0, prefersReducedMotion ? 0 : -40])
+  const gradientY = useTransform(scrollY, [0, 500], [0, prefersReducedMotion ? 0 : -10])
+  const giantTypeY = useTransform(scrollY, [0, 500], [0, prefersReducedMotion ? 0 : 8])
+  const mascotY = useTransform(scrollY, [0, 300], [0, prefersReducedMotion ? 0 : -20])
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -26,26 +27,25 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section data-surface="dark" className="relative min-h-screen overflow-hidden">
       {/* Sentinel for header contrast */}
       <div className="contrast-dark absolute inset-0 -z-10" aria-hidden="true" />
 
-      {/* Layer 1: Smoother gradient background */}
+      {/* Layer 1: Base dark background */}
       <div
         className="absolute inset-0 z-[1]"
         style={{
-          background: 'linear-gradient(120deg, #121416 0%, #1B1F23 55%, #202528 100%)'
+          background: 'linear-gradient(135deg, #0a0b0c 0%, #141618 50%, #1a1d20 100%)'
         }}
         aria-hidden="true"
       />
 
-      {/* Layer 2: Softer orange glow disk */}
+      {/* Layer 2: Radial gradient from center-right */}
       <motion.div
-        className="absolute left-[35%] top-[22%] z-[2] rounded-full bg-[#FF6B35] opacity-[0.19] blur-[110px]"
+        className="absolute inset-0 z-[2]"
         style={{
-          width: 'clamp(520px, 42vw, 820px)',
-          height: 'clamp(520px, 42vw, 820px)',
-          y: circleY
+          background: 'radial-gradient(circle at center right, rgba(214, 66, 24, 0.22) 0%, transparent 65%)',
+          y: gradientY
         }}
         aria-hidden="true"
       />
@@ -57,58 +57,56 @@ export default function Hero() {
         aria-hidden="true"
       >
         <span
-          className="pointer-events-none select-none font-black text-white/[0.045]"
+          className="pointer-events-none select-none font-black text-white/[0.08]"
           style={{
             fontFamily: 'var(--font-space, var(--font-display))',
-            fontSize: '28vw',
-            letterSpacing: '-0.04em',
-            transform: 'translateX(-5%)'
+            fontSize: '42vw',
+            letterSpacing: '0.1em',
+            transform: 'translateX(-12%)'
           }}
         >
-          ATELIER
+          AIR
         </span>
       </motion.div>
 
-      {/* Layer 4: Mascot decorative element with smoke effect */}
-      <div className="pointer-events-none absolute bottom-0 right-[7vw] z-[5]" aria-hidden="true">
-        {/* Smoke/mist effect behind mascot */}
-        <div
-          className="absolute inset-0 -translate-x-1/4 scale-150"
-          style={{
-            background: 'radial-gradient(circle at center, rgba(255, 107, 53, 0.08) 0%, transparent 70%)',
-            filter: 'blur(60px)',
-          }}
+      {/* Layer 4: Character/Mascot fixed on the right - за слоем молнии */}
+      <div className="pointer-events-none absolute -bottom-[20px] right-0 z-[4] lg:right-[2%] xl:right-[5%]" aria-hidden="true">
+        {/* Decorative stitch line around character */}
+        <StitchLine
+          className="absolute right-[850px] top-[10%] z-10 hidden xl:block"
+          height={400}
+          width={2}
+          opacity={0.35}
         />
 
-        {/* Mascot with parallax */}
+        {/* Character with fixed positioning */}
         <motion.div
           style={{ y: mascotY }}
           className="relative"
         >
-          <Image
+          <OptimizedHeroImage
             src="/brand/mascot.png"
             alt=""
-            width={1100}
-            height={1100}
+            width={1050}
+            height={1575}
             priority
-            className="img-mask-soft drop-shadow-[0_20px_80px_rgba(0,0,0,.45)]
-                       max-h-[95vh] w-auto
-                       md:scale-100 md:translate-y-6
-                       lg:scale-105 lg:translate-y-0"
+            className="drop-shadow-[0_20px_60px_rgba(0,0,0,.35)]
+                       max-h-[95vh] w-auto object-contain
+                       md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1050px] 2xl:max-w-[1150px]"
           />
         </motion.div>
       </div>
 
       {/* Layer 5: Main Content */}
-      <div className="relative z-[10] flex min-h-screen items-center">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="max-w-3xl">
-            {/* Headline with tighter typography */}
+      <div className="relative z-[10] flex min-h-screen items-center pt-[var(--space-3xl)] pb-[var(--space-3xl)] md:py-0">
+        <div className="container mx-auto px-[var(--space-lg)] lg:px-12">
+          <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl">
+            {/* Headline with responsive sizing */}
             <motion.h1
-              className="font-display leading-[0.85] text-white mb-8"
+              className="font-display leading-[0.9] text-white mb-6 md:mb-[var(--space-xl)]"
               style={{
-                fontSize: 'clamp(44px, 8vw, 92px)',
-                letterSpacing: '-0.035em'
+                fontSize: 'clamp(36px, 7vw, 80px)',
+                letterSpacing: '-0.03em'
               }}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -119,9 +117,9 @@ export default function Hero() {
               <span className="text-[#FF6B35]">полного цикла</span>
             </motion.h1>
 
-            {/* Subtitle */}
+            {/* Subtitle with better contrast */}
             <motion.p
-              className="text-lg md:text-xl text-slate-300 mb-12 max-w-2xl leading-relaxed"
+              className="text-base md:text-lg lg:text-xl text-gray-200 mb-10 md:mb-[var(--space-2xl)] max-w-xl lg:max-w-2xl leading-relaxed"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
@@ -129,41 +127,53 @@ export default function Hero() {
               От разработки лекал до готового изделия. 10 000+ изделий в месяц для брендов и частных заказов
             </motion.p>
 
-            {/* CTA Buttons with consistent spacing */}
+            {/* CTA Buttons with sewing stitch decorations */}
             <motion.div
               className="relative flex flex-wrap gap-5"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              {/* Decorative stitch circle behind CTA */}
+              {/* Multiple decorative stitches around CTAs */}
               <StitchCircle
-                className="absolute -left-16 -top-10 z-0"
-                size={140}
+                className="absolute -left-14 -top-8 z-0"
+                size={120}
+                opacity={0.3}
+              />
+              <StitchLine
+                className="absolute -right-8 top-1/2 -translate-y-1/2 z-0"
+                width={60}
+                height={2}
                 opacity={0.25}
               />
+              <StitchLine
+                className="absolute left-[180px] -bottom-6 z-0"
+                width={80}
+                height={2}
+                opacity={0.2}
+              />
 
-              <Button
-                asChild
-                variant="primary"
-                size="lg"
-                className="relative z-10 h-[52px] px-10 text-base font-medium"
-              >
-                <Link href="#contacts">
+              <Link href="#contacts" className="relative z-10">
+                <RippleButton
+                  variant="primary"
+                  size="lg"
+                  className="h-[54px] px-12 text-base font-semibold shadow-lg
+                            hover:shadow-xl"
+                >
                   Рассчитать заказ
-                </Link>
-              </Button>
+                </RippleButton>
+              </Link>
 
-              <Button
-                asChild
-                variant="secondary"
-                size="lg"
-                className="relative z-10 h-[52px] px-10 text-base font-medium"
-              >
-                <Link href="#services">
+              <Link href="#services" className="relative z-10">
+                <RippleButton
+                  variant="secondary"
+                  size="lg"
+                  className="h-[54px] px-12 text-base font-medium
+                            border-2 border-white/20 hover:border-white/30"
+                >
                   Наши услуги
-                </Link>
-              </Button>
+                </RippleButton>
+              </Link>
             </motion.div>
           </div>
         </div>

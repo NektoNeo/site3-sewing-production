@@ -1,0 +1,263 @@
+/* ===================================================================
+   MOTION & PERFORMANCE CSS
+   Optimized for performance with prefers-reduced-motion support
+   =================================================================== */
+
+@layer motion {
+  /* Default smooth transitions for interactive elements */
+  * {
+    transition-property: none;
+  }
+
+  button,
+  a,
+  input,
+  textarea,
+  select,
+  [role="button"],
+  [tabindex]:not([tabindex="-1"]) {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
+  /* Performant animations using transform and opacity only */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeRise {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  /* Animation utility classes */
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .animate-fadeRise {
+    animation: fadeRise 0.6s ease-out;
+  }
+
+  .animate-slideInLeft {
+    animation: slideInLeft 0.5s ease-out;
+  }
+
+  .animate-slideInRight {
+    animation: slideInRight 0.5s ease-out;
+  }
+
+  .animate-scaleIn {
+    animation: scaleIn 0.5s ease-out;
+  }
+
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* GPU acceleration hints for animated elements */
+  .will-animate {
+    will-change: transform, opacity;
+  }
+
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* ===============================================================
+     REDUCED MOTION SUPPORT
+     =============================================================== */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    /* Keep opacity transitions for essential feedback */
+    button,
+    a,
+    input,
+    textarea,
+    select {
+      transition-property: opacity;
+      transition-duration: 150ms;
+    }
+
+    /* Remove parallax effects */
+    .parallax,
+    [data-parallax] {
+      transform: none !important;
+    }
+
+    /* Disable auto-playing videos */
+    video[autoplay] {
+      display: none;
+    }
+
+    /* Simplify complex animations */
+    .animate-fadeRise,
+    .animate-slideInLeft,
+    .animate-slideInRight,
+    .animate-scaleIn {
+      animation: fadeIn 0.01ms;
+    }
+
+    /* Remove will-change to save resources */
+    .will-animate {
+      will-change: auto;
+    }
+
+    /* Remove 3D transforms */
+    .gpu-accelerated {
+      transform: none;
+      backface-visibility: visible;
+      perspective: none;
+    }
+  }
+
+  /* ===============================================================
+     PERFORMANCE MODES
+     =============================================================== */
+
+  /* Low performance mode (mobile, low battery) */
+  [data-perf-mode="low"] {
+    /* Disable all non-essential animations */
+    * {
+      animation-duration: 0.2s !important;
+      transition-duration: 0.1s !important;
+    }
+
+    /* Remove shadows for performance */
+    .shadow,
+    .shadow-lg,
+    .shadow-xl,
+    .shadow-2xl {
+      box-shadow: none !important;
+    }
+
+    /* Disable filters */
+    .blur,
+    .backdrop-blur {
+      filter: none !important;
+      backdrop-filter: none !important;
+    }
+
+    /* Disable glow effects */
+    .glow {
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+  }
+
+  /* Balanced performance mode */
+  [data-perf-mode="balanced"] {
+    /* Shorter animation durations */
+    * {
+      animation-duration: 0.4s !important;
+      transition-duration: 0.2s !important;
+    }
+
+    /* Simplify shadows */
+    .shadow-2xl {
+      box-shadow: var(--shadow-elev-1) !important;
+    }
+
+    /* Reduce blur intensity */
+    .backdrop-blur {
+      backdrop-filter: blur(8px) !important;
+    }
+  }
+
+  /* High performance mode (desktop, plugged in) */
+  [data-perf-mode="high"] {
+    /* Full animations enabled */
+    /* This is the default state */
+  }
+
+  /* ===============================================================
+     SCROLL PERFORMANCE
+     =============================================================== */
+
+  /* Optimize scroll performance */
+  .scroll-container {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-container {
+      scroll-behavior: auto;
+    }
+  }
+
+  /* Prevent layout shift during animations */
+  .no-layout-shift {
+    contain: layout style paint;
+  }
+
+  /* Optimize image loading */
+  img,
+  video {
+    content-visibility: auto;
+  }
+}

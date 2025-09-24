@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import "./styles/animations.css";
+import "./styles/performance.css";
 import { inter, space } from "./fonts";
 import { Providers } from "@/lib/providers";
 import { SmoothScroll } from "@/lib/smooth-scroll";
@@ -87,10 +88,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${space.variable} font-sans`}>
+        <a href="#main-content" className="skip-to-main">
+          Skip to main content
+        </a>
         <Providers>
           <SmoothScroll>
             <Header />
-            {children}
+            <main id="main-content" tabIndex={-1}>
+              {children}
+            </main>
             <Footer />
             <Toaster />
           </SmoothScroll>

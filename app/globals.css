@@ -1,3 +1,7 @@
+@import './styles/tokens.css';
+@import './styles/motion.css';
+@import './styles/a11y.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,8 +14,8 @@
     --bg-elev-2: #2B2F31;
     --panel: #32373D;
     --line: rgba(165, 171, 175, 0.18);
-    --fg: #ECEFF1;
-    --fg-muted: #A5ABAF;
+    --fg: #E6E9EC;
+    --fg-muted: #9CA3A8;
     --brand: #D64218;
     --brand-600: #D64218;
     --brand-700: #C23A14;
@@ -29,7 +33,7 @@
 
     /* Keep existing shadcn compatibility tokens */
     --background: #1A1C1E;
-    --foreground: #ECEFF1;
+    --foreground: #E6E9EC;
     --card: 0 0% 13%;
     --card-foreground: 0 0% 95%;
     --popover: 0 0% 13%;
@@ -39,7 +43,7 @@
     --secondary: 0 0% 20%;
     --secondary-foreground: 0 0% 95%;
     --muted: #32373D;
-    --muted-foreground: #A5ABAF;
+    --muted-foreground: #9CA3A8;
     --accent: #D64218;
     --accent-foreground: #FFFFFF;
     --destructive: 0 84.2% 60.2%;
@@ -86,50 +90,62 @@
     height: 64px;
   }
 
-  /* Navigation link styles */
+  /* Navigation link styles - clean, no pills */
   .navlink {
     position: relative;
     padding: 0.5rem 0.75rem;
+    transition: color 0.2s ease;
+  }
+
+  .navlink::after {
+    content: '';
+    position: absolute;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.2s ease;
   }
 
   .navlink:hover::after {
-    content: '';
-    position: absolute;
-    left: 0.5rem;
-    right: 0.5rem;
-    bottom: -4px;
-    height: 2px;
-    background: #D64218;
-    border-radius: 2px;
-    opacity: 0.85;
+    transform: scaleX(0.5);
+    opacity: 0.6;
   }
 
-  /* Active navigation state */
+  /* Active navigation state - thin underline, no pill */
   .nav-active {
-    color: #D64218;
-    font-weight: 600;
+    color: var(--accent);
+    font-weight: 500;
   }
 
   .nav-active::after {
-    content: '';
-    position: absolute;
-    left: 0.5rem;
-    right: 0.5rem;
-    bottom: -4px;
-    height: 2px;
-    background: #D64218;
-    border-radius: 2px;
+    transform: scaleX(1);
   }
 
-  /* Header progress line - subtle and thin */
-  .hdr-progress {
-    position: absolute;
+  /* Header with inverted colors on light sections */
+  .hdr.nav--inverted .navlink {
+    color: var(--header-fg);
+  }
+
+  .hdr.nav--inverted .nav-active {
+    color: var(--accent);
+  }
+
+  /* Scroll progress line - fixed at the very top */
+  .scroll-progress {
+    position: fixed;
+    top: 0;
     left: 0;
-    bottom: 0;
-    height: 1px;
-    background: linear-gradient(90deg, rgba(214, 66, 24, .35), rgba(214, 66, 24, .35));
-    width: var(--scroll-progress, 0%);
-    box-shadow: none;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform-origin: left;
+    transform: scaleX(var(--scroll-progress, 0));
+    z-index: 9999;
+    transition: transform 0.1s ease-out;
   }
 }
 
@@ -441,15 +457,21 @@
 
   /* Pricing UX Performance Styles */
   .tnum{font-variant-numeric:tabular-nums;}
-  .price{font-weight:600;color:#E5E7EB}
-  .price::after{content:' \20BD';opacity:.8;margin-left:2px}
+  .price-value{font-weight:600;color:#E5E7EB}
+  .currency{font-weight:500}
   .pricing-wrap{position:relative}
   .pricing-wrap::before,.pricing-wrap::after{content:'';position:absolute;top:0;bottom:0;width:28px;pointer-events:none}
   .pricing-wrap::before{left:0;background:linear-gradient(90deg,rgba(0,0,0,.6),rgba(0,0,0,0))}
   .pricing-wrap::after{right:0;background:linear-gradient(270deg,rgba(0,0,0,.6),rgba(0,0,0,0))}
   .pricing-table thead th{position:sticky;top:0;backdrop-filter:blur(6px);background:rgba(20,22,24,.7)}
-  .pricing-table tr{transition:background-color 120ms ease}
-  .pricing-table tr:hover td{background:rgba(255,255,255,.03)}
+  .pricing-table tbody tr{
+    transition:background-color 150ms ease,box-shadow 150ms ease;
+    transform:translate3d(0,0,0);
+  }
+  .pricing-table tbody tr:hover{
+    position:relative;
+    z-index:1;
+  }
 
   /* Zipper Utility Classes */
   .zipper-wrap{position:relative;isolation:isolate}
@@ -459,4 +481,262 @@
   @media(max-width:1023px){.zip-h{height:84px}}
   /* сглаживание */
   svg{shape-rendering:geometricPrecision}
+
+  /* ===============================================================
+     SURFACE UTILITY CLASSES
+     Классы для темных и светлых поверхностей
+     =============================================================== */
+
+  /* Dark Surfaces (Default) */
+  .surface-dark {
+    background: var(--color-panel-700);
+    color: var(--fg);
+  }
+
+  .surface-darker {
+    background: var(--color-ink-900);
+    color: var(--fg);
+  }
+
+  /* Light Surfaces (Light Islands) */
+  .surface-light {
+    background: linear-gradient(180deg, #FCFCFD 0%, #F4F6F8 100%);
+    color: #101316;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .surface-light h1,
+  .surface-light h2,
+  .surface-light h3,
+  .surface-light h4,
+  .surface-light h5,
+  .surface-light h6 {
+    color: #101316;
+  }
+
+  .surface-light p,
+  .surface-light .text-muted {
+    color: #3F474D;
+  }
+
+  /* ===============================================================
+     GLASS MORPHISM UTILITY CLASSES
+     Стеклянные эффекты для темных и светлых фонов
+     =============================================================== */
+
+  /* Glass on dark background (enhanced) */
+  .glass-dark {
+    background: var(--glass-dark);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-dark-stroke);
+    box-shadow: var(--shadow-elev-2);
+  }
+
+  /* Glass on light background */
+  .glass-light {
+    background: var(--glass-light);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-light-stroke);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Glass with accent glow */
+  .glass-accent {
+    background: rgba(214, 66, 24, 0.08);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid rgba(214, 66, 24, 0.25);
+    box-shadow: var(--shadow-glow-accent);
+  }
+
+  /* ===============================================================
+     STITCH PATTERN UTILITY CLASSES
+     Мотив шитья для декоративных элементов
+     =============================================================== */
+
+  /* Basic stitch pattern */
+  .stitch {
+    background-image: repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent var(--stitch-spacing),
+      var(--stitch-color) var(--stitch-spacing),
+      var(--stitch-color) calc(var(--stitch-spacing) + var(--stitch-width))
+    );
+    mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+    -webkit-mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+    padding: var(--stitch-padding);
+    border-radius: var(--radius-sm);
+  }
+
+  /* Vertical stitch pattern */
+  .stitch-vertical {
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent var(--stitch-spacing),
+      var(--stitch-color) var(--stitch-spacing),
+      var(--stitch-color) calc(var(--stitch-spacing) + var(--stitch-width))
+    );
+    mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+    -webkit-mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+    padding: var(--stitch-padding);
+    border-radius: var(--radius-sm);
+  }
+
+  /* Diagonal stitch pattern */
+  .stitch-diagonal {
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent 0,
+      transparent var(--stitch-spacing),
+      var(--stitch-color) var(--stitch-spacing),
+      var(--stitch-color) calc(var(--stitch-spacing) + var(--stitch-width))
+    );
+    mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+    -webkit-mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+    padding: var(--stitch-padding);
+    border-radius: var(--radius-sm);
+  }
+
+  /* Cross-stitch pattern */
+  .stitch-cross {
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        transparent 0,
+        transparent var(--stitch-spacing),
+        var(--stitch-color) var(--stitch-spacing),
+        var(--stitch-color) calc(var(--stitch-spacing) + var(--stitch-width))
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent 0,
+        transparent var(--stitch-spacing),
+        var(--stitch-color) var(--stitch-spacing),
+        var(--stitch-color) calc(var(--stitch-spacing) + var(--stitch-width))
+      );
+    mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+    -webkit-mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+    padding: var(--stitch-padding);
+    border-radius: var(--radius-sm);
+  }
+
+  /* ===============================================================
+     ELEVATION UTILITY CLASSES
+     Классы для создания глубины и иерархии
+     =============================================================== */
+
+  .elevation-1 {
+    box-shadow: var(--shadow-elev-1);
+  }
+
+  .elevation-2 {
+    box-shadow: var(--shadow-elev-2);
+  }
+
+  .elevation-accent {
+    box-shadow: var(--shadow-glow-accent);
+  }
+
+  /* Light theme elevations */
+  .surface-light .elevation-1 {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .surface-light .elevation-2 {
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  /* ===============================================================
+     TRANSITION UTILITY CLASSES
+     Классы для плавных анимаций
+     =============================================================== */
+
+  .transition-fast {
+    transition: all var(--transition-fast);
+  }
+
+  .transition-normal {
+    transition: all var(--transition-normal);
+  }
+
+  .transition-slow {
+    transition: all var(--transition-slow);
+  }
+
+  .transition-spring {
+    transition: all var(--transition-spring);
+  }
+
+  /* ===============================================================
+     RADIUS UTILITY CLASSES
+     Классы для скругления углов
+     =============================================================== */
+
+  .radius-xs {
+    border-radius: var(--radius-xs);
+  }
+
+  .radius-sm {
+    border-radius: var(--radius-sm);
+  }
+
+  .radius-md {
+    border-radius: var(--radius-md);
+  }
+
+  .radius-lg {
+    border-radius: var(--radius-lg);
+  }
+
+  .radius-xl {
+    border-radius: var(--radius-xl);
+  }
+
+  /* ===============================================================
+     SECTION THEME OVERRIDES
+     Настройка светлых островов для конкретных секций
+     =============================================================== */
+
+  /* Services section - Light island */
+  #services,
+  .services {
+    @apply surface-light;
+  }
+
+  /* Portfolio section - Light island */
+  #portfolio,
+  .portfolio {
+    @apply surface-light;
+  }
+
+  /* Catalog section - Light island */
+  #catalog,
+  .catalog-summary {
+    @apply surface-light;
+  }
+
+  /* Ensure proper text contrast in light sections */
+  .surface-light .chip {
+    background: rgba(0, 0, 0, 0.06);
+    color: #6B7380;
+  }
+
+  .surface-light .tag {
+    background: rgba(214, 66, 24, 0.12);
+    color: #D64218;
+  }
+
+  .surface-light .hairline {
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+
+  /* Glass adjustments for light sections */
+  .surface-light .glass {
+    background: var(--glass-light);
+    border: 1px solid var(--glass-light-stroke);
+  }
 }

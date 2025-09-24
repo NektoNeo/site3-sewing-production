@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
+import { RippleButton } from "@/components/ui/ripple-button"
 import Link from "next/link"
 import { fadeRise } from "@/lib/animations"
 
@@ -14,8 +14,8 @@ export function CtaMain() {
   }
 
   return (
-    <section className="py-16 bg-black">
-      <div className="container max-w-6xl mx-auto px-4">
+    <section data-surface="dark" className="pt-[var(--space-3xl)] pb-[var(--space-3xl)] bg-black">
+      <div className="container max-w-6xl mx-auto px-[var(--space-md)]">
         <motion.div
           className="text-center"
           initial="hidden"
@@ -29,12 +29,14 @@ export function CtaMain() {
           <p className="text-mist-300 text-lg md:text-xl mb-10 max-w-3xl mx-auto">
             Готовы начать производство? Мы поможем воплотить ваши идеи в качественную продукцию
           </p>
-          <Button
+          <RippleButton
             onClick={scrollToContacts}
-            className="rounded-full bg-gradient-to-r from-[#D64218] to-[#FF6B47] text-white hover:from-[#FF6B47] hover:to-[#D64218] hover:shadow-lg hover:shadow-[#D64218]/30 transition-all duration-300 px-10 py-6 text-lg font-medium"
+            variant="primary"
+            size="lg"
+            className="rounded-full bg-gradient-to-r from-[#D64218] to-[#FF6B47] hover:from-[#FF6B47] hover:to-[#D64218] hover:shadow-lg hover:shadow-[#D64218]/30 px-10"
           >
             Получить консультацию
-          </Button>
+          </RippleButton>
         </motion.div>
       </div>
     </section>

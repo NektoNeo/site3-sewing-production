@@ -40,7 +40,7 @@ export function Footer() {
       <div className="container-default">
 
         {/* Navigation Groups */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-[var(--space-lg)] mb-[var(--space-3xl)]">
           {/* Company Info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -1,0 +1,193 @@
+/* ===================================================================
+   DESIGN TOKENS FOUNDATION
+   Единая система токенов для поддержки тем и светлых островов
+   =================================================================== */
+
+@layer tokens {
+  :root {
+    /* ===============================================================
+       COLOR TOKENS - Dark Theme (Default)
+       =============================================================== */
+
+    /* Primary Brand Colors */
+    --color-accent: #D64218;
+    --color-accent-600: #C03B15;
+    --color-accent-700: #C33B15;
+
+    /* Base Colors - Dark Theme */
+    --color-bg-dark: #0E1113;
+    --color-surface-1: #161A1D;
+    --color-surface-2: #1C2226;
+    --color-surface-glass: rgba(28, 34, 38, 0.6);
+    --color-stroke: rgba(255, 255, 255, 0.08);
+
+    /* Legacy mappings for compatibility */
+    --color-ink-900: #0E1113;
+    --color-ink-800: #161A1D;
+    --color-panel-700: #1C2226;
+    --color-panel-600: #23272B;
+    --color-panel-500: #2A3035;
+
+    /* Muted Colors */
+    --color-muted: #2A3035;
+    --color-muted-500: #605D5C;
+    --color-muted-400: #3F3C3A;
+    --color-muted-300: #2F2A25;
+
+    /* Text Colors - Dark Theme */
+    --color-text-primary: #F3F4F6;
+    --color-text-secondary: #B9C0C7;
+
+    /* Light Colors - For Light Theme */
+    --color-light-paper: #F5F6F8;
+    --color-light-ink: #14181B;
+    --color-light-muted: #EDEFF2;
+    --color-light-50: #F5F7FA;
+    --color-light-100: #EEF1F4;
+
+    /* Accent Glow Effect */
+    --color-accent-glow: radial-gradient(40% 60% at 60% 40%, rgba(214, 66, 24, 0.24), transparent 70%);
+
+    /* Additional Colors */
+    --color-navy-700: #32373D;
+    --color-steel-300: #A5ABAF;
+
+    /* ===============================================================
+       RADIUS TOKENS
+       =============================================================== */
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+
+    /* Legacy mappings */
+    --radius-xs: 8px;
+    --radius-xl: 28px;
+
+    /* ===============================================================
+       SHADOW TOKENS - Performance Optimized
+       =============================================================== */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.18);
+
+    /* Legacy mappings - simplified for performance */
+    --shadow-elev-1: 0 2px 4px rgba(0, 0, 0, 0.08);
+    --shadow-elev-2: 0 4px 8px rgba(0, 0, 0, 0.12);
+    --shadow-glow-accent: 0 0 16px rgba(214, 66, 24, 0.25);
+
+    /* ===============================================================
+       GLASS EFFECT TOKENS
+       =============================================================== */
+    /* Glass for dark backgrounds */
+    --glass-dark: rgba(255, 255, 255, 0.06);
+    --glass-dark-stroke: rgba(255, 255, 255, 0.12);
+
+    /* Glass for light backgrounds */
+    --glass-light: rgba(17, 20, 23, 0.35);
+    --glass-light-stroke: rgba(17, 20, 23, 0.12);
+
+    /* Glass blur amount - reduced for performance */
+    --glass-blur: 8px;
+
+    /* ===============================================================
+       SPACING TOKENS
+       =============================================================== */
+    --space-xs: 8px;
+    --space-sm: 12px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+    --space-3xl: 64px;
+
+    /* ===============================================================
+       TYPOGRAPHY TOKENS
+       =============================================================== */
+    --font-display: 'Inter var', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --font-body: 'Inter var', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+    /* Legacy mappings */
+    --font-text: var(--font-body);
+
+    /* Font Sizes */
+    --font-scale-h1: 64px;
+    --font-scale-h2: 44px;
+    --font-scale-h3: 28px;
+    --font-scale-lead: 20px;
+    --font-scale-body: 16px;
+    --font-scale-small: 14px;
+
+    /* Line Heights */
+    --line-height-tight: 1.1;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.6;
+    --line-height-loose: 1.8;
+
+    /* Letter Spacing */
+    --letter-spacing-tight: -0.02em;
+    --letter-spacing-normal: 0;
+    --letter-spacing-wide: 0.08em;
+
+    /* ===============================================================
+       ANIMATION TOKENS
+       =============================================================== */
+    --transition-fast: 120ms ease;
+    --transition-normal: 200ms ease;
+    --transition-slow: 350ms ease;
+    --transition-spring: 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* ===============================================================
+       STITCH PATTERN TOKENS (Мотив шитья)
+       =============================================================== */
+    --stitch-color: rgba(214, 66, 24, 0.5);
+    --stitch-spacing: 10px;
+    --stitch-width: 2px;
+    --stitch-padding: 2px;
+  }
+
+  /* ===============================================================
+     LIGHT THEME OVERRIDES
+     Переопределения для светлых секций
+     =============================================================== */
+  .surface-light,
+  [data-theme="light"] {
+    /* Text colors for light backgrounds */
+    --text-primary: #101316;
+    --text-secondary: #3F474D;
+    --text-muted: #6B7380;
+
+    /* Background colors */
+    --bg-primary: linear-gradient(180deg, #FCFCFD 0%, #F4F6F8 100%);
+    --bg-secondary: #FFFFFF;
+    --bg-elevated: #FFFFFF;
+
+    /* Border colors */
+    --border-default: rgba(0, 0, 0, 0.06);
+    --border-strong: rgba(0, 0, 0, 0.12);
+
+    /* Shadow for light theme */
+    --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --shadow-light-lg: 0 10px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  /* ===============================================================
+     RESPONSIVE FONT SIZES
+     =============================================================== */
+  @media (max-width: 768px) {
+    :root {
+      --font-scale-h1: 48px;
+      --font-scale-h2: 36px;
+      --font-scale-h3: 24px;
+      --font-scale-lead: 18px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    :root {
+      --font-scale-h1: 40px;
+      --font-scale-h2: 32px;
+      --font-scale-h3: 20px;
+      --font-scale-lead: 16px;
+    }
+  }
+}

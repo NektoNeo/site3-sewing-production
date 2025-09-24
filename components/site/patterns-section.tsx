@@ -23,7 +23,7 @@ export function PatternsSection() {
   ];
 
   return (
-    <section id="patterns" className="relative section px-4 md:scroll-mt-24">
+    <section data-surface="dark" id="patterns" className="relative section px-[var(--space-md)] md:scroll-mt-24">
       <div className="container mx-auto">
         {/* Decorative stitch circle */}
         <StitchCircle
@@ -49,11 +49,11 @@ export function PatternsSection() {
         >
           {COMPANY_COPY.servicesDetails.patterns.title}
         </motion.h2>
-        <div className="h2line-outline-wavy mb-8" />
+        <div className="h2line-outline-wavy mb-[var(--space-xl)]" />
 
         {/* Вступительный текст */}
         <motion.div
-          className="max-w-[70ch] mx-auto mb-12"
+          className="max-w-[70ch] mx-auto mb-[var(--space-2xl)]"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -66,14 +66,14 @@ export function PatternsSection() {
 
         {/* Что вы получаете - чеклист на панели */}
         <motion.div
-          className="panel bg-[color:var(--bg-elev-1)] rounded-2xl p-8 shadow-elev mb-12"
+          className="panel bg-[color:var(--bg-elev-1)] rounded-2xl p-[var(--space-xl)] shadow-elev mb-[var(--space-2xl)]"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeRise}
         >
           <h3 className="text-2xl font-semibold mb-6 text-fg">Что вы получаете:</h3>
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-[var(--space-lg)]">
             {checklistItems.map((item, index) => (
               <motion.div
                 key={index}

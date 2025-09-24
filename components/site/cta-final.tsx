@@ -11,8 +11,8 @@ export function CtaFinal() {
   }
 
   return (
-    <section className="py-8 bg-black">
-      <div className="container max-w-4xl mx-auto px-4 text-center">
+    <section data-surface="dark" className="py-8 bg-black">
+      <div className="container max-w-4xl mx-auto px-[var(--space-md)] text-center">
         <div className="space-y-6">
           <h2 className="h2 text-3xl md:text-4xl text-white">
             Свяжитесь с нами
@@ -28,7 +28,7 @@ export function CtaFinal() {
             <Button
               onClick={scrollToContacts}
               size="lg"
-              className="glass-button text-base px-6 py-4 rounded-full bg-brand hover:bg-brand-700 transition-all duration-200 text-white font-semibold shadow-[0_4px_24px_rgba(214,66,24,0.3)] hover:shadow-[0_8px_32px_rgba(214,66,24,0.4)] hover:scale-105"
+              className="glass-button text-base px-[var(--space-lg)] py-[var(--space-md)] rounded-full bg-brand hover:bg-brand-700 transition-all duration-200 text-white font-semibold shadow-[0_4px_24px_rgba(214,66,24,0.3)] hover:shadow-[0_8px_32px_rgba(214,66,24,0.4)] hover:scale-105"
             >
               Получить консультацию
             </Button>

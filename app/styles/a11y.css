@@ -1,0 +1,201 @@
+/* Accessibility Styles for WCAG AA Compliance */
+
+/* Focus Styles - Visible Focus Indicators */
+:focus-visible {
+  outline: 2px solid var(--brand, #D64218);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Button Focus Styles */
+button:focus-visible,
+a.button:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid var(--brand, #D64218);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(214, 66, 24, 0.25);
+}
+
+/* Input Focus Styles */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--brand, #D64218);
+  outline-offset: 0;
+  border-color: var(--brand, #D64218);
+  box-shadow: 0 0 0 3px rgba(214, 66, 24, 0.15);
+}
+
+/* Link Focus Styles */
+a:focus-visible {
+  outline: 2px solid var(--brand, #D64218);
+  outline-offset: 2px;
+  border-radius: 2px;
+  text-decoration-thickness: 2px;
+}
+
+/* Navigation Link Focus */
+.navlink:focus-visible {
+  outline: 2px solid var(--brand, #D64218);
+  outline-offset: 2px;
+  border-radius: 8px;
+  background: rgba(214, 66, 24, 0.1);
+}
+
+/* Card/Interactive Element Focus */
+.interactive-card:focus-visible,
+[role="button"]:focus-visible,
+[tabindex="0"]:focus-visible {
+  outline: 2px solid var(--brand, #D64218);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(214, 66, 24, 0.2);
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  :focus-visible {
+    outline-width: 3px;
+    outline-offset: 3px;
+  }
+
+  button:focus-visible,
+  a.button:focus-visible {
+    outline-width: 3px;
+    box-shadow: 0 0 0 5px rgba(214, 66, 24, 0.4);
+  }
+}
+
+/* Skip to Main Content Link */
+.skip-to-main {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 999999;
+  padding: 1rem 1.5rem;
+  background: var(--brand, #D64218);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 0 0 8px 0;
+}
+
+.skip-to-main:focus {
+  left: 0;
+}
+
+/* Screen Reader Only Content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Focus Within for Interactive Containers */
+.has-focus-within:focus-within {
+  outline: 2px solid var(--brand, #D64218);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+/* Keyboard Navigation Indicators */
+.keyboard-navigating *:focus {
+  outline: 3px solid var(--brand, #D64218) !important;
+  outline-offset: 2px !important;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Color Contrast Utilities */
+.high-contrast-text {
+  color: var(--fg, #E6E9EC);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.ensure-contrast {
+  position: relative;
+  z-index: 1;
+}
+
+.ensure-contrast::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: rgba(26, 28, 30, 0.7);
+  border-radius: inherit;
+  z-index: -1;
+  backdrop-filter: blur(4px);
+}
+
+/* Focus Trap Container */
+.focus-trap {
+  position: relative;
+}
+
+.focus-trap:focus-within {
+  outline: 2px dashed var(--brand, #D64218);
+  outline-offset: 8px;
+}
+
+/* Disabled State with Proper Contrast */
+[disabled],
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  filter: contrast(0.85);
+}
+
+/* Error and Validation States with WCAG Compliance */
+.error {
+  color: #DC2626;
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid #DC2626;
+}
+
+.success {
+  color: #16A34A;
+  background: rgba(22, 163, 74, 0.1);
+  border: 1px solid #16A34A;
+}
+
+/* Ensure Interactive Elements Have Minimum Size (44x44px) */
+button,
+a,
+input[type="checkbox"],
+input[type="radio"],
+[role="button"],
+[tabindex="0"] {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Small Buttons Exception with Larger Touch Target */
+.btn-sm {
+  position: relative;
+  min-height: 32px;
+  min-width: 32px;
+}
+
+.btn-sm::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  z-index: -1;
+}
