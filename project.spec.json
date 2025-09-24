@@ -1,0 +1,57 @@
+{
+  "specVersion": "v1",
+  "stylePreset": "Editorial Bold Type — Navy/Orange",
+  "framework": "Next.js 14",
+  "router": "App Router",
+  "typescript": true,
+  "styling": {
+    "css": "TailwindCSS 3",
+    "components": "shadcn/ui",
+    "primitives": "Radix UI"
+  },
+  "themes": {
+    "provider": "next-themes",
+    "modes": ["light", "dark"]
+  },
+  "animation": {
+    "library": "framer-motion",
+    "scroll": "lenis",
+    "accessibility": "respects prefers-reduced-motion"
+  },
+  "colors": {
+    "light": {
+      "background": "#F7F7FA",
+      "foreground": "#0F1A2B",
+      "primary": "#0B2D48",
+      "accent": "#F45B31"
+    },
+    "dark": {
+      "background": "#0B0D12",
+      "foreground": "#E6E8ED",
+      "primary": "#0B2D48",
+      "accent": "#F45B31"
+    }
+  },
+  "typography": {
+    "display": "Space Grotesk",
+    "body": "Inter"
+  },
+  "routes": [
+    "/",
+    "/patterns",
+    "/corporate-merch",
+    "/fulfillment",
+    "/pricing",
+    "/catalog"
+  ],
+  "seo": {
+    "package": "next-seo",
+    "sitemap": "next-sitemap"
+  },
+  "accessibility": {
+    "contrastRatio": "4.5:1",
+    "ariaHidden": "decorative layers only"
+  },
+  "contentSource": "Promt.json and PDF specifications",
+  "editorialPolicy": "No marketing copy additions - placeholders only where content missing"
+}
