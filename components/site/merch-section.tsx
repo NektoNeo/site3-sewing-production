@@ -5,7 +5,6 @@ import { CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { fadeRise, stagger } from '@/lib/animations';
 import { StitchLine } from '@/components/decor/Stitch';
-import Steps from '@/components/site/steps';
 
 export function MerchSection() {
   // Разбиваем текст на части для структурированного отображения
@@ -196,8 +195,6 @@ export function MerchSection() {
           </div>
         </motion.div>
 
-        {/* Как мы работаем */}
-        <Steps />
       </div>
     </section>
   );

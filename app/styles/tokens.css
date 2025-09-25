@@ -1,18 +1,85 @@
 /* ===================================================================
    DESIGN TOKENS FOUNDATION
    Единая система токенов для поддержки тем и светлых островов
+   Enhanced with @property for type safety and animations
    =================================================================== */
+
+/* ===============================================================
+   TYPED CSS PROPERTIES - Modern Browser Support
+   =============================================================== */
+@property --c7-color-accent {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #D64218;
+}
+
+@property --c7-radius-dynamic {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 16px;
+}
+
+@property --c7-progress {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+@property --c7-blur-amount {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 8px;
+}
 
 @layer tokens {
   :root {
     /* ===============================================================
-       COLOR TOKENS - Dark Theme (Default)
+       SEMANTIC COLOR TOKENS - Three-Layer Architecture
+       Layer 1: Primitive tokens (raw values)
+       Layer 2: Semantic tokens (contextual meaning)
+       Layer 3: Component tokens (specific usage)
        =============================================================== */
 
-    /* Primary Brand Colors */
-    --color-accent: #D64218;
-    --color-accent-600: #C03B15;
-    --color-accent-700: #C33B15;
+    /* Layer 1: Primitive Color Tokens */
+    --c7-color-orange-500: #D64218;
+    --c7-color-orange-600: #C03B15;
+    --c7-color-orange-700: #B33312;
+    --c7-color-gray-950: #0E1113;
+    --c7-color-gray-900: #161A1D;
+    --c7-color-gray-850: #1C2226;
+    --c7-color-gray-800: #23272B;
+    --c7-color-gray-700: #2A3035;
+    --c7-color-gray-600: #3F3C3A;
+    --c7-color-gray-500: #605D5C;
+    --c7-color-gray-400: #A5ABAF;
+    --c7-color-gray-100: #F3F4F6;
+    --c7-color-gray-50: #F5F7FA;
+
+    /* Layer 2: Semantic Color Tokens */
+    --c7-color-accent: var(--c7-color-orange-500);
+    --c7-color-accent-hover: var(--c7-color-orange-600);
+    --c7-color-accent-active: var(--c7-color-orange-700);
+    --c7-color-surface-1: var(--c7-color-gray-900);
+    --c7-color-surface-2: var(--c7-color-gray-850);
+    --c7-color-surface-3: var(--c7-color-gray-800);
+    --c7-color-text-primary: var(--c7-color-gray-100);
+    --c7-color-text-secondary: var(--c7-color-gray-400);
+    --c7-color-border-subtle: rgba(255, 255, 255, 0.08);
+    --c7-color-border-default: rgba(255, 255, 255, 0.12);
+    --c7-color-border-strong: rgba(255, 255, 255, 0.18);
+
+    /* Layer 3: Component-Specific Tokens */
+    --c7-step-card-bg: var(--c7-color-surface-2);
+    --c7-step-card-border: var(--c7-color-border-subtle);
+    --c7-step-card-hover-border: var(--c7-color-accent);
+    --c7-step-icon-bg: rgba(214, 66, 24, 0.1);
+    --c7-step-icon-hover-bg: rgba(214, 66, 24, 0.2);
+    --c7-step-number-color: rgba(214, 66, 24, 0.08);
+
+    /* Legacy mappings for compatibility */
+    --color-accent: var(--c7-color-accent);
+    --color-accent-600: var(--c7-color-accent-hover);
+    --color-accent-700: var(--c7-color-accent-active);
 
     /* Base Colors - Dark Theme */
     --color-bg-dark: #0E1113;
@@ -90,15 +157,43 @@
     --glass-blur: 8px;
 
     /* ===============================================================
-       SPACING TOKENS
+       SPACING TOKENS - 8px Base Grid System
        =============================================================== */
-    --space-xs: 8px;
-    --space-sm: 12px;
-    --space-md: 16px;
-    --space-lg: 24px;
-    --space-xl: 32px;
-    --space-2xl: 48px;
-    --space-3xl: 64px;
+    --c7-space-0: 0;
+    --c7-space-1: 4px;
+    --c7-space-2: 8px;
+    --c7-space-3: 12px;
+    --c7-space-4: 16px;
+    --c7-space-5: 20px;
+    --c7-space-6: 24px;
+    --c7-space-8: 32px;
+    --c7-space-10: 40px;
+    --c7-space-12: 48px;
+    --c7-space-16: 64px;
+    --c7-space-20: 80px;
+    --c7-space-24: 96px;
+    --c7-space-32: 128px;
+
+    /* Semantic spacing tokens */
+    --c7-spacing-inline-xs: var(--c7-space-2);
+    --c7-spacing-inline-sm: var(--c7-space-3);
+    --c7-spacing-inline-md: var(--c7-space-4);
+    --c7-spacing-inline-lg: var(--c7-space-6);
+    --c7-spacing-stack-xs: var(--c7-space-2);
+    --c7-spacing-stack-sm: var(--c7-space-4);
+    --c7-spacing-stack-md: var(--c7-space-8);
+    --c7-spacing-stack-lg: var(--c7-space-12);
+    --c7-spacing-stack-xl: var(--c7-space-20);
+    --c7-spacing-section: var(--c7-space-24);
+
+    /* Legacy mappings */
+    --space-xs: var(--c7-space-2);
+    --space-sm: var(--c7-space-3);
+    --space-md: var(--c7-space-4);
+    --space-lg: var(--c7-space-6);
+    --space-xl: var(--c7-space-8);
+    --space-2xl: var(--c7-space-12);
+    --space-3xl: var(--c7-space-16);
 
     /* ===============================================================
        TYPOGRAPHY TOKENS
@@ -129,12 +224,34 @@
     --letter-spacing-wide: 0.08em;
 
     /* ===============================================================
-       ANIMATION TOKENS
+       ANIMATION TOKENS - Motion Design System
        =============================================================== */
-    --transition-fast: 120ms ease;
-    --transition-normal: 200ms ease;
-    --transition-slow: 350ms ease;
-    --transition-spring: 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    /* Timing Functions */
+    --c7-ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --c7-ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --c7-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --c7-ease-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --c7-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    /* Durations */
+    --c7-duration-instant: 100ms;
+    --c7-duration-fast: 200ms;
+    --c7-duration-normal: 300ms;
+    --c7-duration-slow: 500ms;
+    --c7-duration-slower: 700ms;
+
+    /* Composite Transitions */
+    --c7-transition-default: all var(--c7-duration-normal) var(--c7-ease-in-out);
+    --c7-transition-fast: all var(--c7-duration-fast) var(--c7-ease-out);
+    --c7-transition-smooth: all var(--c7-duration-slow) var(--c7-ease-in-out);
+    --c7-transition-spring: all var(--c7-duration-normal) var(--c7-ease-spring);
+    --c7-transition-bounce: all var(--c7-duration-normal) var(--c7-ease-bounce);
+
+    /* Legacy mappings */
+    --transition-fast: var(--c7-transition-fast);
+    --transition-normal: var(--c7-transition-default);
+    --transition-slow: var(--c7-transition-smooth);
+    --transition-spring: var(--c7-transition-spring);
 
     /* ===============================================================
        STITCH PATTERN TOKENS (Мотив шитья)
@@ -171,7 +288,24 @@
   }
 
   /* ===============================================================
-     RESPONSIVE FONT SIZES
+     FOCUS STYLES - Accessibility First
+     =============================================================== */
+  :root {
+    --c7-focus-ring-width: 2px;
+    --c7-focus-ring-color: var(--c7-color-accent);
+    --c7-focus-ring-offset: 2px;
+    --c7-focus-ring-offset-color: transparent;
+  }
+
+  /* Focus visible utility */
+  .c7-focus-visible:focus-visible {
+    outline: var(--c7-focus-ring-width) solid var(--c7-focus-ring-color);
+    outline-offset: var(--c7-focus-ring-offset);
+    border-radius: var(--radius-sm);
+  }
+
+  /* ===============================================================
+     RESPONSIVE FONT SIZES - Fluid Typography
      =============================================================== */
   @media (max-width: 768px) {
     :root {

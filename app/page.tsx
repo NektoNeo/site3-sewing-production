@@ -12,6 +12,7 @@ const ZipperCanvas = dynamic(() => import('@/components/decor/ZipperCanvas'), {
 const About = dynamic(() => import('@/components/site/about'))
 const AdvantagesCards = dynamic(() => import('@/components/site/advantages-cards'))
 const CtaInline = dynamic(() => import('@/components/site/cta-inline').then(mod => ({ default: mod.CtaInline })))
+const Steps = dynamic(() => import('@/components/site/steps'))
 const Services = dynamic(() => import('@/components/site/services'))
 const TechMediaCards = dynamic(() => import('@/components/site/tech-media-cards').then(mod => ({ default: mod.TechMediaCards })))
 const PatternsSection = dynamic(() => import('@/components/site/patterns-section').then(mod => ({ default: mod.PatternsSection })))
@@ -37,6 +38,7 @@ export default function Home() {
       <TechMediaCards />
       <PatternsSection />
       <MerchSection />
+      <Steps />
       <FulfillmentSection />
       <PricingSection />
       <CatalogSection />

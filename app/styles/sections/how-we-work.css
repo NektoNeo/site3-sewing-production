@@ -1,0 +1,57 @@
+/* How We Work Section - Icon Stroke Animations */
+
+/* Icon color styling */
+.how-we-work .icon {
+  color: var(--c7-color-accent);
+}
+
+/* Stroke animation setup for icons */
+.how-we-work .stroked {
+  stroke-dasharray: 180;
+  stroke-dashoffset: 180;
+  animation: strokeReveal 0.8s ease-out forwards;
+}
+
+/* Dash animation setup for chart icon */
+.how-we-work .dash {
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  animation: strokeReveal 1s ease-out forwards;
+}
+
+/* Animation when icons are in view */
+@keyframes strokeReveal {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Trigger animations on hover for interactivity */
+.how-we-work .icon:hover .stroked,
+.how-we-work .icon:hover .dash {
+  animation: strokePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes strokePulse {
+  0%, 100% {
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dashoffset: 20;
+  }
+}
+
+/* Performance optimization - use GPU acceleration */
+.how-we-work .icon svg {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .how-we-work .stroked,
+  .how-we-work .dash {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}

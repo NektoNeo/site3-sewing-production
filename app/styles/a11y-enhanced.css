@@ -1,0 +1,440 @@
+/* ===================================================================
+   ACCESSIBILITY ENHANCEMENTS
+   Comprehensive accessibility utilities using modern CSS and ARIA
+   =================================================================== */
+
+@layer a11y {
+  /* ===============================================================
+     SCREEN READER UTILITIES
+     =============================================================== */
+
+  /* Visually hidden but accessible to screen readers */
+  .sr-only:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  /* Show on focus for skip links */
+  .sr-only-focusable:focus,
+  .sr-only-focusable:active {
+    clip: auto;
+    clip-path: none;
+    height: auto;
+    overflow: visible;
+    position: static;
+    white-space: normal;
+    width: auto;
+  }
+
+  /* ===============================================================
+     KEYBOARD NAVIGATION ENHANCEMENTS
+     =============================================================== */
+
+  /* Custom focus styles with better visibility */
+  *:focus-visible {
+    outline: var(--c7-focus-ring-width, 2px) solid var(--c7-focus-ring-color, currentColor);
+    outline-offset: var(--c7-focus-ring-offset, 2px);
+    transition: outline-offset 0.1s ease-out;
+  }
+
+  /* High contrast focus for buttons */
+  button:focus-visible,
+  a:focus-visible,
+  [role="button"]:focus-visible {
+    outline-width: 3px;
+    outline-offset: 4px;
+  }
+
+  /* Focus within containers */
+  .focus-within\:ring:focus-within {
+    box-shadow: 0 0 0 3px var(--c7-focus-ring-color);
+  }
+
+  /* Tab navigation indicators */
+  [tabindex]:not([tabindex="-1"]):focus-visible {
+    position: relative;
+    z-index: 10;
+  }
+
+  /* ===============================================================
+     REDUCED MOTION SUPPORT
+     =============================================================== */
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    /* Disable parallax effects */
+    .parallax,
+    [data-parallax] {
+      transform: none !important;
+      will-change: auto !important;
+    }
+
+    /* Simplify hover states */
+    .hover\:scale-105:hover {
+      transform: none !important;
+    }
+
+    /* Remove background animations */
+    .animate-pulse,
+    .animate-spin,
+    .animate-bounce {
+      animation: none !important;
+    }
+  }
+
+  /* ===============================================================
+     HIGH CONTRAST MODE
+     =============================================================== */
+
+  @media (prefers-contrast: high) {
+    /* Increase border widths */
+    * {
+      border-width: max(var(--border-width), 2px);
+    }
+
+    /* Stronger text colors */
+    body {
+      color: CanvasText;
+      background: Canvas;
+    }
+
+    /* Enhanced focus indicators */
+    *:focus-visible {
+      outline-width: 4px;
+      outline-style: solid;
+      outline-color: Highlight;
+    }
+
+    /* Button contrast */
+    button,
+    [role="button"] {
+      border: 2px solid ButtonText;
+      color: ButtonText;
+      background: ButtonFace;
+    }
+
+    button:hover,
+    [role="button"]:hover {
+      color: HighlightText;
+      background: Highlight;
+    }
+
+    /* Link contrast */
+    a {
+      color: LinkText;
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+    }
+
+    a:visited {
+      color: VisitedText;
+    }
+  }
+
+  /* ===============================================================
+     COLOR BLIND FRIENDLY PATTERNS
+     =============================================================== */
+
+  /* Use patterns in addition to colors */
+  .pattern-striped {
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255, 255, 255, 0.1) 10px,
+      rgba(255, 255, 255, 0.1) 20px
+    );
+  }
+
+  .pattern-dotted {
+    background-image: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.2) 1px,
+      transparent 1px
+    );
+    background-size: 10px 10px;
+  }
+
+  /* Status indicators with icons */
+  .status-success::before {
+    content: "✓ ";
+    color: var(--c7-color-accent);
+    font-weight: bold;
+  }
+
+  .status-error::before {
+    content: "✗ ";
+    color: var(--c7-color-accent);
+    font-weight: bold;
+  }
+
+  .status-warning::before {
+    content: "⚠ ";
+    color: var(--c7-color-accent);
+    font-weight: bold;
+  }
+
+  /* ===============================================================
+     TOUCH TARGET SIZING
+     =============================================================== */
+
+  /* Ensure minimum touch target size (44x44px) */
+  button,
+  a,
+  [role="button"],
+  input[type="checkbox"],
+  input[type="radio"],
+  select {
+    min-height: 44px;
+    min-width: 44px;
+    position: relative;
+  }
+
+  /* Expand touch target without affecting layout */
+  .touch-target::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 44px;
+    min-height: 44px;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ===============================================================
+     READING MODE ENHANCEMENTS
+     =============================================================== */
+
+  /* Optimal line length for reading */
+  .readable {
+    max-width: 70ch;
+    line-height: 1.6;
+  }
+
+  /* Enhanced paragraph spacing */
+  .readable p {
+    margin-bottom: 1.5em;
+  }
+
+  /* Improved list readability */
+  .readable ul,
+  .readable ol {
+    padding-left: 2em;
+    margin-bottom: 1.5em;
+  }
+
+  .readable li {
+    margin-bottom: 0.5em;
+  }
+
+  /* ===============================================================
+     FORM ACCESSIBILITY
+     =============================================================== */
+
+  /* Label associations */
+  label {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* Required field indicators */
+  .required::after {
+    content: " *";
+    color: var(--c7-color-accent);
+    font-weight: bold;
+  }
+
+  /* Error messages */
+  .error-message {
+    color: var(--c7-color-accent);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .error-message::before {
+    content: "⚠";
+    font-size: 1rem;
+  }
+
+  /* Input focus states */
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid var(--c7-focus-ring-color);
+    outline-offset: 2px;
+    border-color: var(--c7-focus-ring-color);
+  }
+
+  /* ===============================================================
+     LIVE REGIONS
+     =============================================================== */
+
+  /* Polite announcements */
+  [aria-live="polite"] {
+    position: relative;
+  }
+
+  /* Assertive announcements */
+  [aria-live="assertive"] {
+    position: relative;
+    z-index: 100;
+  }
+
+  /* Status messages */
+  [role="status"],
+  [role="alert"] {
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+  }
+
+  [role="alert"] {
+    border: 2px solid var(--c7-color-accent);
+    background-color: rgba(var(--c7-color-accent-rgb), 0.1);
+  }
+
+  /* ===============================================================
+     LOADING STATES
+     =============================================================== */
+
+  /* Skeleton screens for loading */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      var(--c7-color-surface-2) 0%,
+      var(--c7-color-surface-3) 50%,
+      var(--c7-color-surface-2) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+    border-radius: var(--radius-sm);
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skeleton {
+      animation: none;
+      background: var(--c7-color-surface-2);
+    }
+  }
+
+  /* Busy indicators */
+  [aria-busy="true"] {
+    cursor: wait;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  /* ===============================================================
+     SEMANTIC HTML ENHANCEMENTS
+     =============================================================== */
+
+  /* Navigation landmarks */
+  nav[aria-label] {
+    position: relative;
+  }
+
+  /* Main content focus */
+  main:focus-visible {
+    outline: 3px dashed var(--c7-focus-ring-color);
+    outline-offset: 8px;
+  }
+
+  /* Section headings hierarchy */
+  section[aria-labelledby] {
+    position: relative;
+  }
+
+  /* Article boundaries */
+  article {
+    position: relative;
+    padding: var(--c7-space-6);
+    border-radius: var(--radius-lg);
+  }
+
+  article:focus-within {
+    background-color: rgba(var(--c7-color-accent-rgb), 0.05);
+  }
+
+  /* ===============================================================
+     INTERACTIVE ELEMENT STATES
+     =============================================================== */
+
+  /* Disabled state styling */
+  [disabled],
+  [aria-disabled="true"] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* Selected state */
+  [aria-selected="true"] {
+    background-color: rgba(var(--c7-color-accent-rgb), 0.1);
+    border-color: var(--c7-color-accent);
+  }
+
+  /* Checked state */
+  [aria-checked="true"] {
+    position: relative;
+  }
+
+  [aria-checked="true"]::after {
+    content: "✓";
+    position: absolute;
+    color: var(--c7-color-accent);
+  }
+
+  /* Expanded state */
+  [aria-expanded="true"] {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  /* Current page/step indicator */
+  [aria-current="page"],
+  [aria-current="step"] {
+    font-weight: bold;
+    color: var(--c7-color-accent);
+    position: relative;
+  }
+
+  [aria-current="page"]::after,
+  [aria-current="step"]::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--c7-color-accent);
+  }
+}

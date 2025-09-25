@@ -1,6 +1,7 @@
 @import './styles/tokens.css';
 @import './styles/motion.css';
 @import './styles/a11y.css';
+@import './styles/a11y-enhanced.css';
 
 @tailwind base;
 @tailwind components;
@@ -738,5 +739,192 @@
   .surface-light .glass {
     background: var(--glass-light);
     border: 1px solid var(--glass-light-stroke);
+  }
+
+  /* ===============================================================
+     CONTAINER QUERIES - Modern Responsive Design
+     =============================================================== */
+  @container (min-width: 640px) {
+    .cq\:text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+    .cq\:grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @container (min-width: 768px) {
+    .cq\:text-3xl {
+      font-size: 1.875rem;
+      line-height: 2.25rem;
+    }
+    .cq\:p-8 {
+      padding: 2rem;
+    }
+  }
+
+  @container (min-width: 1024px) {
+    .cq\:grid-cols-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .cq\:text-4xl {
+      font-size: 2.25rem;
+      line-height: 2.5rem;
+    }
+  }
+
+  /* Container setup */
+  .container-query {
+    container-type: inline-size;
+  }
+
+  /* ===============================================================
+     ACCESSIBILITY UTILITIES
+     =============================================================== */
+
+  /* Skip to content link */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--c7-color-accent);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 100;
+    border-radius: 0 0 4px 0;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
+
+  /* Focus trap utility */
+  .focus-trap {
+    position: relative;
+  }
+
+  .focus-trap:focus-within {
+    outline: 2px solid var(--c7-focus-ring-color);
+    outline-offset: 4px;
+    border-radius: var(--radius-md);
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .high-contrast\:border-2 {
+      border-width: 2px;
+    }
+    .high-contrast\:font-bold {
+      font-weight: 700;
+    }
+  }
+
+  /* Reduced transparency for better readability */
+  @media (prefers-reduced-transparency) {
+    .glass,
+    .glass-soft,
+    .glass-dark,
+    .glass-light {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      background: var(--bg-elev-1) !important;
+    }
+  }
+
+  /* ===============================================================
+     SEMANTIC TOKEN UTILITIES
+     Using new c7 design tokens
+     =============================================================== */
+
+  /* Text colors using semantic tokens */
+  .text-c7-primary {
+    color: var(--c7-color-text-primary);
+  }
+
+  .text-c7-secondary {
+    color: var(--c7-color-text-secondary);
+  }
+
+  .text-c7-accent {
+    color: var(--c7-color-accent);
+  }
+
+  /* Background colors */
+  .bg-c7-surface-1 {
+    background-color: var(--c7-color-surface-1);
+  }
+
+  .bg-c7-surface-2 {
+    background-color: var(--c7-color-surface-2);
+  }
+
+  .bg-c7-surface-3 {
+    background-color: var(--c7-color-surface-3);
+  }
+
+  /* Spacing utilities */
+  .space-c7-inline-sm {
+    padding-inline: var(--c7-spacing-inline-sm);
+  }
+
+  .space-c7-inline-md {
+    padding-inline: var(--c7-spacing-inline-md);
+  }
+
+  .space-c7-stack-md {
+    padding-block: var(--c7-spacing-stack-md);
+  }
+
+  .space-c7-stack-lg {
+    padding-block: var(--c7-spacing-stack-lg);
+  }
+
+  /* Animation utilities */
+  .animate-c7-smooth {
+    animation: smoothEntry var(--c7-duration-slow) var(--c7-ease-in-out);
+  }
+
+  @keyframes smoothEntry {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Interactive states */
+  .interactive-c7 {
+    transition: var(--c7-transition-default);
+    cursor: pointer;
+  }
+
+  .interactive-c7:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-elev-2);
+  }
+
+  .interactive-c7:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-elev-1);
+  }
+
+  /* Card patterns with semantic tokens */
+  .card-c7 {
+    background: var(--c7-step-card-bg);
+    border: 1px solid var(--c7-step-card-border);
+    border-radius: var(--radius-lg);
+    padding: var(--c7-space-6);
+    transition: var(--c7-transition-default);
+  }
+
+  .card-c7:hover {
+    border-color: var(--c7-step-card-hover-border);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
   }
 }
