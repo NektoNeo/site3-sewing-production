@@ -90,7 +90,7 @@ export default function Contacts() {
   const agreementValue = watch("agreement")
 
   return (
-    <section id="contacts" data-surface="light" className="pt-[var(--space-3xl)] pb-[var(--space-3xl)] md:pt-[var(--space-3xl)] pb-[var(--space-3xl)] scroll-mt-16 relative surface-light">
+    <section id="contacts" data-surface="light" className="pt-[var(--space-3xl)] pb-[var(--space-3xl)] scroll-mt-16 relative surface-light">
       <div className="absolute inset-0 bg-gradient-to-b from-[#FCFCFD] to-[#F4F6F8]" />
       <div className="container max-w-3xl mx-auto px-[var(--space-md)] relative">
         <motion.div
