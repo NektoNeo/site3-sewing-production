@@ -25,7 +25,7 @@ const config: Config = {
         display: ["var(--font-space)", "system-ui", "sans-serif"],
       },
       colors: {
-        // Industrial Noir Design Tokens
+        // Industrial Noir Design Tokens - from globals.css
         bg: {
           base: "var(--bg-base)",
           e1: "var(--bg-elev-1)",
@@ -38,11 +38,11 @@ const config: Config = {
           muted: "var(--fg-muted)",
         },
         brand: {
-          DEFAULT: "var(--brand)",
-          600: "var(--brand-600)",
-          700: "var(--brand-700)",
+          DEFAULT: "var(--brand)", // #D64218 from design-tokens.ts
+          600: "var(--brand-600)", // #C03B15
+          700: "var(--brand-700)", // #C23A14
         },
-        // Keep existing shadcn compatibility
+        // shadcn/ui compatibility - from globals.css
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
