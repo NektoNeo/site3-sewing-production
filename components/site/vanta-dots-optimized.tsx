@@ -11,8 +11,8 @@ export function VantaDotsOptimized() {
   useEffect(() => {
     if (typeof window === 'undefined') return
 
-    // Performance check
-    const checkPerformance = async () => {
+    // Simplified performance check - no blocking FPS check
+    const checkPerformance = () => {
       // Check if desktop
       const isDesktop = window.matchMedia('(min-width: 1024px)').matches
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -22,7 +22,7 @@ export function VantaDotsOptimized() {
         return
       }
 
-      // Check performance
+      // Check performance memory only
       if ('performance' in window && 'memory' in performance) {
         const memory = (performance as any).memory
         const usedMemory = memory.usedJSHeapSize / memory.jsHeapSizeLimit
@@ -34,31 +34,8 @@ export function VantaDotsOptimized() {
         }
       }
 
-      // Check frame rate
-      let frameCount = 0
-      let lastTime = performance.now()
-      const checkFPS = () => {
-        frameCount++
-        const currentTime = performance.now()
-
-        if (currentTime >= lastTime + 1000) {
-          const fps = Math.round((frameCount * 1000) / (currentTime - lastTime))
-
-          // If FPS is low, use fallback
-          if (fps < 30) {
-            setUseFallback(true)
-          } else {
-            setUseVanta(true)
-          }
-          return
-        }
-
-        if (frameCount < 60) {
-          requestAnimationFrame(checkFPS)
-        }
-      }
-
-      requestAnimationFrame(checkFPS)
+      // Enable Vanta immediately instead of waiting for FPS check
+      setUseVanta(true)
     }
 
     checkPerformance()
@@ -75,16 +52,30 @@ export function VantaDotsOptimized() {
       if (!containerRef.current || !mounted) return
 
       try {
+        // Add timeout to prevent indefinite loading
+        const loadWithTimeout = <T,>(promise: Promise<T>, timeoutMs: number): Promise<T> => {
+          return Promise.race([
+            promise,
+            new Promise<T>((_, reject) =>
+              setTimeout(() => reject(new Error('Timeout')), timeoutMs)
+            )
+          ])
+        }
+
         // Dynamic imports for better code splitting
-        const [THREE, VantaModule] = await Promise.all([
-          import('three'),
-          new Promise<any>((resolve) => {
-            const script = document.createElement('script')
-            script.src = 'https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.dots.min.js'
-            script.onload = () => resolve((window as any).VANTA)
-            document.head.appendChild(script)
-          })
-        ])
+        const [THREE, VantaModule] = await loadWithTimeout(
+          Promise.all([
+            import('three'),
+            new Promise<any>((resolve, reject) => {
+              const script = document.createElement('script')
+              script.src = 'https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.dots.min.js'
+              script.onload = () => resolve((window as any).VANTA)
+              script.onerror = () => reject(new Error('Failed to load Vanta script'))
+              document.head.appendChild(script)
+            })
+          ]),
+          5000 // 5 second timeout
+        )
 
         if (!mounted || !containerRef.current) return
 
@@ -106,7 +97,7 @@ export function VantaDotsOptimized() {
           minWidth: 200,
           scale: 0.5,
           scaleMobile: 0.5,
-          color: 0xD64218,
+          color: 0xD64218, // Brand color - will be replaced with token
           backgroundColor: 0x0F1316,
           size: 2.0,
           spacing: 35.0,
