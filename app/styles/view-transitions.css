@@ -1,0 +1,173 @@
+/**
+ * View Transitions API Styles
+ *
+ * Provides smooth, native browser transitions between pages and states
+ * with respect for prefers-reduced-motion
+ */
+
+/* ===========================
+   VIEW TRANSITIONS SUPPORT
+   =========================== */
+
+/* Enable view transitions for supported browsers */
+@supports (view-transition-name: auto) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.3s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* ===========================
+   DEFAULT PAGE TRANSITIONS
+   =========================== */
+
+/* Fade transition for page changes */
+::view-transition-old(root) {
+  animation: fade-out 0.3s ease-out;
+}
+
+::view-transition-new(root) {
+  animation: fade-in 0.3s ease-in;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* ===========================
+   SMOOTH SLIDE TRANSITIONS
+   =========================== */
+
+/* Slide transition for navigation */
+.view-transition-slide-left ::view-transition-old(root) {
+  animation: slide-out-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.view-transition-slide-left ::view-transition-new(root) {
+  animation: slide-in-right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slide-out-left {
+  to {
+    transform: translateX(-30%);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(30%);
+    opacity: 0;
+  }
+}
+
+/* ===========================
+   THEME TRANSITIONS
+   =========================== */
+
+/* Smooth theme switching */
+::view-transition-group(theme-toggle) {
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+}
+
+/* ===========================
+   MODAL TRANSITIONS
+   =========================== */
+
+/* Smooth modal open/close */
+::view-transition-group(modal) {
+  animation-duration: 0.25s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-old(modal) {
+  animation: scale-down 0.25s ease-out;
+}
+
+::view-transition-new(modal) {
+  animation: scale-up 0.25s ease-in;
+}
+
+@keyframes scale-down {
+  to {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+}
+
+@keyframes scale-up {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+}
+
+/* ===========================
+   NAVBAR TRANSITIONS
+   =========================== */
+
+/* Keep navbar stable during transitions */
+::view-transition-group(navbar) {
+  animation-duration: 0s;
+}
+
+/* ===========================
+   SECTION TRANSITIONS
+   =========================== */
+
+/* Smooth section scrolling */
+::view-transition-group(section) {
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===========================
+   ACCESSIBILITY
+   =========================== */
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===========================
+   UTILITY CLASSES
+   =========================== */
+
+/* Opt elements into view transitions */
+.view-transition-name-auto {
+  view-transition-name: auto;
+}
+
+/* Specific transition names */
+.view-transition-modal {
+  view-transition-name: modal;
+}
+
+.view-transition-navbar {
+  view-transition-name: navbar;
+}
+
+.view-transition-hero {
+  view-transition-name: hero;
+}
+
+.view-transition-section {
+  view-transition-name: section;
+}
