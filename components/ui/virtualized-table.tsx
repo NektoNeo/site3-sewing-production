@@ -120,7 +120,7 @@ export function VirtualizedTable<TData>({
         className={cn(
           "border-b border-white/5 transition-all duration-200 ease-out",
           index % 2 === 0 ? "bg-white/0" : "bg-white/[0.02]",
-          "hover:bg-[#D64218]/[0.03] hover:shadow-[inset_0_0_0_1px_rgba(214,66,24,0.1)]",
+          "hover:bg-[var(--brand)]/[0.03] hover:shadow-[inset_0_0_0_1px_rgba(214,66,24,0.1)]",
           onRowClick && "cursor-pointer hover:scale-[1.002]",
           rowClassValue
         )}
@@ -161,7 +161,7 @@ export function VirtualizedTable<TData>({
                   className={cn(
                     "border-b border-white/5 transition-all duration-200 ease-out",
                     index % 2 === 0 ? "bg-white/0" : "bg-white/[0.02]",
-                    "hover:bg-[#D64218]/[0.03] hover:shadow-[inset_0_0_0_1px_rgba(214,66,24,0.1)]",
+                    "hover:bg-[var(--brand)]/[0.03] hover:shadow-[inset_0_0_0_1px_rgba(214,66,24,0.1)]",
                     onRowClick && "cursor-pointer hover:scale-[1.002]",
                     typeof rowClassName === "function"
                       ? rowClassName(row.original, index)

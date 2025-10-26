@@ -230,7 +230,7 @@ export default function Contacts() {
           <motion.div variants={fadeRise}>
             <Button
               type="submit"
-              className="w-full rounded-full bg-gradient-to-r from-[#FF7A45] to-[#D64218] text-white hover:from-[#D64218] hover:to-[#FF7A45] hover:shadow-lg hover:shadow-[#FF7A45]/20 transition-all duration-300 py-6 text-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7A45] focus-visible:ring-offset-2"
+              className="w-full rounded-full bg-gradient-to-r from-[#FF7A45] to-[var(--brand)] text-white hover:from-[var(--brand)] hover:to-[#FF7A45] hover:shadow-lg hover:shadow-[#FF7A45]/20 transition-all duration-300 py-6 text-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7A45] focus-visible:ring-offset-2"
               disabled={isSubmitting || !agreementValue}
               aria-busy={isSubmitting}
             >
@@ -273,7 +273,7 @@ export default function Contacts() {
           variants={fadeRise}
         >
           <p className="mb-2">Или свяжитесь с нами напрямую:</p>
-          <a href="tel:+79991234567" className="text-[#FF7A45] hover:text-[#D64218] transition-colors font-medium">
+          <a href="tel:+79991234567" className="text-[#FF7A45] hover:text-[var(--brand)] transition-colors font-medium">
             +7 (999) 123-45-67
           </a>
         </motion.div>

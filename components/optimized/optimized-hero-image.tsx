@@ -25,7 +25,7 @@ const generateBlurDataURL = (width: number = 10, height: number = 10) => {
   // Create gradient similar to brand colors
   const gradient = ctx.createLinearGradient(0, 0, width, height)
   gradient.addColorStop(0, '#1a1d20')
-  gradient.addColorStop(1, '#D64218')
+  gradient.addColorStop(1, 'var(--brand)')
   ctx.fillStyle = gradient
   ctx.fillRect(0, 0, width, height)
 
