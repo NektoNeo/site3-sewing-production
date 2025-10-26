@@ -27,6 +27,10 @@ export default function ZipperCanvas({
   tapeColor = 'rgba(50, 55, 61, 0.35)', // Стеклянный эффект как у навигации
   metalColor = '#8E949A'
 }: ZipperCanvasProps) {
+  // Skip rendering in E2E tests and CI environments
+  const isE2E = typeof window !== 'undefined' &&
+    (process.env.NEXT_PUBLIC_DISABLE_ANIMATIONS === 'true' || process.env.CI === 'true')
+
   const containerRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const offscreenCanvasRef = useRef<OffscreenCanvas | null>(null)
@@ -327,8 +331,8 @@ export default function ZipperCanvas({
     }
   }, [dimensions, draw])
 
-  // Fallback для reduced motion
-  if (prefersReducedMotion) {
+  // Fallback для E2E tests и reduced motion
+  if (isE2E || prefersReducedMotion) {
     return (
       <div
         ref={containerRef}

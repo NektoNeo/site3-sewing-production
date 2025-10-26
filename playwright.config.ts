@@ -1,4 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
+import * as dotenv from 'dotenv';
+import * as path from 'path';
+
+// Load .env.test for E2E tests
+dotenv.config({ path: path.resolve(__dirname, '.env.test') });
 
 /**
  * Playwright configuration for E2E testing, Accessibility, and SEO audits
@@ -21,10 +26,6 @@ export default defineConfig({
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
-    // Disable heavy animations in E2E tests
-    extraHTTPHeaders: {
-      'x-e2e-testing': 'true',
-    },
   },
   projects: [
     {
