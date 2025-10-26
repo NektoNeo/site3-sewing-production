@@ -1,15 +1,36 @@
-# *
+# Robots.txt для швейного производства
+# All crawlers
 User-agent: *
 Allow: /
 Disallow: /admin
-Disallow: /api
-Disallow: /_next
-Disallow: /static
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
 Disallow: /*.json$
 Disallow: /*_buildManifest.js$
 Disallow: /*_middlewareManifest.js$
 Disallow: /*_ssgManifest.js$
 Disallow: /*.js.map$
+Crawl-delay: 1
+
+# Googlebot - allow everything public
+User-agent: Googlebot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# Yandex - important for Russian market
+User-agent: Yandex
+Allow: /
+Disallow: /admin
+Disallow: /api/
+Crawl-delay: 1
+
+# Bingbot
+User-agent: Bingbot
+Allow: /
+Disallow: /admin
+Disallow: /api/
 
 # Host
 Host: https://example.com
