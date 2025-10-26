@@ -145,7 +145,7 @@ export default function FAQ() {
               <a
                 href="#contacts"
                 className="font-medium hover:underline transition-colors"
-                style={{ color: 'var(--color-accent, #D64218)' }}
+                style={{ color: 'var(--color-accent, var(--brand))' }}
               >
                 Свяжитесь с нами
               </a>

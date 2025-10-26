@@ -68,12 +68,12 @@ export default function Services() {
                 className="group relative"
               >
                 <motion.div
-                  className="relative bg-white border border-black/6 rounded-lg h-full overflow-hidden focus-within:ring-2 focus-within:ring-[#D64218]/30 focus-within:ring-offset-2"
+                  className="relative bg-white border border-black/6 rounded-lg h-full overflow-hidden focus-within:ring-2 focus-within:ring-[var(--brand)]/30 focus-within:ring-offset-2"
                   initial="initial"
                   whileHover="hover"
                   variants={serviceCardHover}>
                   {/* Stitching detail at top */}
-                  <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#D64218]/20 to-transparent" />
+                  <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--brand)]/20 to-transparent" />
                   <div
                     className="absolute inset-x-0 top-0 h-[3px] opacity-60"
                     style={{
@@ -81,8 +81,8 @@ export default function Services() {
                         90deg,
                         transparent,
                         transparent 3px,
-                        rgba(214, 66, 24, 0.4) 3px,
-                        rgba(214, 66, 24, 0.4) 4px,
+                        color-mix(in srgb, var(--brand) 40%, transparent) 3px,
+                        color-mix(in srgb, var(--brand) 40%, transparent) 4px,
                         transparent 4px,
                         transparent 8px
                       )`
@@ -92,10 +92,10 @@ export default function Services() {
                   <div className="p-[var(--space-lg)]">
                     {/* Icon in circle */}
                     <motion.div
-                      className="w-9 h-9 rounded-full border border-[#D64218]/30 bg-[#D64218]/5 flex items-center justify-center mb-4 group-hover:bg-[#D64218]/10 transition-colors"
+                      className="w-9 h-9 rounded-full border border-[var(--brand)]/30 bg-[var(--brand)]/5 flex items-center justify-center mb-4 group-hover:bg-[var(--brand)]/10 transition-colors"
                       variants={iconBounce}
                     >
-                      <Icon className="w-5 h-5 stroke-[#D64218]" strokeWidth={1.5} aria-hidden="true" />
+                      <Icon className="w-5 h-5 stroke-[var(--brand)]" strokeWidth={1.5} aria-hidden="true" />
                     </motion.div>
 
                     {/* Title and description */}

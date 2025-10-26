@@ -100,7 +100,7 @@ export function FilterToolbar({
             <Input
               type="search"
               placeholder={filter.placeholder || filter.label}
-              className="control-glass w-[250px] pl-10 pr-4 py-[var(--space-xs)] rounded-full text-white placeholder-mist-400 border-white/20 bg-white/5 focus:bg-white/10 focus:ring-2 focus:ring-[#D64218]/50"
+              className="control-glass w-[250px] pl-10 pr-4 py-[var(--space-xs)] rounded-full text-white placeholder-mist-400 border-white/20 bg-white/5 focus:bg-white/10 focus:ring-2 focus:ring-[var(--brand)]/50"
               value={value || ""}
               onChange={(e) => onFilterChange(filter.id, e.target.value)}
             />

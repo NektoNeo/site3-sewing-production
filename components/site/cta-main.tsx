@@ -33,7 +33,7 @@ export function CtaMain() {
             onClick={scrollToContacts}
             variant="primary"
             size="lg"
-            className="rounded-full bg-gradient-to-r from-[#D64218] to-[#FF6B47] hover:from-[#FF6B47] hover:to-[#D64218] hover:shadow-lg hover:shadow-[#D64218]/30 px-10"
+            className="rounded-full bg-gradient-to-r from-[var(--brand)] to-[#FF6B47] hover:from-[#FF6B47] hover:to-[var(--brand)] hover:shadow-lg hover:shadow-[var(--brand)]/30 px-10"
           >
             Получить консультацию
           </RippleButton>

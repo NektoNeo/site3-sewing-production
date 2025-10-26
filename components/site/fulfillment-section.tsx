@@ -106,7 +106,7 @@ export function FulfillmentSection() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
                 >
-                  <item.icon className="w-5 h-5 text-[#D64218] shrink-0 mt-0.5" />
+                  <item.icon className="w-5 h-5 text-[var(--brand)] shrink-0 mt-0.5" />
                   <span className="text-sm text-fg-muted leading-relaxed" style={{ lineHeight: '1.6' }}>
                     {item.text}
                   </span>
@@ -136,7 +136,7 @@ export function FulfillmentSection() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.15 + index * 0.05 }}
                 >
-                  <item.icon className="w-5 h-5 text-[#D64218] shrink-0 mt-0.5" />
+                  <item.icon className="w-5 h-5 text-[var(--brand)] shrink-0 mt-0.5" />
                   <span className="text-sm text-fg-muted leading-relaxed" style={{ lineHeight: '1.6' }}>
                     {item.text}
                   </span>
@@ -161,7 +161,7 @@ export function FulfillmentSection() {
           {/* CTA Button */}
           <motion.a
             href="#contacts"
-            className="inline-flex items-center gap-2 px-[var(--space-lg)] py-[var(--space-sm)] bg-[#D64218] text-white rounded-lg font-medium hover:bg-[#D64218]/90 transition-colors duration-200"
+            className="inline-flex items-center gap-2 px-[var(--space-lg)] py-[var(--space-sm)] bg-[var(--brand)] text-white rounded-lg font-medium hover:bg-[var(--brand)]/90 transition-colors duration-200"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >

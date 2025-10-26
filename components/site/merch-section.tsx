@@ -114,7 +114,7 @@ export function MerchSection() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <CheckCircle2 className="w-5 h-5 text-[#D64218] shrink-0 mt-1" />
+                <CheckCircle2 className="w-5 h-5 text-[var(--brand)] shrink-0 mt-1" />
                 <div>
                   <span className="font-medium text-fg">{item.title}</span>
                   <span className="text-fg-muted"> {item.text}</span>
@@ -164,7 +164,7 @@ export function MerchSection() {
             {technologies.map((tech, index) => (
               <motion.div
                 key={index}
-                className="relative inline-flex items-center px-5 py-[var(--space-xs)].5 rounded-full bg-[color:var(--bg-elev-1)] border border-[#D64218]/20 group hover:border-[#D64218]/40 transition-all duration-300"
+                className="relative inline-flex items-center px-5 py-[var(--space-xs)].5 rounded-full bg-[color:var(--bg-elev-1)] border border-[var(--brand)]/20 group hover:border-[var(--brand)]/40 transition-all duration-300"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -181,12 +181,12 @@ export function MerchSection() {
                     y1="0"
                     x2="100%"
                     y2="0"
-                    stroke="#D64218"
+                    stroke="var(--brand)"
                     strokeWidth="1"
                     strokeDasharray="3 2"
                   />
                 </svg>
-                <span className="text-[16px] font-medium text-[#D64218] group-hover:text-[#D64218]/90 transition-colors">
+                <span className="text-[16px] font-medium text-[var(--brand)] group-hover:text-[var(--brand)]/90 transition-colors">
                   {tech.label}
                 </span>
                 <span className="ml-2 text-[15px] text-fg-muted">– {tech.desc}</span>

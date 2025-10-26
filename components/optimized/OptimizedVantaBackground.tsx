@@ -29,10 +29,13 @@ export function OptimizedVantaBackground() {
   const performanceMode = usePerformanceMode();
 
   useEffect(() => {
+    // Skip Vanta in E2E tests and CI environments
+    const isE2E = process.env.NEXT_PUBLIC_DISABLE_ANIMATIONS === 'true' || process.env.CI === 'true';
+
     // P05: Skip animation on mobile or low-performance devices
     const isMobile = window.matchMedia('(pointer: coarse)').matches;
     const isLowMemory = (navigator as any).deviceMemory && (navigator as any).deviceMemory <= 4;
-    const shouldLoadAnimation = !prefersReducedMotion && !isMobile && !isLowMemory && performanceMode !== 'low';
+    const shouldLoadAnimation = !isE2E && !prefersReducedMotion && !isMobile && !isLowMemory && performanceMode !== 'low';
 
     if (!shouldLoadAnimation || !vantaRef.current) {
       return;
