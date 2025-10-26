@@ -19,6 +19,7 @@
     --fg: #F3F4F6;
     --fg-muted: #B9C0C7;
     --brand: #D64218; /* Safety Orange - from tokens.colors.dark.accent.DEFAULT */
+    --brand-light: #FF6B35; /* Light accent - from tokens.colors.dark.accent.light */
     --brand-600: #C03B15; /* from tokens.colors.dark.accent.600 */
     --brand-700: #C23A14; /* from tokens.colors.dark.accent.700 */
     --stone-600: #605D5C;

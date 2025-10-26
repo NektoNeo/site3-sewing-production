@@ -59,14 +59,14 @@ export function RippleButton({
   }
 
   const variantClasses = {
-    primary: "bg-[#D64218] text-white hover:bg-[#B53614]",
+    primary: "bg-[var(--brand)] text-white hover:bg-[var(--brand-600)]",
     secondary: "bg-white text-gray-900 border border-gray-200 hover:bg-gray-50",
     ghost: "bg-transparent hover:bg-gray-100 text-gray-700"
   }
 
   const defaultRippleColors = {
     primary: "rgba(255, 255, 255, 0.5)",
-    secondary: "rgba(214, 66, 24, 0.3)",
+    secondary: "rgba(214, 66, 24, 0.3)", // Brand color with alpha
     ghost: "rgba(0, 0, 0, 0.1)"
   }
 
@@ -75,7 +75,7 @@ export function RippleButton({
       ref={buttonRef}
       className={cn(
         "relative overflow-hidden rounded-lg font-medium transition-colors",
-        "focus:outline-none focus:ring-2 focus:ring-[#D64218]/30 focus:ring-offset-2",
+        "focus:outline-none focus:ring-2 focus:ring-[var(--brand)]/30 focus:ring-offset-2",
         sizeClasses[size],
         variantClasses[variant],
         className
