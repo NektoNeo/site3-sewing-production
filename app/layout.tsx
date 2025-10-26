@@ -8,6 +8,8 @@ import { SmoothScroll } from "@/lib/smooth-scroll";
 import { Header } from "@/components/site/header";
 import { Footer } from "@/components/site/footer";
 import { Toaster } from "@/components/ui/toaster";
+import { SentryTestButton } from "@/components/test/SentryTestButton";
+import { SentryInit } from "./sentry-init";
 import defaultSEO from "./seo.config";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
@@ -15,14 +17,14 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: defaultSEO.defaultTitle || "Modern Web Solutions | Professional Development Services",
-    template: defaultSEO.titleTemplate || "%s | Site3",
+    default: defaultSEO.defaultTitle || "Швейное производство полного цикла | От разработки лекал до готового изделия",
+    template: defaultSEO.titleTemplate || "%s | Швейное производство",
   },
-  description: defaultSEO.description || "Professional web development services with modern technologies",
-  keywords: ["web development", "software development", "digital solutions", "modern technology", "scalable applications"],
-  authors: [{ name: "Site3 Development Team" }],
-  creator: "Site3",
-  publisher: "Site3",
+  description: defaultSEO.description || "Профессиональное швейное производство с опытом более 5 лет. До 10 000 изделий в месяц. Пошив под ключ, разработка лекал, корпоративный мерч, брендирование: DTF печать, вышивка, шелкография, сублимация.",
+  keywords: ["швейное производство", "пошив одежды", "разработка лекал", "корпоративный мерч", "униформа", "DTF печать", "вышивка", "шелкография", "сублимация", "пошив под ключ", "давальческая основа", "фулфилмент"],
+  authors: [{ name: "Швейное производство" }],
+  creator: "Швейное производство",
+  publisher: "Швейное производство",
   formatDetection: {
     email: false,
     address: false,
@@ -30,25 +32,24 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "ru_RU",
     url: siteUrl,
-    title: defaultSEO.defaultTitle || "Modern Web Solutions",
-    description: defaultSEO.description || "Professional web development services",
-    siteName: "Site3",
+    title: defaultSEO.defaultTitle || "Швейное производство полного цикла",
+    description: defaultSEO.description || "Профессиональное швейное производство с опытом более 5 лет",
+    siteName: "Швейное производство",
     images: [
       {
         url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Site3 - Modern Web Solutions",
+        alt: "Швейное производство полного цикла",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: defaultSEO.defaultTitle || "Modern Web Solutions",
-    description: defaultSEO.description || "Professional web development services",
-    creator: "@site3",
+    title: defaultSEO.defaultTitle || "Швейное производство полного цикла",
+    description: defaultSEO.description || "Профессиональное швейное производство с опытом более 5 лет",
     images: [`${siteUrl}/og-image.png`],
   },
   robots: {
@@ -72,8 +73,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+    { media: "(prefers-color-scheme: light)", color: "#D64218" },
+    { media: "(prefers-color-scheme: dark)", color: "#0F1316" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -88,6 +89,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${space.variable} font-sans`}>
+        <SentryInit />
         <a href="#main-content" className="skip-to-main">
           Skip to main content
         </a>
@@ -99,6 +101,7 @@ export default function RootLayout({
             </main>
             <Footer />
             <Toaster />
+            {process.env.NODE_ENV === 'development' && <SentryTestButton />}
           </SmoothScroll>
         </Providers>
       </body>

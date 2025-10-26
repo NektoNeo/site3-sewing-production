@@ -67,8 +67,8 @@ export function Footer() {
             >
               <h3 className="text-white font-semibold mb-4">{group.title}</h3>
               <ul className="space-y-3">
-                {group.links.map((link) => (
-                  <li key={link.href}>
+                {group.links.map((link, linkIndex) => (
+                  <li key={`${group.title}-${linkIndex}`}>
                     <Link
                       href={link.href}
                       className="text-mist-300 hover:text-white transition-colors duration-200"

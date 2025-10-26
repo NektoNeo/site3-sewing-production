@@ -1,13 +1,16 @@
 {
-  "name": "Site3 - Modern Web Solutions",
-  "short_name": "Site3",
-  "description": "Professional web development services with modern technologies",
-  "theme_color": "#000000",
-  "background_color": "#ffffff",
+  "name": "Швейное производство полного цикла",
+  "short_name": "Швейное производство",
+  "description": "Профессиональное швейное производство с опытом более 5 лет. До 10 000 изделий в месяц. Пошив под ключ, разработка лекал, корпоративный мерч, брендирование.",
+  "lang": "ru",
+  "dir": "ltr",
+  "theme_color": "#D64218",
+  "background_color": "#0F1316",
   "display": "standalone",
   "orientation": "portrait",
   "scope": "/",
   "start_url": "/",
+  "categories": ["business", "manufacturing", "fashion"],
   "icons": [
     {
       "src": "/icon-72x72.png",

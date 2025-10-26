@@ -3,30 +3,28 @@ import { DefaultSeoProps } from 'next-seo';
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com';
 
 const defaultSEO: DefaultSeoProps = {
-  defaultTitle: 'Modern Web Solutions | Professional Development Services',
-  titleTemplate: '%s | Site3',
-  description: 'Professional web development services with modern technologies. We create fast, secure, and scalable digital solutions for your business.',
+  defaultTitle: 'Швейное производство полного цикла | От разработки лекал до готового изделия',
+  titleTemplate: '%s | Швейное производство',
+  description: 'Профессиональное швейное производство с опытом более 5 лет. До 10 000 изделий в месяц. Пошив под ключ, разработка лекал, корпоративный мерч, брендирование: DTF печать, вышивка, шелкография, сублимация.',
   canonical: siteUrl,
   openGraph: {
     type: 'website',
-    locale: 'en_US',
+    locale: 'ru_RU',
     url: siteUrl,
-    siteName: 'Site3',
-    title: 'Modern Web Solutions | Professional Development Services',
-    description: 'Professional web development services with modern technologies. We create fast, secure, and scalable digital solutions for your business.',
+    siteName: 'Швейное производство',
+    title: 'Швейное производство полного цикла | От разработки лекал до готового изделия',
+    description: 'Профессиональное швейное производство с опытом более 5 лет. До 10 000 изделий в месяц. Пошив под ключ, разработка лекал, корпоративный мерч, брендирование: DTF печать, вышивка, шелкография, сублимация.',
     images: [
       {
         url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: 'Site3 - Modern Web Solutions',
+        alt: 'Швейное производство полного цикла',
         type: 'image/png',
       },
     ],
   },
   twitter: {
-    handle: '@site3',
-    site: '@site3',
     cardType: 'summary_large_image',
   },
   additionalMetaTags: [
@@ -44,11 +42,15 @@ const defaultSEO: DefaultSeoProps = {
     },
     {
       name: 'theme-color',
-      content: '#000000',
+      content: '#D64218',
     },
     {
       name: 'author',
-      content: 'Site3 Development Team',
+      content: 'Швейное производство',
+    },
+    {
+      name: 'keywords',
+      content: 'швейное производство, пошив одежды, разработка лекал, корпоративный мерч, униформа, DTF печать, вышивка, шелкография, сублимация, пошив под ключ, давальческая основа, фулфилмент',
     },
     {
       httpEquiv: 'x-ua-compatible',
@@ -77,27 +79,31 @@ export default defaultSEO;
 // Page-specific SEO configurations
 export const pageSEO = {
   home: {
-    title: 'Home',
-    description: 'Welcome to Site3 - Your partner for modern web development solutions.',
+    title: 'Главная',
+    description: 'Швейное производство полного цикла. Более 5 лет опыта. До 10 000 изделий в месяц для брендов и частных заказов. Пошив любой сложности от разработки лекал до готового изделия.',
   },
   about: {
-    title: 'About Us',
-    description: 'Learn about our team, mission, and approach to creating exceptional digital experiences.',
+    title: 'О производстве',
+    description: 'Более 5 лет на рынке швейного производства. Профессиональные конструкторы-технологи и собственное производство. Специализация на 2-3 слое одежды и синтетических тканях.',
   },
   services: {
-    title: 'Our Services',
-    description: 'Explore our comprehensive web development services including design, development, and optimization.',
+    title: 'Услуги',
+    description: 'Полный цикл швейных услуг: пошив под ключ, давальческая основа, разработка лекал, дизайн мерча, DTF печать, вышивка, шелкография, сублимация. От образца до серийного производства.',
   },
   contact: {
-    title: 'Contact Us',
-    description: 'Get in touch with our team to discuss your project and how we can help you succeed.',
+    title: 'Контакты',
+    description: 'Свяжитесь с нами для обсуждения вашего проекта. Консультация по пошиву, брендированию и корпоративному мерчу. Рассчитаем стоимость в течение 24 часов.',
   },
   pricing: {
-    title: 'Pricing Plans',
-    description: 'Choose the perfect plan for your business needs. Transparent pricing with no hidden fees.',
+    title: 'Цены',
+    description: 'Прозрачное ценообразование на швейные услуги. Индивидуальный расчет стоимости в зависимости от объема и сложности заказа. Скидки на крупные партии.',
   },
-  blog: {
-    title: 'Blog & Resources',
-    description: 'Stay updated with the latest web development trends, tips, and industry insights.',
+  merch: {
+    title: 'Корпоративный мерч',
+    description: 'Разработка дизайна и производство корпоративного мерча под ключ. Полный цикл: от концепции до реализации. Корпоративная одежда, униформа, промо-продукция, бизнес-подарки.',
+  },
+  fulfillment: {
+    title: 'Фулфилмент и Честный ЗНАК',
+    description: 'Комплексный фулфилмент для маркетплейсов: хранение, упаковка, маркировка, отправка. Маркировка товаров системой "Честный ЗНАК". Интеграция с Ozon, Wildberries.',
   },
 };

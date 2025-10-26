@@ -1,20 +1,22 @@
 import withBundleAnalyzer from '@next/bundle-analyzer';
+// import { withSentryConfig } from '@sentry/nextjs';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    typedRoutes: false,
-  },
+  typedRoutes: false,
   output: 'standalone',
 
   // Performance optimizations
-  swcMinify: true,
   compress: true,
+
+  // Turbopack config (Next.js 16+)
+  turbopack: {},
 
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [360, 640, 960, 1280, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    qualities: [75, 85],
   },
 
   // Bundle analysis
