@@ -8,6 +8,8 @@ import { SmoothScroll } from "@/lib/smooth-scroll";
 import { Header } from "@/components/site/header";
 import { Footer } from "@/components/site/footer";
 import { Toaster } from "@/components/ui/toaster";
+import { SentryTestButton } from "@/components/test/SentryTestButton";
+import { SentryInit } from "./sentry-init";
 import defaultSEO from "./seo.config";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
@@ -88,6 +90,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${space.variable} font-sans`}>
+        <SentryInit />
         <a href="#main-content" className="skip-to-main">
           Skip to main content
         </a>
@@ -99,6 +102,7 @@ export default function RootLayout({
             </main>
             <Footer />
             <Toaster />
+            {process.env.NODE_ENV === 'development' && <SentryTestButton />}
           </SmoothScroll>
         </Providers>
       </body>

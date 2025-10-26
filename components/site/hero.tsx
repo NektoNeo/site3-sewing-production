@@ -71,9 +71,9 @@ export default function Hero() {
 
       {/* Layer 4: Character/Mascot fixed on the right - за слоем молнии */}
       <div className="pointer-events-none absolute -bottom-[20px] right-0 z-[4] lg:right-[2%] xl:right-[5%]" aria-hidden="true">
-        {/* Decorative stitch line around character */}
+        {/* Decorative stitch line around character - hidden on smaller screens */}
         <StitchLine
-          className="absolute right-[850px] top-[10%] z-10 hidden xl:block"
+          className="absolute right-[50vw] lg:right-[55vw] xl:right-[850px] top-[10%] z-10 hidden lg:block"
           height={400}
           width={2}
           opacity={0.35}
@@ -141,13 +141,13 @@ export default function Hero() {
                 opacity={0.3}
               />
               <StitchLine
-                className="absolute -right-8 top-1/2 -translate-y-1/2 z-0"
+                className="absolute -right-8 top-1/2 -translate-y-1/2 z-0 hidden sm:block"
                 width={60}
                 height={2}
                 opacity={0.25}
               />
               <StitchLine
-                className="absolute left-[180px] -bottom-6 z-0"
+                className="absolute left-[180px] md:left-[200px] lg:left-[240px] -bottom-6 z-0 hidden sm:block"
                 width={80}
                 height={2}
                 opacity={0.2}

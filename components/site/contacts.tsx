@@ -1,7 +1,7 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
+import { useForm, Controller } from "react-hook-form"
 import * as z from "zod"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -11,7 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { useToast } from "@/hooks/use-toast"
 import { motion } from "framer-motion"
 import { fadeRise, stagger } from "@/lib/animations"
-import InputMask from "react-input-mask"
+import { IMaskInput } from "react-imask"
 import { useState } from "react"
 
 const formSchema = z.object({
@@ -44,6 +44,7 @@ export default function Contacts() {
     handleSubmit,
     setValue,
     watch,
+    control,
     formState: { errors, isSubmitting },
     reset,
   } = useForm<FormData>({
@@ -89,7 +90,7 @@ export default function Contacts() {
   const agreementValue = watch("agreement")
 
   return (
-    <section id="contacts" data-surface="light" className="pt-[var(--space-3xl)] pb-[var(--space-3xl)] md:pt-[var(--space-3xl)] pb-[var(--space-3xl)] scroll-mt-16 relative surface-light">
+    <section id="contacts" data-surface="light" className="pt-[var(--space-3xl)] pb-[var(--space-3xl)] scroll-mt-16 relative surface-light">
       <div className="absolute inset-0 bg-gradient-to-b from-[#FCFCFD] to-[#F4F6F8]" />
       <div className="container max-w-3xl mx-auto px-[var(--space-md)] relative">
         <motion.div
@@ -136,23 +137,24 @@ export default function Contacts() {
 
           <motion.div variants={fadeRise} className="space-y-2">
             <Label htmlFor="phone" className="text-[#101316] font-medium">Телефон *</Label>
-            <InputMask
-              mask="+7 (999) 999-99-99"
-              placeholder="+7 (999) 123-45-67"
-              {...register("phone")}
-            >
-              {(inputProps: any) => (
-                <Input
-                  {...inputProps}
+            <Controller
+              name="phone"
+              control={control}
+              render={({ field }) => (
+                <IMaskInput
+                  {...field}
+                  mask="+7 (000) 000-00-00"
+                  placeholder="+7 (999) 123-45-67"
+                  onAccept={(value) => field.onChange(value)}
                   id="phone"
                   type="tel"
-                  className="bg-white border-[rgba(0,0,0,0.12)] text-[#101316] placeholder:text-[#6B7380] focus:ring-2 focus:ring-[#FF7A45] focus:border-[#FF7A45] transition-all focus-visible:outline-none"
+                  className="bg-white border-[rgba(0,0,0,0.12)] text-[#101316] placeholder:text-[#6B7380] focus:ring-2 focus:ring-[#FF7A45] focus:border-[#FF7A45] transition-all focus-visible:outline-none flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
                   aria-required="true"
                   aria-invalid={errors.phone ? "true" : "false"}
                   aria-describedby={errors.phone ? "phone-error" : undefined}
                 />
               )}
-            </InputMask>
+            />
             {errors.phone && (
               <p id="phone-error" className="text-red-600 text-sm" role="alert" aria-live="polite">
                 {errors.phone.message}
