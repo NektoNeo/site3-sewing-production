@@ -26,10 +26,15 @@
 - Lighthouse: `ci/lighthouse/`
   - `budgets.json` - Бюджеты производительности
   - `lighthouserc.json` - Конфиг Lighthouse CI
-- Sentry:
-  - `sentry.client.config.ts` - Клиентский конфиг
-  - `sentry.edge.config.ts` - Edge конфиг
+- Sentry (полная интеграция):
+  - `instrumentation.ts` - Инициализация для server/edge runtimes
+  - `app/sentry-init.tsx` - Явная инициализация на клиенте через useEffect
+  - `sentry.client.config.ts` - Клиентский конфиг с Session Replay
+  - `sentry.edge.config.ts` - Edge runtime конфиг
   - `sentry.server.config.ts` - Серверный конфиг
+  - `components/test/SentryTestButton.tsx` - Тестовая кнопка (dev only)
+  - **DSN:** Подключен Team plan (`.env.local`)
+  - **Статус:** ✅ Протестировано, ошибки успешно отправляются
 - Environment: `.env.local` - Локальные переменные окружения
 
 ### Новые скрипты package.json
@@ -54,7 +59,9 @@
 - `lighthouse@13.0.1` - Аудит производительности
 - `@lhci/cli@0.15.1` - Lighthouse CI
 - `start-server-and-test@2.1.2` - Утилита для CI
-- `@sentry/nextjs@10.22.0` - Мониторинг ошибок
+- `@sentry/nextjs@10.22.0` - Мониторинг ошибок (✅ настроено)
+- `import-in-the-middle@2.0.0` - Для Sentry
+- `require-in-the-middle@8.0.1` - Для Sentry
 
 ### Браузеры Playwright
 Установлены браузеры для E2E тестирования:
@@ -76,13 +83,14 @@
 1. ✅ **findDOMNode Error** - Заменен `react-input-mask` на `react-imask` (совместим с React 19)
 2. ✅ **Duplicate Keys** - Исправлены дублирующиеся ключи в Footer
 3. ✅ **Dependencies** - Обновлены все зависимости, 0 уязвимостей
+4. ✅ **Sentry Integration** - Полностью настроен и протестирован (с Team plan DSN)
 
 ## Следующие шаги
 
 ### Immediate (можно запускать сейчас)
 1. Создать базовые E2E тесты с Playwright
 2. Настроить Lighthouse CI для автоматических аудитов
-3. Добавить Sentry DSN для мониторинга ошибок
+3. ~~Добавить Sentry DSN для мониторинга ошибок~~ ✅ **Готово**
 
 ### Planned
 1. Создать дизайн-токены с style-dictionary (если потребуется)
@@ -125,7 +133,29 @@ pnpm ci:preview
 ✅ Skills установлены
 ✅ CI/CD конфигурация добавлена
 ✅ Тестовые инструменты настроены
-✅ Мониторинг подключен (требует SENTRY_DSN)
+✅ Мониторинг подключен и протестирован (Sentry Team plan)
 ✅ Все зависимости установлены
 
 **Проект готов к Этапу 3: Анализ текущего сайта и предложения улучшений**
+
+## Sentry Integration Details
+
+### Архитектура решения
+После множества попыток найдена рабочая конфигурация для Next.js 16 + React 19:
+
+1. **Server/Edge Runtime:** `instrumentation.ts` загружает конфиги через `register()`
+2. **Client Runtime:** `app/sentry-init.tsx` с явной инициализацией через `useEffect`
+   - Решает проблему side-effect imports в App Router
+   - Гарантирует загрузку SDK до первой отрисовки
+   - Делает `window.Sentry` доступным глобально
+
+### Тестирование
+- ✅ Тестовая кнопка работает (видна только в development)
+- ✅ Ошибки успешно отправляются в Sentry
+- ✅ Session Replay настроен (10% сессий, 100% при ошибках)
+- ✅ Первое событие получено в dashboard
+
+### Известные предупреждения (non-blocking)
+- Version conflicts: `import-in-the-middle` (1.15.0 vs 2.0.0)
+- Version conflicts: `require-in-the-middle` (7.5.2 vs 8.0.1)
+- Эти warning не влияют на работу Sentry
