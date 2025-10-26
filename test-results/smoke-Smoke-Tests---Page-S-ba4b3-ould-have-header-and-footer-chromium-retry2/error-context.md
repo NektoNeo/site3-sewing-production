@@ -1,0 +1,708 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e6]:
+    - link "LOGO" [ref=e7] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e8]: LOGO
+    - navigation [ref=e9]:
+      - list [ref=e10]:
+        - listitem [ref=e11]:
+          - link "О нас" [ref=e12] [cursor=pointer]:
+            - /url: /#about
+        - listitem [ref=e13]:
+          - link "Услуги" [ref=e14] [cursor=pointer]:
+            - /url: /#services
+        - listitem [ref=e15]:
+          - link "Лекала" [ref=e16] [cursor=pointer]:
+            - /url: /#patterns
+        - listitem [ref=e17]:
+          - link "Мерч" [ref=e18] [cursor=pointer]:
+            - /url: /#merch
+        - listitem [ref=e19]:
+          - link "Фулфилмент" [ref=e20] [cursor=pointer]:
+            - /url: /#fulfillment
+        - listitem [ref=e21]:
+          - link "Стоимость" [ref=e22] [cursor=pointer]:
+            - /url: /#pricing
+        - listitem [ref=e23]:
+          - link "Каталог" [ref=e24] [cursor=pointer]:
+            - /url: /#catalog
+        - listitem [ref=e25]:
+          - link "Портфолио" [ref=e26] [cursor=pointer]:
+            - /url: /#portfolio
+        - listitem [ref=e27]:
+          - link "FAQ" [ref=e28] [cursor=pointer]:
+            - /url: /#faq
+        - listitem [ref=e29]:
+          - link "Контакты" [ref=e30] [cursor=pointer]:
+            - /url: /#contacts
+    - link "Заказать" [ref=e31] [cursor=pointer]:
+      - /url: "#cta-quick"
+  - main [ref=e32]:
+    - main [ref=e33]:
+      - generic [ref=e34]:
+        - generic [ref=e38]:
+          - generic: AIR
+        - generic:
+          - img
+        - generic [ref=e41]:
+          - heading "Швейное производство полного цикла" [level=1] [ref=e42]:
+            - text: Швейное производство
+            - text: полного цикла
+          - paragraph [ref=e43]: От разработки лекал до готового изделия. 10 000+ изделий в месяц для брендов и частных заказов
+          - generic [ref=e44]:
+            - img [ref=e45]
+            - img [ref=e47]
+            - img [ref=e48]
+            - link "Рассчитать заказ" [ref=e49] [cursor=pointer]:
+              - /url: "#contacts"
+              - button "Рассчитать заказ" [ref=e50]:
+                - generic [ref=e51]: Рассчитать заказ
+            - link "Наши услуги" [ref=e52] [cursor=pointer]:
+              - /url: "#services"
+              - button "Наши услуги" [ref=e53]:
+                - generic [ref=e54]: Наши услуги
+      - generic [ref=e62]:
+        - generic [ref=e63]: О компании
+        - heading "О нас" [level=2] [ref=e64]
+        - paragraph [ref=e67]: "Уже более 5 лет мы успешно работаем на рынке швейного производства, сочетая опыт, современные технологии и индивидуальный подход к каждому клиенту. Наше предприятие готово выполнить как масштабные заказы для крупных компаний, государства и брендов, так и небольшие партии для частных клиентов — без компромиссов в качестве и внимании к деталям. В нашем команде— профессиональные конструкторы-технологи и собственное производство, способное выпускать до 10 тысяч изделий в месяц. Наше производство специализируется на 2-3 слое одежды, а также на работе с синтетическими тканями, такие как бифлекс, спандекс и др. Мы работаем с разными типами продукции: от корпоративной одежды и униформы до коллекций для маркетплейсов и промо мерча, предлагая полный цикл услуг — от разработки лекал до финального производства."
+      - generic [ref=e70]:
+        - generic [ref=e72] [cursor=pointer]:
+          - img [ref=e75]
+          - generic [ref=e77]:
+            - heading "Полный цикл производства" [level=3] [ref=e78]
+            - paragraph [ref=e79]: От разработки идеи до готового изделия и логистики. Контролируем каждый этап для гарантии качества
+        - generic [ref=e81] [cursor=pointer]:
+          - img [ref=e84]
+          - generic [ref=e90]:
+            - heading "Индивидуальный дизайн" [level=3] [ref=e91]
+            - paragraph [ref=e92]: Создаем уникальные решения под ваш бренд. Воплощаем любые идеи в реальность
+        - generic [ref=e94] [cursor=pointer]:
+          - img [ref=e97]
+          - generic [ref=e100]:
+            - heading "Бренд-менеджмент" [level=3] [ref=e101]
+            - paragraph [ref=e102]: Помогаем развивать и масштабировать ваш бренд. Стратегическое планирование и поддержка
+      - generic [ref=e110]:
+        - heading "Оставить заявку" [level=2] [ref=e111]
+        - generic [ref=e113]:
+          - generic [ref=e114]:
+            - button "Что нужно?" [ref=e116] [cursor=pointer]:
+              - generic [ref=e117]: Что нужно?
+              - img [ref=e118]
+            - textbox "+7 (___) ___-__-__" [ref=e121]
+            - textbox "Комментарий" [ref=e122]
+            - button "Отправить" [disabled]
+          - generic [ref=e124] [cursor=pointer]:
+            - checkbox "Согласен на обработку персональных данных в соответствии с политикой конфиденциальности" [ref=e126]
+            - generic [ref=e128]:
+              - text: Согласен на обработку персональных данных в соответствии с
+              - link "политикой конфиденциальности" [ref=e129]:
+                - /url: /privacy
+      - generic [ref=e131]:
+        - generic [ref=e132]:
+          - img [ref=e133]
+          - generic [ref=e134]: Услуги
+          - heading "Наши услуги" [level=2] [ref=e135]
+        - generic [ref=e137]:
+          - generic [ref=e142]:
+            - img [ref=e144]
+            - heading "Пошив изделий под ключ (любой сложности и вида)" [level=3] [ref=e148]
+            - paragraph [ref=e149]: "Полный цикл производства: от идеи до готового изделия. Индивидуальный пошив одежды, аксессуаров и других текстильных изделий по вашим лекалам"
+          - generic [ref=e154]:
+            - img [ref=e156]
+            - heading "Пошив на давальческой основе" [level=3] [ref=e162]
+            - paragraph [ref=e163]: Пошив изделий из ваших материалов с учетом всех пожеланий. Оптимальное решение для брендов и частных заказов с собственными тканями и фурнитурой.
+          - generic [ref=e168]:
+            - img [ref=e170]
+            - heading "Разработка лекал и образцов" [level=3] [ref=e176]
+            - paragraph [ref=e177]: Создание точных эскизов и пробных образцов для идеальной посадки. Гарантия качества и соответствия вашим требованиям перед запуском в производство.
+          - generic [ref=e182]:
+            - img [ref=e184]
+            - heading "Разработка дизайн-проектов мерча" [level=3] [ref=e190]
+            - paragraph [ref=e191]: Разработка Уникального мерча с индивидуальным дизайном для брендов, компаний и мероприятий. От концепции до готового продукта — креативно и стильно.
+          - generic [ref=e196]:
+            - img [ref=e198]
+            - heading "Нанесение изображения DTF" [level=3] [ref=e202]
+            - paragraph [ref=e203]: Яркие и долговечные принты на любой ткани путем термопереноса. Технология DTF позволяет наносить рисунки даже на сложные материалы.
+          - generic [ref=e208]:
+            - img [ref=e210]
+            - heading "Нанесение брендирования вышивкой" [level=3] [ref=e215]
+            - paragraph [ref=e216]: Элегантная и премиальная вышивка логотипов и надписей. Любых размеров и цветов.
+          - generic [ref=e221]:
+            - img [ref=e223]
+            - heading "Нанесение брендирования шелкографией" [level=3] [ref=e227]
+            - paragraph [ref=e228]: Классическая печать с насыщенными цветами и высокой износостойкостью. Идеально для крупных тиражей и фирменной атрибутики.
+          - generic [ref=e233]:
+            - img [ref=e235]
+            - heading "Нанесение изображения сублимацией" [level=3] [ref=e238]
+            - paragraph [ref=e239]: Яркие, не выцветающие принты на синтетических тканях. Полный перенос изображения в ткань. Идеально для спортивной формы и синтетических изделий.
+      - generic [ref=e241]:
+        - generic [ref=e242]:
+          - heading "Технологии нанесения" [level=2] [ref=e243]
+          - paragraph [ref=e244]: Современное оборудование для любых задач брендирования
+        - generic [ref=e245]:
+          - generic [ref=e248]:
+            - img "DTF печать" [ref=e251]
+            - generic [ref=e252]:
+              - heading "DTF печать" [level=3] [ref=e253]
+              - paragraph [ref=e254]: Фотографическое качество и детализация на любых тканях
+          - generic [ref=e257]:
+            - img "Вышивка" [ref=e260]
+            - generic [ref=e261]:
+              - heading "Вышивка" [level=3] [ref=e262]
+              - paragraph [ref=e263]: Премиальный вид и долговечность для корпоративной одежды
+          - generic [ref=e266]:
+            - img "Сублимация" [ref=e269]
+            - generic [ref=e270]:
+              - heading "Сублимация" [level=3] [ref=e271]
+              - paragraph [ref=e272]: Яркие цвета на полиэстере для спортивной одежды
+      - generic [ref=e274]:
+        - img [ref=e275]
+        - generic [ref=e277]: Лекала
+        - heading "Разработка лекал и индивидуальный пошив" [level=2] [ref=e278]
+        - paragraph [ref=e281]: Мы предлагаем полный цикл услуг по разработке лекал и индивидуальному пошиву одежды под ваш бренд или конкретные задачи. Наши конструкторы разработают изделие по вашему запросу и меркам. Индивидуальный подход позволит адаптировать вашу задумку под массовое производство со стабильным высоким качеством и под полное соответстиве вашим желаниям.
+        - generic [ref=e282]:
+          - heading "Что вы получаете:" [level=3] [ref=e283]
+          - generic [ref=e284]:
+            - generic [ref=e285]:
+              - img [ref=e286]
+              - generic [ref=e289]: Профессиональное проектирование лекал по вашим эскизам, фото или образцам
+            - generic [ref=e290]:
+              - img [ref=e291]
+              - generic [ref=e294]: Градацию размеров и подготовку файлов для раскладки
+            - generic [ref=e295]:
+              - img [ref=e296]
+              - generic [ref=e299]: Индивидуальный пошив образцов и пилотных партий
+            - generic [ref=e300]:
+              - img [ref=e301]
+              - generic [ref=e304]: Возможность доработки и корректировки моделей после примерки
+        - paragraph [ref=e306]: Работаем с любыми видами одежды — от повседневной и корпоративной до сложной дизайнерской.
+      - generic [ref=e308]:
+        - img [ref=e309]
+        - generic [ref=e311]:
+          - generic [ref=e312]: Мерч
+          - heading "Разработка дизайна мерча и выстраивание бренд менеджмента для корпоративных заказчиков" [level=2] [ref=e313]
+          - generic [ref=e315]:
+            - paragraph [ref=e316]: Корпоративный мерч – это не просто одежда и аксессуары, а мощный инструмент
+            - paragraph [ref=e317]: продвижения бизнеса. Он позволяет заявить о себе Мы создаем стильные, функциональные и запоминающиеся коллекции, которые работают на узнаваемость бренда, укрепляют корпоративную культуру и повышают лояльность сотрудников и клиентов. Мы поможем создать стильную и функциональную продукцию, которая будет отражать ценности вашей компании. Мы учитываем все детали — от выбора тканей и технологий нанесения до создания концепции, которая найдет отклик у вашей целевой аудитории.
+        - generic [ref=e318]:
+          - heading "Почему стоит доверить разработку мерча нам?" [level=3] [ref=e319]
+          - generic [ref=e320]:
+            - generic [ref=e321]:
+              - img [ref=e322]
+              - generic [ref=e325]:
+                - text: "Полный цикл услуг – от концепции до реализации:"
+                - generic [ref=e326]: анализируем целевую аудиторию, разрабатываем дизайн, подбираем материалы и технологии нанесения, обеспечиваем качественный пошив и логистику.
+            - generic [ref=e327]:
+              - img [ref=e328]
+              - generic [ref=e331]:
+                - text: Индивидуальный подход
+                - generic [ref=e332]: – создаем уникальные решения, отражающие философию и ценности вашей компании.
+            - generic [ref=e333]:
+              - img [ref=e334]
+              - generic [ref=e337]:
+                - text: Стратегический бренд-менеджмент
+                - generic [ref=e338]: – помогаем выстроить эффективную систему продвижения через мерч, включая позиционирование, упаковку и маркетинговую поддержку.
+        - generic [ref=e339]:
+          - heading "Наши решения для бизнеса:" [level=3] [ref=e340]
+          - generic [ref=e341]:
+            - generic [ref=e342]:
+              - heading "Корпоративная одежда и униформа" [level=4] [ref=e343]
+              - paragraph [ref=e344]: стильная, удобная и презентабельная форма для сотрудников.
+            - generic [ref=e345]:
+              - heading "Промо Продукция и бизнес-подарки" [level=4] [ref=e346]
+              - paragraph [ref=e347]: практичные и статусные вещи с фирменной символикой для клиентов и партнеров.
+            - generic [ref=e348]:
+              - heading "Лимитированные коллекции" [level=4] [ref=e349]
+              - paragraph [ref=e350]: эксклюзивный мерч для особых мероприятий, повышающий вовлеченность аудитории.
+            - generic [ref=e351]:
+              - heading "Ивент-мероприятия" [level=4] [ref=e352]
+              - paragraph [ref=e353]: запоминающаяся атрибутика для конференций, форумов и тимбилдингов.
+        - generic [ref=e354]:
+          - heading "Технологии нанесения:" [level=3] [ref=e355]
+          - generic [ref=e356]:
+            - generic [ref=e357]:
+              - img [ref=e358]
+              - generic [ref=e359]: Вышивка
+              - generic [ref=e360]: – для элитной и долговечной отделки
+            - generic [ref=e361]:
+              - img [ref=e362]
+              - generic [ref=e363]: DTF печать
+              - generic [ref=e364]: – яркие и стойкие принты
+            - generic [ref=e365]:
+              - img [ref=e366]
+              - generic [ref=e367]: Сублимация
+              - generic [ref=e368]: – бесшовные полноцветные изображения
+      - generic [ref=e371]:
+        - generic [ref=e372]:
+          - heading "Как мы работаем?" [level=2] [ref=e373]
+          - paragraph [ref=e374]: Четыре простых шага к вашему идеальному мерчу. Прозрачный процесс от идеи до реализации.
+        - list [ref=e376]:
+          - listitem [ref=e377]:
+            - generic: "1"
+            - generic [ref=e378]:
+              - img [ref=e379]
+              - generic [ref=e382]:
+                - heading "Анализ" [level=3] [ref=e383]
+                - paragraph [ref=e384]: изучаем ваш бренд, ЦА и задачи.
+          - listitem [ref=e385]:
+            - generic: "2"
+            - generic [ref=e386]:
+              - img [ref=e387]
+              - generic [ref=e389]:
+                - heading "Концепция" [level=3] [ref=e390]
+                - paragraph [ref=e391]: предлагаем дизайн и варианты изделий.
+          - listitem [ref=e392]:
+            - generic: "3"
+            - generic [ref=e393]:
+              - img [ref=e394]
+              - generic [ref=e396]:
+                - heading "Производство" [level=3] [ref=e397]
+                - paragraph [ref=e398]: шьем и наносим фирменную символику.
+          - listitem [ref=e399]:
+            - generic: "4"
+            - generic [ref=e400]:
+              - img [ref=e401]
+              - generic [ref=e404]:
+                - heading "Продвижение" [level=3] [ref=e405]
+                - paragraph [ref=e406]: помогаем интегрировать мерч в маркетинговую стратегию.
+      - generic [ref=e408]:
+        - img [ref=e409]
+        - img [ref=e411]
+        - generic [ref=e413]: Фулфилмент
+        - heading "Фулфилмент и изготовление честного знака" [level=2] [ref=e414]
+        - generic [ref=e416]:
+          - paragraph [ref=e417]: Наше швейное предприятие предоставляет комплексную услугу фулфилмента — от
+          - paragraph [ref=e418]: хранения и упаковки до отправки готовой продукции на склады маркетплейсов. Мы берем на себя всю логистику, маркировку и документооборот, позволяя вам сосредоточиться на развитии бизнеса, а не на операционных задачах. Также мы обеспечиваем полное соответствие законодательству в рамках системы "Честный ЗНАК", выполняя обязательную маркировку товаров легкой промышленности, включая нанесение, сканирование и регистрацию кодов.
+        - generic [ref=e419]:
+          - generic [ref=e420]:
+            - heading "Что входит в фулфилмент" [level=3] [ref=e421]
+            - list [ref=e422]:
+              - listitem [ref=e423]:
+                - img [ref=e424]
+                - generic [ref=e427]: Прием и хранение товаров на оборудованном складе
+              - listitem [ref=e428]:
+                - img [ref=e429]
+                - generic [ref=e433]: Сборка заказов поштучно или партиями
+              - listitem [ref=e434]:
+                - img [ref=e435]
+                - generic [ref=e439]: Упаковка согласно требованиям маркетплейсов или бренда
+              - listitem [ref=e440]:
+                - img [ref=e441]
+                - generic [ref=e444]: Проверка на брак
+              - listitem [ref=e445]:
+                - img [ref=e446]
+                - generic [ref=e451]: Маркировка и печать этикеток, включая "Честный ЗНАК"
+              - listitem [ref=e452]:
+                - img [ref=e453]
+                - generic [ref=e458]: Отправка клиенту — через службы доставки или на маркетплейсы (Ozon, Wildberries и др.)
+              - listitem [ref=e459]:
+                - img [ref=e460]
+                - generic [ref=e463]: Интеграция с вашими системами учета и CRM
+          - generic [ref=e464]:
+            - heading "Маркировка по «Честный ЗНАК»" [level=3] [ref=e465]
+            - paragraph [ref=e466]: "Мы предлагаем:"
+            - list [ref=e467]:
+              - listitem [ref=e468]:
+                - img [ref=e469]
+                - generic [ref=e474]: Генерацию, печать и нанесение кодов Data Matrix
+              - listitem [ref=e475]:
+                - img [ref=e476]
+                - generic [ref=e481]: Передача честного знака заказчику
+              - listitem [ref=e482]:
+                - img [ref=e483]
+                - generic [ref=e487]: Сканирование и фиксацию передачи кодов в систему Честный ЗНАК
+              - listitem [ref=e488]:
+                - img [ref=e489]
+                - generic [ref=e492]: Подготовку продукции к проверкам и полную прозрачность документации
+        - generic [ref=e493]:
+          - paragraph [ref=e494]: Мы гарантируем корректность и юридическую чистоту маркировки. Это важно как для торговли через маркетплейсы, так и при работе с крупными ритейлерами или поставках в сети.
+          - link "Получить консультацию" [ref=e495] [cursor=pointer]:
+            - /url: "#contacts"
+      - generic [ref=e498]:
+        - generic [ref=e499]:
+          - generic [ref=e500]: Цены
+          - heading "Стоимость услуг" [level=2] [ref=e501]
+          - generic [ref=e503]: СТОИМОСТЬ ОБРАЗЦА ОТ 2500Р
+        - generic [ref=e505]:
+          - combobox [ref=e506] [cursor=pointer]:
+            - generic: Все
+            - img
+          - combobox [ref=e507] [cursor=pointer]:
+            - generic: Все
+            - img
+          - generic [ref=e508]:
+            - img
+            - searchbox "Поиск по таблице…" [ref=e509]
+        - table [ref=e512]:
+          - rowgroup [ref=e513]:
+            - row "Наименование Описание От 100-500 шт От 1000 шт" [ref=e514]:
+              - cell "Наименование" [ref=e515]
+              - cell "Описание" [ref=e516]
+              - cell "От 100-500 шт" [ref=e517]
+              - cell "От 1000 шт" [ref=e518]
+          - rowgroup [ref=e519]:
+            - row "Футболки Кулирная гладь Компакт пенье 95/5 overсайз/прямые 630₽ 580₽" [ref=e520]:
+              - cell "Футболки" [ref=e521]
+              - cell "Кулирная гладь Компакт пенье 95/5 overсайз/прямые" [ref=e522]
+              - cell "630₽" [ref=e523]:
+                - generic [ref=e524]: 630₽
+              - cell "580₽" [ref=e525]:
+                - generic [ref=e526]: 580₽
+            - row "Худи кенгуру overсайз Футер 3х-нитка начес/петля 340г 92/8 overсайз/прямые 1850₽ 1750₽" [ref=e527]:
+              - cell "Худи кенгуру overсайз" [ref=e528]
+              - cell "Футер 3х-нитка начес/петля 340г 92/8 overсайз/прямые" [ref=e529]
+              - cell "1850₽" [ref=e530]:
+                - generic [ref=e531]: 1850₽
+              - cell "1750₽" [ref=e532]:
+                - generic [ref=e533]: 1750₽
+            - row "Худи с молнией Футер 3х-нитка начес/петля 340г 92/8 overсайз/прямые 2000₽ 1850₽" [ref=e534]:
+              - cell "Худи с молнией" [ref=e535]
+              - cell "Футер 3х-нитка начес/петля 340г 92/8 overсайз/прямые" [ref=e536]
+              - cell "2000₽" [ref=e537]:
+                - generic [ref=e538]: 2000₽
+              - cell "1850₽" [ref=e539]:
+                - generic [ref=e540]: 1850₽
+            - row "Ветровка Дюспо 100% 80-100г/м2 защита от влаги и ветра подклад капюшон 1850₽ 1750₽" [ref=e541]:
+              - cell "Ветровка" [ref=e542]
+              - cell "Дюспо 100% 80-100г/м2 защита от влаги и ветра подклад капюшон" [ref=e543]
+              - cell "1850₽" [ref=e544]:
+                - generic [ref=e545]: 1850₽
+              - cell "1750₽" [ref=e546]:
+                - generic [ref=e547]: 1750₽
+            - row "Поло Пике 190г/м2 95/5 г/м2 950₽ 850₽" [ref=e548]:
+              - cell "Поло" [ref=e549]
+              - cell "Пике 190г/м2 95/5 г/м2" [ref=e550]
+              - cell "950₽" [ref=e551]:
+                - generic [ref=e552]: 950₽
+              - cell "850₽" [ref=e553]:
+                - generic [ref=e554]: 850₽
+            - row "Бобмер Футер 3х-нитка начес/петля 340г 92/8 1600₽ 1550₽" [ref=e555]:
+              - cell "Бобмер" [ref=e556]
+              - cell "Футер 3х-нитка начес/петля 340г 92/8" [ref=e557]
+              - cell "1600₽" [ref=e558]:
+                - generic [ref=e559]: 1600₽
+              - cell "1550₽" [ref=e560]:
+                - generic [ref=e561]: 1550₽
+            - row "Жилет Дюспо 100% 80-100г/м2 защита от влаги и ветра подклад наполенние синтепон 1650₽ 1400₽" [ref=e562]:
+              - cell "Жилет" [ref=e563]
+              - cell "Дюспо 100% 80-100г/м2 защита от влаги и ветра подклад наполенние синтепон" [ref=e564]
+              - cell "1650₽" [ref=e565]:
+                - generic [ref=e566]: 1650₽
+              - cell "1400₽" [ref=e567]:
+                - generic [ref=e568]: 1400₽
+            - row "Свитшоты Футер 3х-нитка начес/петля 340г 92/8 overсайз/прямые 1650₽ 1550₽" [ref=e569]:
+              - cell "Свитшоты" [ref=e570]
+              - cell "Футер 3х-нитка начес/петля 340г 92/8 overсайз/прямые" [ref=e571]
+              - cell "1650₽" [ref=e572]:
+                - generic [ref=e573]: 1650₽
+              - cell "1550₽" [ref=e574]:
+                - generic [ref=e575]: 1550₽
+            - row "Спортивные штаны Футер 3х-нитка начес/петля 340г 92/8 overсайз/прямые 1300₽ 1200₽" [ref=e576]:
+              - cell "Спортивные штаны" [ref=e577]
+              - cell "Футер 3х-нитка начес/петля 340г 92/8 overсайз/прямые" [ref=e578]
+              - cell "1300₽" [ref=e579]:
+                - generic [ref=e580]: 1300₽
+              - cell "1200₽" [ref=e581]:
+                - generic [ref=e582]: 1200₽
+      - generic [ref=e585]:
+        - generic [ref=e586]:
+          - generic [ref=e587]: Каталог
+          - heading "Готовая продукция" [level=2] [ref=e588]
+        - generic [ref=e591]:
+          - generic [ref=e592]:
+            - img
+            - searchbox "Поиск по таблице…" [ref=e593]
+          - combobox [ref=e594] [cursor=pointer]:
+            - generic: Все
+            - img
+          - combobox [ref=e595] [cursor=pointer]:
+            - generic [ref=e596]: Выберите категории
+            - img [ref=e597]
+        - table [ref=e602]:
+          - rowgroup [ref=e603]:
+            - row "Наименование Цвета Описание Размерный ряд От 100-500 шт От 1000 шт От 3000 шт" [ref=e604]:
+              - cell "Наименование" [ref=e605]
+              - cell "Цвета" [ref=e606]
+              - cell "Описание" [ref=e607]
+              - cell "Размерный ряд" [ref=e608]
+              - cell "От 100-500 шт" [ref=e609]
+              - cell "От 1000 шт" [ref=e610]
+              - cell "От 3000 шт" [ref=e611]
+          - rowgroup [ref=e612]:
+            - 'row "Футболка Econom В наличие белые и черные 100% хлопок Плотность : 160 гр 42-56 р. 285 р. 270 р. 255" [ref=e613]':
+              - cell "Футболка Econom" [ref=e614]
+              - cell "В наличие белые и черные" [ref=e615]
+              - 'cell "100% хлопок Плотность : 160 гр" [ref=e616]'
+              - cell "42-56 р." [ref=e617]
+              - cell "285 р." [ref=e618]
+              - cell "270 р." [ref=e619]
+              - cell "255" [ref=e620]
+            - 'row "Футболка Classic Comfort Белый Черный +более 20 цветов в наличие 100% хлопок Кулирная гладь Плотность : 160 гр Вид ткани: Карде 42-62 р. 300 р. 295 р. 280" [ref=e621]':
+              - cell "Футболка Classic Comfort" [ref=e622]
+              - cell "Белый Черный +более 20 цветов в наличие" [ref=e623]
+              - 'cell "100% хлопок Кулирная гладь Плотность : 160 гр Вид ткани: Карде" [ref=e624]'
+              - cell "42-62 р." [ref=e625]
+              - cell "300 р." [ref=e626]
+              - cell "295 р." [ref=e627]
+              - cell "280" [ref=e628]
+            - row "Футболка LUX FULL лайкра В наличие белые и чёрные Футболка Classic 180гр/м2 состав 92/8 42-56 р. 450 р. 430 р. 410" [ref=e629]:
+              - cell "Футболка LUX FULL лайкра" [ref=e630]
+              - cell "В наличие белые и чёрные" [ref=e631]
+              - cell "Футболка Classic 180гр/м2 состав 92/8" [ref=e632]
+              - cell "42-56 р." [ref=e633]
+              - cell "450 р." [ref=e634]
+              - cell "430 р." [ref=e635]
+              - cell "410" [ref=e636]
+            - 'row "Футболка LUX В наличие белые и чёрные 100% хлопок Кулинарная гладь Плотность : 180гр Вид ткани: Пенье 42-64 р. 350 р. 330 р. 310" [ref=e637]':
+              - cell "Футболка LUX" [ref=e638]
+              - cell "В наличие белые и чёрные" [ref=e639]
+              - 'cell "100% хлопок Кулинарная гладь Плотность : 180гр Вид ткани: Пенье" [ref=e640]'
+              - cell "42-64 р." [ref=e641]
+              - cell "350 р." [ref=e642]
+              - cell "330 р." [ref=e643]
+              - cell "310" [ref=e644]
+            - 'row "Футболка OVERSIZE LUX В наличие белые и чёрные 92/8 Кулинарная гладь Плотность : 200гр Вид ткани: Пенье XS-2XL 450 р. 430 р. 400" [ref=e645]':
+              - cell "Футболка OVERSIZE LUX" [ref=e646]
+              - cell "В наличие белые и чёрные" [ref=e647]
+              - 'cell "92/8 Кулинарная гладь Плотность : 200гр Вид ткани: Пенье" [ref=e648]'
+              - cell "XS-2XL" [ref=e649]
+              - cell "450 р." [ref=e650]
+              - cell "430 р." [ref=e651]
+              - cell "400" [ref=e652]
+            - 'row "Футболка женская Белый Черный более 16 цветов по запросу 100% хлопок Кулинарная гладь Плотность : 160гр Вид ткани: Карде 42-56 р. 290 р. 280 р. 265" [ref=e653]':
+              - cell "Футболка женская" [ref=e654]
+              - cell "Белый Черный более 16 цветов по запросу" [ref=e655]
+              - 'cell "100% хлопок Кулинарная гладь Плотность : 160гр Вид ткани: Карде" [ref=e656]'
+              - cell "42-56 р." [ref=e657]
+              - cell "290 р." [ref=e658]
+              - cell "280 р." [ref=e659]
+              - cell "265" [ref=e660]
+            - 'row "Футболка детская Белый Черный более 16 цветов по запросу 100% хлопок Кулинарная гладь Плотность : 160гр Вид ткани: Пенье XS- 5XS 270 р. 260 р. 250" [ref=e661]':
+              - cell "Футболка детская" [ref=e662]
+              - cell "Белый Черный более 16 цветов по запросу" [ref=e663]
+              - 'cell "100% хлопок Кулинарная гладь Плотность : 160гр Вид ткани: Пенье" [ref=e664]'
+              - cell "XS- 5XS" [ref=e665]
+              - cell "270 р." [ref=e666]
+              - cell "260 р." [ref=e667]
+              - cell "250" [ref=e668]
+            - 'row "Рубашка поло Premium Белый Черный более 12 цветов по запросу 100% хлопок Кулинарная гладь Плотность : 200гр Вид ткани: карде XS- 3XL 650 р. 620 р. 600" [ref=e669]':
+              - cell "Рубашка поло Premium" [ref=e670]
+              - cell "Белый Черный более 12 цветов по запросу" [ref=e671]
+              - 'cell "100% хлопок Кулинарная гладь Плотность : 200гр Вид ткани: карде" [ref=e672]'
+              - cell "XS- 3XL" [ref=e673]
+              - cell "650 р." [ref=e674]
+              - cell "620 р." [ref=e675]
+              - cell "600" [ref=e676]
+            - 'row "Свитшот Белы Черный более 12 цветов по запросу 100% хлопок Кулинарная гладь Плотность : 320гр Вид ткани: карде XS- 3XL 1 250 1 190 1 100" [ref=e677]':
+              - cell "Свитшот" [ref=e678]
+              - cell "Белы Черный более 12 цветов по запросу" [ref=e679]
+              - 'cell "100% хлопок Кулинарная гладь Плотность : 320гр Вид ткани: карде" [ref=e680]'
+              - cell "XS- 3XL" [ref=e681]
+              - cell "1 250" [ref=e682]
+              - cell "1 190" [ref=e683]
+              - cell "1 100" [ref=e684]
+            - 'row "Худи Белы Черный более 12 цветов по запросу 100% хлопок Кулинарная гладь Плотность : 3 20 Вид ткани: карде XS- 3XL 1 370 1 320 1 250" [ref=e685]':
+              - cell "Худи" [ref=e686]
+              - cell "Белы Черный более 12 цветов по запросу" [ref=e687]
+              - 'cell "100% хлопок Кулинарная гладь Плотность : 3 20 Вид ткани: карде" [ref=e688]'
+              - cell "XS- 3XL" [ref=e689]
+              - cell "1 370" [ref=e690]
+              - cell "1 320" [ref=e691]
+              - cell "1 250" [ref=e692]
+            - row "Бейсболка В наличие более 20 расцветок Ткань диоганаль Регулятор Р.250 Р. 235 Р.200" [ref=e693]:
+              - cell "Бейсболка" [ref=e694]
+              - cell "В наличие более 20 расцветок" [ref=e695]
+              - cell "Ткань диоганаль Регулятор" [ref=e696]
+              - cell [ref=e697]
+              - cell "Р.250" [ref=e698]
+              - cell "Р. 235" [ref=e699]
+              - cell "Р.200" [ref=e700]
+            - 'row "Сумка холщовая Белы Черный 220 гр/ м2 Ткань: диоган аль 35- 40 см Ручка 72 см Р.220 Р.210 Р.200" [ref=e701]':
+              - cell "Сумка холщовая" [ref=e702]
+              - cell "Белы Черный" [ref=e703]
+              - 'cell "220 гр/ м2 Ткань: диоган аль 35- 40 см Ручка 72 см" [ref=e704]'
+              - cell [ref=e705]
+              - cell "Р.220" [ref=e706]
+              - cell "Р.210" [ref=e707]
+              - cell "Р.200" [ref=e708]
+      - generic [ref=e710]:
+        - img [ref=e711]
+        - img [ref=e713]
+        - generic [ref=e715]:
+          - generic [ref=e716]: Работы
+          - heading "Портфолио" [level=2] [ref=e717]
+        - generic [ref=e719]:
+          - button "Пример работы 1 Мерч Будет добавлен позже" [ref=e720] [cursor=pointer]:
+            - generic [ref=e722]:
+              - img [ref=e724]
+              - heading "Пример работы 1" [level=3] [ref=e726]
+              - paragraph [ref=e727]: Мерч
+              - paragraph [ref=e728]: Будет добавлен позже
+          - button "Пример работы 2 Производство Будет добавлен позже" [ref=e729] [cursor=pointer]:
+            - generic [ref=e731]:
+              - img [ref=e733]
+              - heading "Пример работы 2" [level=3] [ref=e735]
+              - paragraph [ref=e736]: Производство
+              - paragraph [ref=e737]: Будет добавлен позже
+          - button "Пример работы 3 Мерч Будет добавлен позже" [ref=e738] [cursor=pointer]:
+            - generic [ref=e740]:
+              - img [ref=e742]
+              - heading "Пример работы 3" [level=3] [ref=e744]
+              - paragraph [ref=e745]: Мерч
+              - paragraph [ref=e746]: Будет добавлен позже
+          - button "Пример работы 4 Производство Будет добавлен позже" [ref=e747] [cursor=pointer]:
+            - generic [ref=e749]:
+              - img [ref=e751]
+              - heading "Пример работы 4" [level=3] [ref=e753]
+              - paragraph [ref=e754]: Производство
+              - paragraph [ref=e755]: Будет добавлен позже
+          - button "Пример работы 5 Мерч Будет добавлен позже" [ref=e756] [cursor=pointer]:
+            - generic [ref=e758]:
+              - img [ref=e760]
+              - heading "Пример работы 5" [level=3] [ref=e762]
+              - paragraph [ref=e763]: Мерч
+              - paragraph [ref=e764]: Будет добавлен позже
+          - button "Пример работы 6 Производство Будет добавлен позже" [ref=e765] [cursor=pointer]:
+            - generic [ref=e767]:
+              - img [ref=e769]
+              - heading "Пример работы 6" [level=3] [ref=e771]
+              - paragraph [ref=e772]: Производство
+              - paragraph [ref=e773]: Будет добавлен позже
+      - generic [ref=e776]:
+        - heading "Свяжитесь с нами" [level=2] [ref=e777]
+        - paragraph [ref=e778]: Готовы начать производство? Мы поможем воплотить ваши идеи в качественную продукцию
+        - button "Получить консультацию" [ref=e779] [cursor=pointer]:
+          - generic [ref=e780]: Получить консультацию
+      - generic [ref=e782]:
+        - generic [ref=e783]:
+          - generic [ref=e784]: FAQ
+          - heading "Часто задаваемые вопросы" [level=2] [ref=e785]
+        - generic [ref=e788]:
+          - heading "Какие минимальные партии вы производите?" [level=3] [ref=e791]:
+            - button "Какие минимальные партии вы производите?" [ref=e792] [cursor=pointer]:
+              - generic [ref=e793]: Какие минимальные партии вы производите?
+              - img [ref=e794]
+          - heading "Какие сроки производства?" [level=3] [ref=e798]:
+            - button "Какие сроки производства?" [ref=e799] [cursor=pointer]:
+              - generic [ref=e800]: Какие сроки производства?
+              - img [ref=e801]
+          - heading "Работаете ли вы с давальческим сырьем?" [level=3] [ref=e805]:
+            - button "Работаете ли вы с давальческим сырьем?" [ref=e806] [cursor=pointer]:
+              - generic [ref=e807]: Работаете ли вы с давальческим сырьем?
+              - img [ref=e808]
+          - heading "Предоставляете ли вы образцы перед запуском производства?" [level=3] [ref=e812]:
+            - button "Предоставляете ли вы образцы перед запуском производства?" [ref=e813] [cursor=pointer]:
+              - generic [ref=e814]: Предоставляете ли вы образцы перед запуском производства?
+              - img [ref=e815]
+          - heading "Какие виды нанесения логотипов доступны?" [level=3] [ref=e819]:
+            - button "Какие виды нанесения логотипов доступны?" [ref=e820] [cursor=pointer]:
+              - generic [ref=e821]: Какие виды нанесения логотипов доступны?
+              - img [ref=e822]
+        - paragraph [ref=e825]:
+          - text: Не нашли ответ на свой вопрос?
+          - link "Свяжитесь с нами" [ref=e826] [cursor=pointer]:
+            - /url: "#contacts"
+      - generic [ref=e829]:
+        - generic [ref=e830]:
+          - heading "Оставьте заявку" [level=2] [ref=e831]
+          - paragraph [ref=e832]: Заполните форму, и мы свяжемся с вами в течение рабочего дня
+        - form "Форма обратной связи" [ref=e833]:
+          - generic [ref=e834]:
+            - generic [ref=e835] [cursor=pointer]: Имя *
+            - textbox "Имя *" [ref=e836]:
+              - /placeholder: Ваше имя
+          - generic [ref=e837]:
+            - generic [ref=e838] [cursor=pointer]: Телефон *
+            - textbox "Телефон *" [ref=e839]:
+              - /placeholder: +7 (999) 123-45-67
+          - generic [ref=e840]:
+            - generic [ref=e841] [cursor=pointer]: Email (необязательно)
+            - textbox "Email (необязательно)" [ref=e842]:
+              - /placeholder: your@email.com
+          - generic [ref=e843]:
+            - generic [ref=e844] [cursor=pointer]: Сообщение *
+            - textbox "Сообщение *" [ref=e845]:
+              - /placeholder: Опишите вашу задачу...
+          - generic [ref=e847]:
+            - checkbox "Я согласен на обработку персональных данных в соответствии с политикой конфиденциальности *" [ref=e848] [cursor=pointer]
+            - checkbox
+            - generic [ref=e850] [cursor=pointer]:
+              - text: Я согласен на обработку персональных данных в соответствии с
+              - generic [ref=e851]: политикой конфиденциальности
+              - text: "*"
+          - generic [ref=e852]:
+            - button "Отправить заявку" [disabled]
+        - generic [ref=e853]:
+          - paragraph [ref=e854]: "Или свяжитесь с нами напрямую:"
+          - link "+7 (999) 123-45-67" [ref=e855] [cursor=pointer]:
+            - /url: tel:+79991234567
+  - contentinfo [ref=e856]:
+    - generic [ref=e857]:
+      - generic [ref=e858]:
+        - generic [ref=e859]:
+          - heading "LOGO" [level=3] [ref=e860]
+          - paragraph [ref=e861]: Профессиональное швейное производство полного цикла. От идеи до готового изделия.
+        - generic [ref=e862]:
+          - heading "Услуги" [level=3] [ref=e863]
+          - list [ref=e864]:
+            - listitem [ref=e865]:
+              - link "Дизайн лекал" [ref=e866] [cursor=pointer]:
+                - /url: "#services"
+            - listitem [ref=e867]:
+              - link "Градация лекал" [ref=e868] [cursor=pointer]:
+                - /url: "#services"
+            - listitem [ref=e869]:
+              - link "Мерч продукция" [ref=e870] [cursor=pointer]:
+                - /url: "#services"
+            - listitem [ref=e871]:
+              - link "Фулфилмент" [ref=e872] [cursor=pointer]:
+                - /url: "#services"
+        - generic [ref=e873]:
+          - heading "Компания" [level=3] [ref=e874]
+          - list [ref=e875]:
+            - listitem [ref=e876]:
+              - link "О нас" [ref=e877] [cursor=pointer]:
+                - /url: "#about"
+            - listitem [ref=e878]:
+              - link "Портфолио" [ref=e879] [cursor=pointer]:
+                - /url: "#portfolio"
+            - listitem [ref=e880]:
+              - link "Цены" [ref=e881] [cursor=pointer]:
+                - /url: "#pricing"
+            - listitem [ref=e882]:
+              - link "FAQ" [ref=e883] [cursor=pointer]:
+                - /url: "#faq"
+        - generic [ref=e884]:
+          - heading "Контакты" [level=3] [ref=e885]
+          - list [ref=e886]:
+            - listitem [ref=e887]:
+              - link "Связаться" [ref=e888] [cursor=pointer]:
+                - /url: "#contacts"
+            - listitem [ref=e889]:
+              - link "+7 (999) 999-99-99" [ref=e890] [cursor=pointer]:
+                - /url: tel:+79999999999
+            - listitem [ref=e891]:
+              - link "info@example.com" [ref=e892] [cursor=pointer]:
+                - /url: mailto:info@example.com
+      - paragraph [ref=e894]: © 2025 LOGO. Все права защищены
+  - region "Notifications (F8)":
+    - list
+  - button "Test Sentry error tracking" [ref=e895] [cursor=pointer]: 🔥 Test Sentry Error
+  - generic [ref=e900] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e901]:
+      - img [ref=e902]
+    - generic [ref=e905]:
+      - button "Open issues overlay" [ref=e906]:
+        - generic [ref=e907]:
+          - generic [ref=e908]: "0"
+          - generic [ref=e909]: "1"
+        - generic [ref=e910]: Issue
+      - button "Collapse issues badge" [ref=e911]:
+        - img [ref=e912]
+  - alert [ref=e914]
+```

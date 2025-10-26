@@ -22,8 +22,10 @@ export const tokens = {
         secondary: '#B9C0C7',
       },
       accent: {
-        DEFAULT: '#D64218',
-        600: '#C03B15',
+        DEFAULT: '#D64218', // Safety Orange
+        light: '#FF6B35', // Light accent variant
+        600: '#C03B15', // Dark accent variant
+        700: '#C23A14', // Darker accent
         glow: 'radial-gradient(40% 60% at 60% 40%, rgba(214, 66, 24, 0.24), transparent 70%)',
       },
     },
@@ -112,7 +114,9 @@ export function applyTokens(theme: 'dark' | 'light' = 'dark') {
     root.style.setProperty('--color-surface-2', colorTokens.bg.surface[2])
     root.style.setProperty('--color-surface-glass', colorTokens.bg.surface.glass)
     root.style.setProperty('--color-accent', colorTokens.accent.DEFAULT)
+    root.style.setProperty('--color-accent-light', colorTokens.accent.light)
     root.style.setProperty('--color-accent-600', colorTokens.accent[600])
+    root.style.setProperty('--color-accent-700', colorTokens.accent[700])
     root.style.setProperty('--color-accent-glow', colorTokens.accent.glow)
   } else {
     root.style.setProperty('--color-bg-light', colorTokens.bg.paper)

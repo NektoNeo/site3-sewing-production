@@ -1,0 +1,12 @@
+
+> site3@0.1.0 test:e2e C:\Users\VA PC\Documents\site3\site3-sewing-production
+> playwright test
+
+Error: Process from config.webServer was not able to start. Exit code: 3221225794
+
+
+To open last HTML report run:
+[36m[39m
+[36m  pnpm exec playwright show-report[39m
+[36m[39m
+ ELIFECYCLE  Command failed with exit code 1.

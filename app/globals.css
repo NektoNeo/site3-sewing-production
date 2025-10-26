@@ -10,16 +10,18 @@
 @layer base {
   :root {
     /* Industrial Noir + Safety Orange Design Tokens */
-    --bg-base: #1A1C1E;
-    --bg-elev-1: #222425;
-    --bg-elev-2: #2B2F31;
+    /* Synchronized with lib/design-tokens.ts */
+    --bg-base: #0E1113;
+    --bg-elev-1: #161A1D;
+    --bg-elev-2: #1C2226;
     --panel: #32373D;
     --line: rgba(165, 171, 175, 0.18);
-    --fg: #E6E9EC;
-    --fg-muted: #9CA3A8;
-    --brand: #D64218;
-    --brand-600: #D64218;
-    --brand-700: #C23A14;
+    --fg: #F3F4F6;
+    --fg-muted: #B9C0C7;
+    --brand: #D64218; /* Safety Orange - from tokens.colors.dark.accent.DEFAULT */
+    --brand-light: #FF6B35; /* Light accent - from tokens.colors.dark.accent.light */
+    --brand-600: #C03B15; /* from tokens.colors.dark.accent.600 */
+    --brand-700: #C23A14; /* from tokens.colors.dark.accent.700 */
     --stone-600: #605D5C;
     --slate-700: #3F3C3A;
     --charcoal-800: #2F2A25;
@@ -33,25 +35,26 @@
     --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.35);
 
     /* Keep existing shadcn compatibility tokens */
-    --background: #1A1C1E;
-    --foreground: #E6E9EC;
+    /* References to design-tokens.ts values */
+    --background: var(--bg-base);
+    --foreground: var(--fg);
     --card: 0 0% 13%;
     --card-foreground: 0 0% 95%;
     --popover: 0 0% 13%;
     --popover-foreground: 0 0% 95%;
-    --primary: #D64218;
+    --primary: var(--brand);
     --primary-foreground: #FFFFFF;
     --secondary: 0 0% 20%;
     --secondary-foreground: 0 0% 95%;
-    --muted: #32373D;
-    --muted-foreground: #9CA3A8;
-    --accent: #D64218;
+    --muted: var(--panel);
+    --muted-foreground: var(--fg-muted);
+    --accent: var(--brand);
     --accent-foreground: #FFFFFF;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: #D64218;
+    --ring: var(--brand);
     --radius: 0.5rem;
 
     /* Spacing System */
@@ -66,7 +69,7 @@
     /* Zipper Design Tokens */
     --zip-metal: #A5ABAF;
     --zip-tape: #1A1D20;
-    --zip-head: #D64218;
+    --zip-head: var(--brand); /* from design-tokens.ts */
   }
 
   /* Header color modes */
@@ -392,10 +395,10 @@
   /* Chip tags */
   .tag {
     display: inline-block;
-    color: #D64218;
+    color: var(--brand);
     border-radius: 9999px;
     padding: 0.25rem 0.6rem;
-    background: rgba(214, 66, 24, 0.1);
+    background: color-mix(in srgb, var(--brand) 10%, transparent);
     font-size: 12px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -452,8 +455,8 @@
 
   /* Контурный текст для цифр */
   .outline-text {
-    -webkit-text-stroke: 2px #D64218;
-    text-stroke: 2px #D64218;
+    -webkit-text-stroke: 2px var(--brand);
+    text-stroke: 2px var(--brand);
   }
 
   /* Pricing UX Performance Styles */
@@ -727,8 +730,8 @@
   }
 
   .surface-light .tag {
-    background: rgba(214, 66, 24, 0.12);
-    color: #D64218;
+    background: color-mix(in srgb, var(--brand) 12%, transparent);
+    color: var(--brand);
   }
 
   .surface-light .hairline {

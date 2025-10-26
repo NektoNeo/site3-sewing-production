@@ -12,6 +12,9 @@ const nextConfig = {
   // Turbopack config (Next.js 16+)
   turbopack: {},
 
+  // Fix OpenTelemetry warnings - externalize packages
+  serverExternalPackages: ['import-in-the-middle', 'require-in-the-middle'],
+
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [360, 640, 960, 1280, 1920],

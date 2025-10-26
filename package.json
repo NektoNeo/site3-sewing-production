@@ -14,7 +14,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build:tokens": "style-dictionary build",
-    "test:e2e": "playwright test",
+    "test:e2e": "cross-env NEXT_PUBLIC_DISABLE_ANIMATIONS=true CI=true playwright test",
     "test:ui": "vitest",
     "perf:lhci": "lhci autorun",
     "ci:preview": "next start -p 3000"
@@ -57,6 +57,7 @@
     "zod": "^4.1.11"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
     "@chromatic-com/storybook": "^4.1.1",
     "@lhci/cli": "^0.15.1",
     "@next/bundle-analyzer": "^15.5.4",
@@ -74,6 +75,9 @@
     "@types/react-dom": "^18.3.7",
     "@types/three": "^0.180.0",
     "autoprefixer": "^10.4.14",
+    "axe-core": "^4.11.0",
+    "axe-playwright": "^2.2.2",
+    "cross-env": "^10.1.0",
     "css-minimizer-webpack-plugin": "^7.0.2",
     "eslint": "^8.57.1",
     "eslint-config-next": "^14.2.18",

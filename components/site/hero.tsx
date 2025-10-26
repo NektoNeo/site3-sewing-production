@@ -114,7 +114,7 @@ export default function Hero() {
             >
               Швейное производство
               <br />
-              <span className="text-[#FF6B35]">полного цикла</span>
+              <span className="text-[var(--brand-light)]">полного цикла</span>
             </motion.h1>
 
             {/* Subtitle with better contrast */}
