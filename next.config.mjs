@@ -12,6 +12,11 @@ const nextConfig = {
   // Turbopack config (Next.js 16+)
   turbopack: {},
 
+  // Enable View Transitions API (experimental)
+  experimental: {
+    viewTransition: true,
+  },
+
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [360, 640, 960, 1280, 1920],

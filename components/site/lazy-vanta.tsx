@@ -36,6 +36,12 @@ export function LazyVanta() {
   useEffect(() => {
     // Check if we should load based on performance
     const checkLoad = () => {
+      // Skip Vanta in E2E tests and CI environments
+      const isE2E = process.env.NEXT_PUBLIC_DISABLE_ANIMATIONS === 'true' || process.env.CI === 'true'
+      if (isE2E) {
+        return // Don't load in tests
+      }
+
       const isDesktop = window.matchMedia('(min-width: 1024px)').matches
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 

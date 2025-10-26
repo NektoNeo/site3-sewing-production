@@ -3,6 +3,7 @@
 import * as React from "react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { useKeyboardNavigation } from "./use-keyboard-navigation";
+import { WebVitalsProvider } from "@/components/providers/web-vitals-provider";
 
 type ThemeProviderProps = {
   children: React.ReactNode;
@@ -29,9 +30,11 @@ export function Providers({ children }: { children: React.ReactNode }) {
       enableSystem
       disableTransitionOnChange
     >
-      <A11yProvider>
-        {children}
-      </A11yProvider>
+      <WebVitalsProvider>
+        <A11yProvider>
+          {children}
+        </A11yProvider>
+      </WebVitalsProvider>
     </ThemeProvider>
   );
 }

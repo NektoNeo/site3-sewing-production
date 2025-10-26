@@ -27,7 +27,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section data-surface="dark" className="relative min-h-screen overflow-hidden">
+    <section data-surface="dark" className="relative min-h-screen overflow-hidden view-transition-hero">
       {/* Sentinel for header contrast */}
       <div className="contrast-dark absolute inset-0 -z-10" aria-hidden="true" />
 
@@ -82,7 +82,7 @@ export default function Hero() {
         {/* Character with fixed positioning */}
         <motion.div
           style={{ y: mascotY }}
-          className="relative"
+          className="relative view-transition-hero-mascot"
         >
           <OptimizedHeroImage
             src="/brand/mascot.png"
@@ -103,7 +103,7 @@ export default function Hero() {
           <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl">
             {/* Headline with responsive sizing */}
             <motion.h1
-              className="font-display leading-[0.9] text-white mb-6 md:mb-[var(--space-xl)]"
+              className="font-display leading-[0.9] text-white mb-6 md:mb-[var(--space-xl)] view-transition-hero-heading"
               style={{
                 fontSize: 'clamp(36px, 7vw, 80px)',
                 letterSpacing: '-0.03em'

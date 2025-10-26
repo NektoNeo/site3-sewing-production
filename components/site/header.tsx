@@ -4,7 +4,9 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { GlassNavbar } from "@/components/ui/glass-navbar";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { useEffect, useState } from "react";
+import { scrollToWithTransition } from "@/lib/view-transitions";
 
 const navigation = [
   { name: "О нас", href: "/#about" },
@@ -75,33 +77,42 @@ export function Header() {
               const isActive = activeSection === item.href.replace('/#', '');
               return (
                 <li key={item.name}>
-                  <Link
-                    href={item.href as any}
+                  <a
+                    href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const targetId = item.href.replace('/#', '');
+                      scrollToWithTransition(targetId);
+                    }}
                     className={cn(
                       "px-3 py-[var(--space-xs)] text-sm font-medium transition-all duration-200 rounded-md",
                       "text-[var(--nav-text)] hover:text-[var(--color-accent)]",
                       "hover:bg-[var(--nav-stroke)]",
                       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]",
+                      "cursor-pointer",
                       isActive && "text-[var(--color-accent)] bg-[var(--nav-stroke)]"
                     )}
                     aria-current={isActive ? 'page' : undefined}
                   >
                     {item.name}
-                  </Link>
+                  </a>
                 </li>
               );
             })}
           </ul>
         </nav>
 
-        {/* CTA Button */}
-        <Button
-          asChild
-          className="rounded-full bg-[var(--color-accent)] hover:bg-[var(--color-accent-600)] text-white transition-all duration-200"
-          size="sm"
-        >
-          <Link href="#cta-quick">Заказать</Link>
-        </Button>
+        {/* Actions: Theme Toggle + CTA */}
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <Button
+            asChild
+            className="rounded-full bg-[var(--color-accent)] hover:bg-[var(--color-accent-600)] text-white transition-all duration-200"
+            size="sm"
+          >
+            <Link href="#cta-quick">Заказать</Link>
+          </Button>
+        </div>
       </div>
     </GlassNavbar>
   );

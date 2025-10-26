@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import "./styles/animations.css";
 import "./styles/performance.css";
+import "./styles/view-transitions.css";
 import { inter, space } from "./fonts";
 import { Providers } from "@/lib/providers";
 import { SmoothScroll } from "@/lib/smooth-scroll";
