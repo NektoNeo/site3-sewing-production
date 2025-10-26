@@ -160,12 +160,24 @@
   view-transition-name: modal;
 }
 
+.view-transition-modal-overlay {
+  view-transition-name: modal-overlay;
+}
+
 .view-transition-navbar {
   view-transition-name: navbar;
 }
 
 .view-transition-hero {
   view-transition-name: hero;
+}
+
+.view-transition-hero-heading {
+  view-transition-name: hero-heading;
+}
+
+.view-transition-hero-mascot {
+  view-transition-name: hero-mascot;
 }
 
 .view-transition-section {
