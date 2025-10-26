@@ -1,0 +1,16 @@
+{
+  "color": {
+    "brand": {
+      "primary": {
+        "value": "#7C3AED"
+      }
+    }
+  },
+  "typography": {
+    "fontSize": {
+      "base": {
+        "value": "16px"
+      }
+    }
+  }
+}

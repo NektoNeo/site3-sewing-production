@@ -1,0 +1,24 @@
+name: Lighthouse CI
+on: { pull_request: { branches: [ main ] }, push: { branches: [ main ] } }
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: 'pnpm' }
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - run: pnpm install --frozen-lockfile=false
+      - name: Build
+        run: pnpm run build || pnpm run build --if-present
+      - name: Start server
+        run: pnpm run ci:preview &
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000
+      - name: Lighthouse CI
+        run: pnpm exec lhci autorun --config=./ci/lighthouse/lighthouserc.json
+      - name: Upload LHCI artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with: { name: lighthouse-report, path: .lighthouseci }

@@ -4,7 +4,7 @@ import * as React from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
-import InputMask from "react-input-mask"
+import { IMaskInput } from "react-imask"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -129,21 +129,15 @@ export function LeadInlineForm({ onSubmit, className }: LeadInlineFormProps) {
             <FormItem>
               <FormLabel>Телефон</FormLabel>
               <FormControl>
-                <InputMask
-                  mask="+7 (999) 999-99-99"
-                  value={field.value}
-                  onChange={field.onChange}
-                  onBlur={field.onBlur}
-                >
-                  {(inputProps: any) => (
-                    <Input
-                      {...inputProps}
-                      type="tel"
-                      placeholder="+7 (___) ___-__-__"
-                      aria-label="Номер телефона"
-                    />
-                  )}
-                </InputMask>
+                <IMaskInput
+                  {...field}
+                  mask="+7 (000) 000-00-00"
+                  placeholder="+7 (___) ___-__-__"
+                  onAccept={(value) => field.onChange(value)}
+                  type="tel"
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  aria-label="Номер телефона"
+                />
               </FormControl>
               <FormDescription>
                 Мы позвоним вам для уточнения деталей
