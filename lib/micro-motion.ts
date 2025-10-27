@@ -10,8 +10,9 @@ export const cardHover: Variants = {
     y: -2,
     boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
     transition: {
-      duration: 0.2,
-      ease: "easeOut"
+      type: "spring",
+      stiffness: 400,
+      damping: 25
     }
   }
 }
@@ -26,8 +27,9 @@ export const serviceCardHover: Variants = {
     y: -2,
     boxShadow: "0 10px 25px -5px rgba(214, 66, 24, 0.15), 0 8px 10px -6px rgba(214, 66, 24, 0.1)",
     transition: {
-      duration: 0.2,
-      ease: "easeOut"
+      type: "spring",
+      stiffness: 400,
+      damping: 25
     }
   }
 }
@@ -42,7 +44,7 @@ export const rippleConfig = {
 // Subtle scale for clickable elements
 export const clickableScale: MotionProps = {
   whileTap: { scale: 0.98 },
-  transition: { duration: 0.1 }
+  transition: { type: "spring", stiffness: 500, damping: 30 }
 }
 
 // Icon bounce on hover
@@ -51,8 +53,9 @@ export const iconBounce: Variants = {
   hover: {
     y: -2,
     transition: {
-      duration: 0.2,
-      ease: "easeOut"
+      type: "spring",
+      stiffness: 400,
+      damping: 25
     }
   }
 }
@@ -64,7 +67,7 @@ export const tableRowHover: Variants = {
   },
   hover: {
     backgroundColor: "rgba(214, 66, 24, 0.03)",
-    transition: { duration: 0.15 }
+    transition: { type: "spring", stiffness: 500, damping: 30 }
   }
 }
 
@@ -88,7 +91,7 @@ export const smoothAppear: Variants = {
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.3, ease: "easeOut" }
+    transition: { type: "spring", stiffness: 200, damping: 25 }
   }
 }
 
@@ -99,7 +102,7 @@ export const focusRing = {
     outlineColor: "rgba(214, 66, 24, 0.5)",
     outlineOffset: "2px",
     outlineStyle: "solid",
-    transition: { duration: 0.15 }
+    transition: { type: "spring", stiffness: 500, damping: 30 }
   }
 }
 

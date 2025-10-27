@@ -47,7 +47,7 @@ export function TechMediaCards() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ type: "spring", stiffness: 100, damping: 20 }}
           className="mb-12 text-center"
         >
           <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
@@ -64,7 +64,7 @@ export function TechMediaCards() {
               key={card.id}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ type: "spring", stiffness: 100, damping: 20, delay: index * 0.1 }}
             >
               <Card
                 className={cn(
@@ -84,8 +84,9 @@ export function TechMediaCards() {
                       scale: hoveredCard === card.id ? 1.1 : 1,
                     }}
                     transition={{
-                      duration: 10,
-                      ease: "linear",
+                      type: "spring",
+                      stiffness: 30,
+                      damping: 10,
                     }}
                   >
                     <Image
@@ -109,8 +110,9 @@ export function TechMediaCards() {
                       opacity: hoveredCard === card.id ? 1 : 0,
                     }}
                     transition={{
-                      duration: 0.3,
-                      ease: "easeOut",
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 25,
                     }}
                   >
                     <h3 className="mb-2 text-xl font-semibold text-white">
@@ -129,7 +131,7 @@ export function TechMediaCards() {
                       ? 'radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.06) 0%, transparent 50%)'
                       : 'transparent'
                   }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
               </Card>
             </motion.div>

@@ -84,7 +84,7 @@ export function RippleButton({
       )}
       onClick={handleClick}
       whileTap={{ scale: 0.98 }}
-      transition={{ duration: 0.1 }}
+      transition={{ type: "spring", stiffness: 500, damping: 30 }}
       {...props}
     >
       <span className="relative z-10 flex items-center justify-center gap-2">
@@ -105,7 +105,7 @@ export function RippleButton({
             initial={{ scale: 0, opacity: 0.8 }}
             animate={{ scale: 1, opacity: 0 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ type: "spring", stiffness: 80, damping: 15 }}
           />
         ))}
       </AnimatePresence>

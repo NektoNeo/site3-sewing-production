@@ -39,7 +39,7 @@ export const createAnimation = (reducedMotion: boolean = false): {
     }
   }
 
-  // Full animations using transform and opacity
+  // Full animations using transform and opacity with spring physics
   return {
     fadeRise: {
       hidden: {
@@ -50,8 +50,9 @@ export const createAnimation = (reducedMotion: boolean = false): {
         opacity: 1,
         transform: "translateY(0px)",
         transition: {
-          duration: 0.6,
-          ease: "easeOut",
+          type: "spring",
+          stiffness: 100,
+          damping: 20,
         },
       },
     },
@@ -74,8 +75,9 @@ export const createAnimation = (reducedMotion: boolean = false): {
       visible: {
         opacity: 1,
         transition: {
-          duration: 0.5,
-          ease: "easeInOut",
+          type: "spring",
+          stiffness: 100,
+          damping: 20,
         },
       },
     },
@@ -88,8 +90,9 @@ export const createAnimation = (reducedMotion: boolean = false): {
         transform: "translateX(0px)",
         opacity: 1,
         transition: {
-          duration: 0.5,
-          ease: "easeOut",
+          type: "spring",
+          stiffness: 100,
+          damping: 20,
         },
       },
     },
@@ -102,8 +105,9 @@ export const createAnimation = (reducedMotion: boolean = false): {
         transform: "translateX(0px)",
         opacity: 1,
         transition: {
-          duration: 0.5,
-          ease: "easeOut",
+          type: "spring",
+          stiffness: 100,
+          damping: 20,
         },
       },
     },
@@ -116,8 +120,9 @@ export const createAnimation = (reducedMotion: boolean = false): {
         transform: "scale(1)",
         opacity: 1,
         transition: {
-          duration: 0.5,
-          ease: "easeOut",
+          type: "spring",
+          stiffness: 150,
+          damping: 20,
         },
       },
     }

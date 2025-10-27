@@ -110,7 +110,7 @@ export default function Hero() {
               }}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
+              transition={{ type: "spring", stiffness: 80, damping: 20, delay: 0.3 }}
             >
               Швейное производство
               <br />
@@ -122,7 +122,7 @@ export default function Hero() {
               className="text-base md:text-lg lg:text-xl text-gray-200 mb-10 md:mb-[var(--space-2xl)] max-w-xl lg:max-w-2xl leading-relaxed"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
+              transition={{ type: "spring", stiffness: 80, damping: 20, delay: 0.4 }}
             >
               От разработки лекал до готового изделия. 10 000+ изделий в месяц для брендов и частных заказов
             </motion.p>
@@ -132,7 +132,7 @@ export default function Hero() {
               className="relative flex flex-wrap gap-5"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
+              transition={{ type: "spring", stiffness: 80, damping: 20, delay: 0.5 }}
             >
               {/* Multiple decorative stitches around CTAs */}
               <StitchCircle
@@ -184,17 +184,17 @@ export default function Hero() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[10]"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.8 }}
+        transition={{ type: "spring", stiffness: 80, damping: 20, delay: 0.8 }}
       >
         <motion.div
           className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center"
           animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ type: "spring", stiffness: 20, damping: 5, repeat: Infinity }}
         >
           <motion.div
             className="w-1 h-2 bg-white/40 rounded-full mt-2"
             animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ type: "spring", stiffness: 20, damping: 5, repeat: Infinity }}
           />
         </motion.div>
       </motion.div>

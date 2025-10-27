@@ -9,8 +9,9 @@ export const fadeRise: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
-      ease: "easeOut",
+      type: "spring",
+      stiffness: 100,
+      damping: 20,
     },
   },
 };
@@ -35,8 +36,9 @@ export const fadeIn: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      duration: 0.5,
-      ease: "easeInOut",
+      type: "spring",
+      stiffness: 100,
+      damping: 20,
     },
   },
 };
@@ -50,8 +52,9 @@ export const slideInFromLeft: Variants = {
     x: 0,
     opacity: 1,
     transition: {
-      duration: 0.5,
-      ease: "easeOut",
+      type: "spring",
+      stiffness: 100,
+      damping: 20,
     },
   },
 };
@@ -65,8 +68,9 @@ export const slideInFromRight: Variants = {
     x: 0,
     opacity: 1,
     transition: {
-      duration: 0.5,
-      ease: "easeOut",
+      type: "spring",
+      stiffness: 100,
+      damping: 20,
     },
   },
 };
@@ -80,8 +84,9 @@ export const scaleIn: Variants = {
     scale: 1,
     opacity: 1,
     transition: {
-      duration: 0.5,
-      ease: "easeOut",
+      type: "spring",
+      stiffness: 150,
+      damping: 20,
     },
   },
 };
