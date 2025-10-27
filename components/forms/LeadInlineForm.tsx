@@ -30,9 +30,7 @@ import { toast } from "sonner"
 const phoneRegex = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/
 
 const formSchema = z.object({
-  serviceSelect: z.string({
-    required_error: "Пожалуйста, выберите услугу",
-  }),
+  serviceSelect: z.string().min(1, "Пожалуйста, выберите услугу"),
   phone: z.string()
     .min(1, "Телефон обязателен для заполнения")
     .regex(phoneRegex, "Введите корректный номер телефона"),

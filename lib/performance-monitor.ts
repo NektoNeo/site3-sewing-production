@@ -1,9 +1,9 @@
 // P11: Web Vitals Monitoring
-import { getCLS, getFCP, getFID, getLCP, getTTFB } from 'web-vitals';
+import { onCLS, onFCP, onINP, onLCP, onTTFB } from 'web-vitals';
 
 export interface PerformanceMetrics {
   LCP: number | null;
-  FID: number | null;
+  INP: number | null;
   CLS: number | null;
   FCP: number | null;
   TTFB: number | null;
@@ -12,7 +12,7 @@ export interface PerformanceMetrics {
 class PerformanceMonitor {
   private metrics: PerformanceMetrics = {
     LCP: null,
-    FID: null,
+    INP: null,
     CLS: null,
     FCP: null,
     TTFB: null,
@@ -27,27 +27,27 @@ class PerformanceMonitor {
   }
 
   private initializeMonitoring() {
-    getCLS((metric) => {
+    onCLS((metric) => {
       this.metrics.CLS = metric.value;
       this.notifyCallbacks();
     });
 
-    getFID((metric) => {
-      this.metrics.FID = metric.value;
+    onINP((metric) => {
+      this.metrics.INP = metric.value;
       this.notifyCallbacks();
     });
 
-    getLCP((metric) => {
+    onLCP((metric) => {
       this.metrics.LCP = metric.value;
       this.notifyCallbacks();
     });
 
-    getFCP((metric) => {
+    onFCP((metric) => {
       this.metrics.FCP = metric.value;
       this.notifyCallbacks();
     });
 
-    getTTFB((metric) => {
+    onTTFB((metric) => {
       this.metrics.TTFB = metric.value;
       this.notifyCallbacks();
     });

@@ -65,7 +65,7 @@ export function OptimizedVantaBackground() {
           points: performanceMode === 'high' ? 15.00 : 8.00,
           maxDistance: performanceMode === 'high' ? 20.00 : 15.00,
           spacing: performanceMode === 'high' ? 15.00 : 20.00,
-          showLines: performanceMode !== 'low',
+          showLines: performanceMode === 'high',
           color1: 0x8a2be2,
           color2: 0xff1493,
         };

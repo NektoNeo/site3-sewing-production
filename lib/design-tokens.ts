@@ -103,27 +103,31 @@ export const tokens = {
 // Helper function to apply tokens as CSS variables
 export function applyTokens(theme: 'dark' | 'light' = 'dark') {
   const root = document.documentElement
-  const colorTokens = theme === 'dark' ? tokens.colors.dark : tokens.colors.light
 
   // Apply color tokens
   if (theme === 'dark') {
-    root.style.setProperty('--color-bg-dark', colorTokens.bg.base)
-    root.style.setProperty('--color-surface-1', colorTokens.bg.surface[1])
-    root.style.setProperty('--color-surface-2', colorTokens.bg.surface[2])
-    root.style.setProperty('--color-surface-glass', colorTokens.bg.surface.glass)
-    root.style.setProperty('--color-accent', colorTokens.accent.DEFAULT)
-    root.style.setProperty('--color-accent-600', colorTokens.accent[600])
-    root.style.setProperty('--color-accent-glow', colorTokens.accent.glow)
+    const darkTokens = tokens.colors.dark
+    root.style.setProperty('--color-bg-dark', darkTokens.bg.base)
+    root.style.setProperty('--color-surface-1', darkTokens.bg.surface[1])
+    root.style.setProperty('--color-surface-2', darkTokens.bg.surface[2])
+    root.style.setProperty('--color-surface-glass', darkTokens.bg.surface.glass)
+    root.style.setProperty('--color-accent', darkTokens.accent.DEFAULT)
+    root.style.setProperty('--color-accent-600', darkTokens.accent[600])
+    root.style.setProperty('--color-accent-glow', darkTokens.accent.glow)
+    root.style.setProperty('--color-stroke', darkTokens.stroke)
+    root.style.setProperty('--color-muted', darkTokens.muted)
+    root.style.setProperty('--color-text-primary', darkTokens.text.primary)
+    root.style.setProperty('--color-text-secondary', darkTokens.text.secondary)
   } else {
-    root.style.setProperty('--color-bg-light', colorTokens.bg.paper)
-    root.style.setProperty('--color-surface-light', colorTokens.bg.surface)
-    root.style.setProperty('--color-text-ink', colorTokens.text.ink)
+    const lightTokens = tokens.colors.light
+    root.style.setProperty('--color-bg-light', lightTokens.bg.paper)
+    root.style.setProperty('--color-surface-light', lightTokens.bg.surface)
+    root.style.setProperty('--color-text-ink', lightTokens.text.ink)
+    root.style.setProperty('--color-stroke', lightTokens.stroke)
+    root.style.setProperty('--color-muted', lightTokens.muted)
+    root.style.setProperty('--color-text-primary', lightTokens.text.ink)
+    root.style.setProperty('--color-text-secondary', lightTokens.text.secondary)
   }
-
-  root.style.setProperty('--color-stroke', colorTokens.stroke)
-  root.style.setProperty('--color-muted', colorTokens.muted)
-  root.style.setProperty('--color-text-primary', colorTokens.text.primary || colorTokens.text.ink)
-  root.style.setProperty('--color-text-secondary', colorTokens.text.secondary)
 
   // Apply other tokens
   Object.entries(tokens.radius).forEach(([key, value]) => {

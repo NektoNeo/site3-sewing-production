@@ -3,6 +3,13 @@
 import { useEffect } from 'react'
 import * as Sentry from '@sentry/nextjs'
 
+// Extend Window interface for Sentry
+declare global {
+  interface Window {
+    Sentry?: typeof Sentry
+  }
+}
+
 export function SentryInit() {
   useEffect(() => {
     // Инициализируем Sentry только один раз

@@ -3,6 +3,11 @@ declare module 'vanta/dist/vanta.dots.min' {
   export default content;
 }
 
+declare module 'vanta/dist/vanta.net.min' {
+  const content: any;
+  export default content;
+}
+
 declare global {
   interface Window {
     VANTA: any;

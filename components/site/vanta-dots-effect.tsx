@@ -25,7 +25,7 @@ export function VantaDotsEffect() {
     // Check GPU performance
     const canvas = document.createElement('canvas')
     const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
-    const isLowEndGPU = !gl || !gl.getExtension('OES_texture_float')
+    const isLowEndGPU = !gl || !(gl as WebGLRenderingContext).getExtension('OES_texture_float')
 
     if (!isDesktop || prefersReducedMotion || isLowEndGPU) {
       console.log('Vanta skipped - mobile, reduced motion, or low-end GPU')
